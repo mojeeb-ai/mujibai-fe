@@ -1,10 +1,18 @@
 "use client";
 
-import { AxiosAPI } from "@/axios/axiosInstance";
-import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 import { useTransition } from "react";
-import { Button } from "../ui/button";
+import { AxiosAPI } from "@/axios/axiosInstance";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { ChevronDown } from "lucide-react";
+import Image from "next/image";
 
 export default function LanguageSwitcher() {
   const router = useRouter();
@@ -20,14 +28,82 @@ export default function LanguageSwitcher() {
     queryClient.invalidateQueries();
   }
 
+  const currentLang =
+    typeof document !== "undefined"
+      ? document.cookie.match(/LANG=(\w+)/)?.[1] || "en"
+      : "en";
+
+  const currentFlag =
+    currentLang === "ar"
+      ? "https://flagcdn.com/w20/sa.png"
+      : "https://flagcdn.com/w20/gb.png";
+
   return (
-    <div style={{ padding: "1rem", display: "flex", gap: "0.5rem" }}>
-      <Button className="text-[22px]" onClick={() => switchTo("en")}>
-        English
-      </Button>
-      <Button className="text-[22px]" onClick={() => switchTo("ar")}>
-        العربية
-      </Button>
+    <div className="w-full sm:w-auto flex justify-center">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            variant="outline"
+            className="
+              w-full sm:w-auto
+              flex items-center justify-between sm:justify-center gap-2 
+              px-4 py-2 rounded-full border border-border/40
+              bg-transparent text-foreground hover:bg-accent 
+              transition-colors duration-300
+              shadow-none outline-none
+            "
+          >
+            <div className="flex items-center gap-2">
+              <div className="w-[18px] h-[18px] rounded-full overflow-hidden">
+                <Image
+                  src={currentFlag}
+                  width={18}
+                  height={18}
+                  alt="flag"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <span className="text-sm font-medium">
+                {currentLang === "en" ? "EN" : "AR"}
+              </span>
+            </div>
+            <ChevronDown size={16} className="opacity-70" />
+          </Button>
+        </DropdownMenuTrigger>
+
+        <DropdownMenuContent
+          align="center"
+          className="w-full sm:w-40 text-center"
+        >
+          <DropdownMenuItem
+            onClick={() => switchTo("en")}
+            className="flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <Image
+              src="https://flagcdn.com/w20/gb.png"
+              width={24}
+              height={24}
+              className="rounded-full"
+              alt="English"
+            />
+            <span>English</span>
+          </DropdownMenuItem>
+
+          <DropdownMenuItem
+            onClick={() => switchTo("ar")}
+            className="flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <Image
+              src="https://flagcdn.com/w20/sa.png"
+              width={24}
+              height={24}
+              className="rounded-none"
+              alt="العربية"
+            />
+            <span>العربية</span>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 }
