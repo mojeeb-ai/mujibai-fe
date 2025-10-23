@@ -1,9 +1,8 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import Image from "next/image";
 
-export default function SectorsSection() {
+export default function SectorsSection({ theme }: { theme: string }) {
   const sectors = [
     {
       id: 1,
@@ -46,9 +45,6 @@ export default function SectorsSection() {
       isLarge: false,
     },
   ];
-  const { theme, resolvedTheme } = useTheme();
-
-  const currentTheme = theme === "system" ? resolvedTheme : theme;
 
   return (
     <section className="w-full bg-background-dark relative dark:bg-[#001434] bg-white">
@@ -76,7 +72,7 @@ export default function SectorsSection() {
                 <div className="p-3 px-7 bg-white/5 dark:bg-[#06B6D40F] rounded-lg">
                   <Image
                     src={
-                      currentTheme === "dark"
+                      theme === "dark"
                         ? "/landingPage/targeted-sector-image-one-dark.png"
                         : "/landingPage/targeted-sector-image-one-light.png"
                     }
@@ -109,7 +105,7 @@ export default function SectorsSection() {
                     <div className=" p-3 px-7 bg-white/3 rounded-lg">
                       <Image
                         src={
-                          currentTheme === "dark"
+                          theme === "dark"
                             ? "/landingPage/targeted-sector-image-one-dark.png"
                             : "/landingPage/targeted-sector-image-one-light.png"
                         }

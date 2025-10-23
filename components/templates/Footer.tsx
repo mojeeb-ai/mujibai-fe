@@ -10,9 +10,10 @@ import {
 } from "lucide-react";
 import Logo from "../atoms/Logo";
 import Link from "next/link";
-const Footer = () => {
+import Image from "next/image";
+const Footer = ({ theme }: { theme: string }) => {
   return (
-    <footer className="w-full bg-footer-background mt-[-4px] relative bg-gradient-to-tl from-primary/40 via-primary/10 to-transparent/20">
+    <footer className=" w-full bg-footer-background mt-[-4px] relative bg-gradient-to-tl from-primary/40 via-primary/10 to-transparent/20">
       <div className="relative w-full">
         <div className="relative w-full  mx-auto px-10">
           <div className="pt-[39px] md:pt-[78px] pb-[35px] md:pb-[70px]">
@@ -163,6 +164,20 @@ const Footer = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="absolute top-[10%] right-10 w-[200px] h-[200px]">
+        <Image
+          src={
+            theme === "dark"
+              ? "/landingPage/flag-logo-footer-dark.png"
+              : "/landingPage/flag-logo-footer-light.png"
+          }
+          alt=""
+          width={0}
+          height={0}
+          sizes="100vw,100vh"
+          className="w-[200px] h-[200px] object-contain"
+        />
       </div>
     </footer>
   );
