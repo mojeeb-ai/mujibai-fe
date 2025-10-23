@@ -84,6 +84,14 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+import { Cairo } from "next/font/google";
+
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "700"],
+  variable: "--font-cairo",
+});
+
 export default async function RootLayout({
   children,
 }: {
@@ -94,6 +102,7 @@ export default async function RootLayout({
 
   return (
     <html
+      className={`${cairo.variable}`}
       suppressHydrationWarning
       lang={locale}
       dir={locale === "ar" ? "rtl" : "ltr"}
