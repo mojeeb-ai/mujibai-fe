@@ -1,9 +1,9 @@
-import featureHumanLight from "@/public/LandingPage/feature-human-light.png";
-import featureHumanDark from "@/public/LandingPage/feature-human-dark.png";
-import handSystemLight from "@/public/LandingPage/hand-system-light.png";
-import handSystemDark from "@/public/LandingPage/hand-system-dark.png";
-import phoneAnalysisLight from "@/public/LandingPage/phone-analyis-light.png";
-import phoneAnalysisDark from "@/public/LandingPage/phone-analyis-dark.png";
+import featureHumanLight from "@/public/landingPage/feature-human-light.png";
+import featureHumanDark from "@/public/landingPage/feature-human-dark.png";
+import handSystemLight from "@/public/landingPage/hand-system-light.png";
+import handSystemDark from "@/public/landingPage/hand-system-dark.png";
+import phoneAnalysisLight from "@/public/landingPage/phone-analyis-light.png";
+import phoneAnalysisDark from "@/public/landingPage/phone-analyis-dark.png";
 
 export const featuresData = [
   {
