@@ -1,5 +1,6 @@
 "use client";
 
+import { Plan } from "@/types/types";
 import { Button } from "../ui/button";
 import { CheckCircle, X } from "lucide-react";
 
@@ -8,18 +9,8 @@ import { CheckCircle, X } from "lucide-react";
  * Glassmorphic pricing card with smooth shadows and gradient glow
  * matching the Figma design (dark and light modes supported)
  */
-export default function PricingCard({
-  plan,
-}: {
-  plan: {
-    id: string;
-    name: string;
-    price: string;
-    period: string;
-    features: { name: string; included: boolean }[];
-    isPopular: boolean;
-  };
-}) {
+
+export default function PricingCard({ plan }: { plan: Plan }) {
   return (
     <div
       key={plan.id}
