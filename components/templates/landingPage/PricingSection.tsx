@@ -2,6 +2,7 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PricingCards from "@/components/organisms/PricingCards";
+import { Plan } from "@/types/types";
 
 /**
  * PricingSection Component
@@ -12,7 +13,7 @@ export default function PricingSection() {
    * Pricing plan definitions for both billing periods.
    * You can easily extend these or connect to a backend.
    */
-  const plans = {
+  const plans: { monthly: Plan[]; yearly: Plan[] } = {
     monthly: [
       {
         id: 1,
