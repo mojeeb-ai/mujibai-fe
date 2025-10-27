@@ -1,0 +1,88 @@
+"use client";
+import {
+  LayoutDashboard,
+  PhoneCall,
+  Mic,
+  BarChart2,
+  Lightbulb,
+  Key,
+  Settings,
+} from "lucide-react";
+import Image from "next/image";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
+import Logo from "@/components/atoms/Logo";
+
+const menuItems = [
+  { title: "Dashboard", icon: LayoutDashboard, active: true },
+  { title: "Calls & Tickets", icon: PhoneCall },
+  { title: "Voice Script", icon: Mic },
+  { title: "Performance Analytics", icon: BarChart2 },
+  { title: "AI Outbound", icon: Lightbulb },
+  { title: "API Keys", icon: Key },
+  { title: "Settings", icon: Settings },
+];
+
+export default function MujibSidebar() {
+  return (
+    <Sidebar className="w-[250px] bg-[#FFFFFFBF] dark:bg-[#001434A6] rounded-2xl shadow-sm flex flex-col justify-between p-4 my-2">
+      <div className="flex flex-col items-center mb-6 mt-2">
+        <div className="flex items-center gap-2">
+          <Logo />
+        </div>
+      </div>
+
+      {/* Menu */}
+      <SidebarContent>
+        <SidebarMenu>
+          {menuItems.map((item) => (
+            <SidebarMenuItem key={item.title}>
+              <SidebarMenuButton
+                asChild
+                className={`flex items-center gap-3 py-2 px-3 rounded-md transition-all ${
+                  item.active
+                    ? "bg-[#06B6D40F] text-[#06B6D4]"
+                    : " hover:bg-[#06B6D40F]"
+                }`}
+              >
+                <a href="#">
+                  <item.icon
+                    className={`w-5 h-5 ${
+                      item.active
+                        ? "text-[#06B6D4]"
+                        : "text-gray-700 dark:text-gray-300"
+                    }`}
+                  />
+                  <span className="text-sm font-medium">{item.title}</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
+        </SidebarMenu>
+      </SidebarContent>
+
+      {/* User Card */}
+      <div className="bg-[#06B6D40F] dark:bg-[#0e2235] p-3 rounded-xl flex items-center gap-3 mt-6">
+        <Image
+          src="/assets/salman.jpg"
+          alt="Salman"
+          width={40}
+          height={40}
+          className="rounded-full object-cover"
+        />
+        <div className="flex flex-col text-sm">
+          <span className="font-semibold text-gray-900 dark:text-white">
+            Salman K.
+          </span>
+          <span className="text-gray-500 text-xs">Member</span>
+        </div>
+        <div className="ml-auto text-gray-500">⋮</div>
+      </div>
+    </Sidebar>
+  );
+}

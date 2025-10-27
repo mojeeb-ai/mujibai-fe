@@ -20,7 +20,7 @@ export function ThemeSwitcher() {
       aria-label="Toggle theme"
       variant="outline"
       className="
-        w-full sm:w-10
+        w-15 sm:w-10 
         h-10 flex items-center justify-center gap-2 
         rounded-full border border-border/40
         bg-primary text-white hover:text-white transition-all
