@@ -10,9 +10,10 @@ import {
 } from "lucide-react";
 import Logo from "../atoms/Logo";
 import Link from "next/link";
-const Footer = () => {
+import Image from "next/image";
+const Footer = ({ theme }: { theme: string }) => {
   return (
-    <footer className="w-full bg-footer-background mt-[-4px] relative bg-gradient-to-tl from-primary/40 via-primary/10 to-transparent/20">
+    <footer className=" w-full bg-footer-background mt-[-4px] relative bg-gradient-to-tl from-primary/40 dark:from-primary/40 via-primary/30 dark:via-primary/10 to-transparent/20">
       <div className="relative w-full">
         <div className="relative w-full  mx-auto px-10">
           <div className="pt-[39px] md:pt-[78px] pb-[35px] md:pb-[70px]">
@@ -35,14 +36,14 @@ const Footer = () => {
                   </h3>
                   <div className="flex items-center gap-[10px]">
                     <ul className="flex justify-center gap-1 items-center">
-                      <li className="bg-white/20 rounded-full p-2 cursor-pointer hover:bg-white/40 transition-colors">
-                        <Facebook className="size-5" />
+                      <li className="dark:bg-white/20 bg-[#3B82F6]/20 rounded-full p-2 cursor-pointer dark:hover:bg-white/40 hover:bg-[#3B82F6]/40 transition-colors">
+                        <Facebook className="size-5 text-[#3B82F6] dark:text-white" />
                       </li>
-                      <li className="bg-white/20 rounded-full p-2 cursor-pointer hover:bg-white/40 transition-colors">
-                        <Instagram className="size-5" />
+                      <li className="dark:bg-white/20 bg-[#3B82F6]/20 rounded-full p-2 cursor-pointer dark:hover:bg-white/40 hover:bg-[#3B82F6]/40 transition-colors">
+                        <Instagram className="size-5 text-[#3B82F6] dark:text-white" />
                       </li>
-                      <li className="bg-white/20 rounded-full p-2 cursor-pointer hover:bg-white/40 transition-colors">
-                        <Twitter className="size-5" />
+                      <li className="dark:bg-white/20 bg-[#3B82F6]/20 rounded-full p-2 cursor-pointer dark:hover:bg-white/40 hover:bg-[#3B82F6]/40 transition-colors">
+                        <Twitter className="size-5 text-[#3B82F6] dark:text-white" />
                       </li>
                     </ul>
                   </div>
@@ -112,8 +113,8 @@ const Footer = () => {
 
                   <div className="flex flex-col gap-3">
                     <div className="flex items-center gap-3">
-                      <div className="bg-white/20 p-2 rounded-full cursor-pointer hover:bg-white/10 transition-colors">
-                        <Phone className="size-5" />
+                      <div className="dark:bg-white/20 bg-[#3B82F6]/20 rounded-full p-2 cursor-pointer dark:hover:bg-white/40 hover:bg-[#3B82F6]/40 transition-colors">
+                        <Phone className="size-5 text-[#3B82F6] dark:text-white" />
                       </div>
                       <span className="text-sm md:text-sm font-normal leading-tight text-left text-text-light-muted">
                         +91 72 7602 0908
@@ -121,8 +122,8 @@ const Footer = () => {
                     </div>
 
                     <div className="flex items-center gap-3">
-                      <div className="bg-white/20 p-2 rounded-full cursor-pointer hover:bg-white/10 transition-colors">
-                        <Mail className="size-5" />
+                      <div className="dark:bg-white/20 bg-[#3B82F6]/20 rounded-full p-2 cursor-pointer dark:hover:bg-white/40 hover:bg-[#3B82F6]/40 transition-colors">
+                        <Mail className="size-5 text-[#3B82F6] dark:text-white" />
                       </div>
                       <span className="text-sm md:text-base font-normal leading-normal text-left text-text-light-muted">
                         info@lorem.com
@@ -130,8 +131,8 @@ const Footer = () => {
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="bg-white/20 p-2 rounded-full cursor-pointer hover:bg-white/10 transition-colors">
-                        <MapPin className="size-5" />
+                      <div className="dark:bg-white/20 bg-[#3B82F6]/20 rounded-full p-2 cursor-pointer dark:hover:bg-white/40 hover:bg-[#3B82F6]/40 transition-colors">
+                        <MapPin className="size-5 text-[#3B82F6] dark:text-white" />
                       </div>
                       <p className="w-[50%]">
                         Lorem Ipsum is simply dummy text of the printing and
@@ -163,6 +164,20 @@ const Footer = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="absolute top-[10%] right-10 w-[200px] h-[200px]">
+        <Image
+          src={
+            theme === "dark"
+              ? "/landingPage/flag-logo-footer-dark.png"
+              : "/landingPage/flag-logo-footer-light.png"
+          }
+          alt=""
+          width={0}
+          height={0}
+          sizes="100vw,100vh"
+          className="w-[200px] h-[200px] object-contain"
+        />
       </div>
     </footer>
   );
