@@ -2,7 +2,11 @@ import { AudioLines } from "lucide-react";
 import Header from "../../organisms/Header";
 import { Button } from "../../ui/button";
 
-export default function HeroSection() {
+export default function HeroSection({
+  handleListenMethod,
+}: {
+  handleListenMethod: () => void;
+}) {
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
       <div className="absolute bottom-0 h-[60%] w-full bg-gradient-to-t from-primary/40 dark:from-primary/20 from-[40%] to-transparent -z-10"></div>
@@ -67,6 +71,7 @@ export default function HeroSection() {
                 paddingLeft: "2rem !important",
                 paddingRight: "2rem !important",
               }}
+              onClick={handleListenMethod}
               className={`
                        py-6 rounded-full font-medium
                       border-2 border-primary text-primary bg-transparent
