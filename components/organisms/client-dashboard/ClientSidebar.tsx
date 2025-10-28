@@ -17,10 +17,20 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import Logo from "@/components/atoms/Logo";
+import Link from "next/link";
 
 const menuItems = [
-  { title: "Dashboard", icon: LayoutDashboard, active: true },
-  { title: "Calls & Tickets", icon: PhoneCall },
+  {
+    title: "Dashboard",
+    icon: LayoutDashboard,
+    active: true,
+    href: "/dashboard",
+  },
+  {
+    title: "Calls & Tickets",
+    icon: PhoneCall,
+    href: "/dashboard/calls-tickets",
+  },
   { title: "Voice Script", icon: Mic },
   { title: "Performance Analytics", icon: BarChart2 },
   { title: "AI Outbound", icon: Lightbulb },
@@ -50,7 +60,7 @@ export default function MujibSidebar() {
                     : " hover:bg-[#06B6D40F]"
                 }`}
               >
-                <a href="#">
+                <Link href={String(item.href)}>
                   <item.icon
                     className={`w-5 h-5 ${
                       item.active
@@ -59,7 +69,7 @@ export default function MujibSidebar() {
                     }`}
                   />
                   <span className="text-sm font-medium">{item.title}</span>
-                </a>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
