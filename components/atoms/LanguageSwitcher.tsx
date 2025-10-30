@@ -21,7 +21,9 @@ export default function LanguageSwitcher() {
 
   function switchTo(locale: string) {
     startTransition(() => {
-      document.cookie = `LANG=${locale}; path=/; max-age=31536000; SameSite=Lax`;
+      if (typeof window !== "undefined") {
+        document.cookie = `LANG=${locale}; path=/; max-age=31536000; SameSite=Lax`;
+      }
       router.refresh();
     });
     AxiosAPI.defaults.headers["Accept-Language"] = locale;
