@@ -27,7 +27,13 @@ export default function FeatureCard({
     <div className="relative p-6 bg-[#06B6D40F] dark:bg-transparent rounded-lg shadow-md border-1 border-gray-200 dark:border-gray-700 ">
       <div className="flex items-center flex-col gap-4 z-50 w-full h-full">
         <div className="p-5 dark:bg-white/5 bg-[#06B6D40F]  rounded-xl">
-          <Image src={currentImage} alt={title} width={60} height={60} />
+          <Image
+            src={currentImage}
+            alt={title}
+            width={60}
+            height={60}
+            loading="lazy"
+          />
         </div>
         <hr className="w-full border-gray-300 dark:border-gray-700" />
         <div className="w-full flex flex-col text-start">

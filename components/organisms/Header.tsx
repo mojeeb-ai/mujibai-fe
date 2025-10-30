@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <header className="flex justify-around items-center py-5">
       <div className="logo">
-        <Image src={logo} alt="logo" width={200} height={200} />
+        <Image src={logo} alt="logo" width={200} height={200} loading="lazy" />
       </div>
       <Navbar />
       <ActionsButtons />

@@ -84,6 +84,7 @@ export default function MujibSidebar() {
           width={40}
           height={40}
           className="rounded-full object-cover"
+          loading="lazy"
         />
         <div className="flex flex-col text-sm">
           <span className="font-semibold text-gray-900 dark:text-white">

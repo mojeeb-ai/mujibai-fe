@@ -63,6 +63,7 @@ export default function LanguageSwitcher() {
                   height={18}
                   alt="flag"
                   className="object-cover w-full h-full"
+                  loading="lazy"
                 />
               </div>
               <span className="text-sm font-medium">
@@ -87,6 +88,7 @@ export default function LanguageSwitcher() {
               height={24}
               className="rounded-full"
               alt="English"
+              loading="lazy"
             />
             <span>English</span>
           </DropdownMenuItem>
@@ -101,6 +103,7 @@ export default function LanguageSwitcher() {
               height={24}
               className="rounded-none"
               alt="العربية"
+              loading="lazy"
             />
             <span>العربية</span>
           </DropdownMenuItem>

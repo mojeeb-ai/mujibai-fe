@@ -80,6 +80,7 @@ export default function SectorsSection({ theme }: { theme: string }) {
                     width={100}
                     height={100}
                     className="w-20"
+                    loading="lazy"
                   />
                 </div>
 
@@ -113,6 +114,7 @@ export default function SectorsSection({ theme }: { theme: string }) {
                         width={100}
                         height={100}
                         className="w-10"
+                        loading="lazy"
                       />
                     </div>
 
