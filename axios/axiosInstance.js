@@ -36,7 +36,9 @@ AxiosAPI.interceptors.request.use(
     let deviceToken = getFromCookies("deviceToken");
     if (!deviceToken) {
       deviceToken = generateUUID();
-      document.cookie = `deviceToken=${deviceToken}; path=/; max-age=31536000; SameSite=Lax`;
+      if (typeof window !== "undefined") {
+        document.cookie = `deviceToken=${deviceToken}; path=/; max-age=31536000; SameSite=Lax`;
+      }
     }
     config.headers["device-token"] = deviceToken;
 

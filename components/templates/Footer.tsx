@@ -173,8 +173,8 @@ const Footer = ({ theme }: { theme: string }) => {
               : "/landingPage/flag-logo-footer-light.png"
           }
           alt=""
-          width={0}
-          height={0}
+          width={100}
+          height={100}
           sizes="100vw,100vh"
           className="w-[200px] h-[200px] object-contain"
         />
