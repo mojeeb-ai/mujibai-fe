@@ -177,6 +177,7 @@ const Footer = ({ theme }: { theme: string }) => {
           height={100}
           sizes="100vw,100vh"
           className="w-[200px] h-[200px] object-contain"
+          loading="lazy"
         />
       </div>
     </footer>

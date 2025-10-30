@@ -38,6 +38,7 @@ export default function AboutUsSection() {
                 width={500}
                 height={500}
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
 
@@ -67,6 +68,7 @@ export default function AboutUsSection() {
                       width={10}
                       height={10}
                       className="w-[10px] h-[10px] md:w-[20px] md:h-[20px]"
+                      loading="lazy"
                     />
                     <span className="text-base md:text-lg font-normal text-[#4E4E4E] dark:text-[#E5E5E5] leading-relaxed md:leading-[30px] tracking-[0.2px] text-left w-full transition-colors duration-300 ease-in-out">
                       {feature}
