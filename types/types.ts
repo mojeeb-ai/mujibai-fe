@@ -6,3 +6,17 @@ export interface Plan {
   features: { name: string; included: boolean }[];
   isPopular: boolean;
 }
+
+import * as yup from "yup";
+
+export const schema = yup.object({
+  id: yup.number().required(),
+  header: yup.string().required(),
+  type: yup.string().required(),
+  status: yup.string().required(),
+  target: yup.string().required(),
+  limit: yup.string().required(),
+  reviewer: yup.string().required(),
+});
+
+export type Item = yup.InferType<typeof schema>;

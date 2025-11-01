@@ -1,3 +1,4 @@
+import Link from "next/link";
 import LanguageSwitcher from "../atoms/LanguageSwitcher";
 import { ThemeSwitcher } from "../atoms/ThemeSwitcher";
 import { Button } from "../ui/button";
@@ -12,13 +13,13 @@ export default function ActionsButtons() {
           className="px-9 py-3 rounded-full font-medium dark:text-white"
           variant="default"
         >
-          Get Started
+          <Link href={"/login"}>Get Started</Link>
         </Button>
         <Button
           className="px-9 py-3 rounded-full font-bold hover:bg-transparent hover:text-primary border-2 border-primary text-primary dark:border-primary"
           variant="outline"
         >
-          Enroll
+          <Link href={"/enroll"}>Enroll</Link>
         </Button>
       </div>
     </div>

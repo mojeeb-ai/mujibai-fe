@@ -31,23 +31,31 @@ const menuItems = [
     icon: PhoneCall,
     href: "/dashboard/calls-tickets",
   },
-  { title: "Voice Script", icon: Mic },
-  { title: "Performance Analytics", icon: BarChart2 },
-  { title: "AI Outbound", icon: Lightbulb },
-  { title: "API Keys", icon: Key },
-  { title: "Settings", icon: Settings },
+  { title: "Voice Script", icon: Mic, href: "/dashboard/voice-script" },
+  {
+    title: "Performance Analytics",
+    icon: BarChart2,
+    href: "/dashboard/performance-analytics",
+  },
+  { title: "AI Outbound", icon: Lightbulb, href: "/dashboard/ai-outbound" },
+  { title: "API Keys", icon: Key, href: "/dashboard/api-keys" },
+  { title: "Settings", icon: Settings, href: "/dashboard/settings" },
 ];
 
-export default function MujibSidebar() {
+export default function ClientSidebar({ dir }: { dir: "left" | "right" }) {
   return (
-    <Sidebar className="w-[250px] bg-[#FFFFFFBF] dark:bg-[#001434A6] rounded-2xl shadow-sm flex flex-col justify-between p-4 my-2">
+    <Sidebar
+      side={dir}
+      className="w-[250px] bg-[#FFFFFFBF] dark:bg-[#001434A6] rounded-2xl shadow-sm flex flex-col justify-between p-4 my-2"
+    >
       <div className="flex flex-col items-center mb-6 mt-2">
         <div className="flex items-center gap-2">
-          <Logo />
+          <Link href="/">
+            <Logo />
+          </Link>
         </div>
       </div>
 
-      {/* Menu */}
       <SidebarContent>
         <SidebarMenu>
           {menuItems.map((item) => (
@@ -76,7 +84,6 @@ export default function MujibSidebar() {
         </SidebarMenu>
       </SidebarContent>
 
-      {/* User Card */}
       <div className="bg-[#06B6D40F] dark:bg-[#0e2235] p-3 rounded-xl flex items-center gap-3 mt-6">
         <Image
           src="/assets/salman.jpg"
