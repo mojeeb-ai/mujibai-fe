@@ -35,7 +35,7 @@ export function ThemeSwitcher() {
         }`}
       />
       <Moon
-        className={`absolute h-[1.3rem] w-[1.3rem] transition-all duration-300 ${
+        className={`absolute h-[1.3rem] w-[1.3rem] transition-all duration-300  ${
           isDark
             ? "scale-0 rotate-90 opacity-0"
             : "scale-100 rotate-0 opacity-100"
