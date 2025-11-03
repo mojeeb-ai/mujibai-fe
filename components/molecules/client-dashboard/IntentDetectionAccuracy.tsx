@@ -25,13 +25,17 @@ const chartConfig = {
     color: "var(--chart-1)",
   },
 } satisfies ChartConfig;
-export default function IntentDetectionAccuracy() {
+export default function IntentDetectionAccuracy({
+  t,
+}: {
+  t: (key: string) => string;
+}) {
   return (
     <>
       <Card className="border-none bg-transparent shadow-none gap-2">
         <CardHeader className="p-2">
           <CardTitle className="font-semibold text-xl">
-            Intent Detection Accuracy
+            {t("intentDetectionAccuracy")}
           </CardTitle>
         </CardHeader>
         <CardContent className="dark:bg-[#00143473] bg-[#FFFFFFBF] rounded-2xl p-4">
@@ -77,7 +81,7 @@ export default function IntentDetectionAccuracy() {
                             y={(viewBox.cy || 0) + 24}
                             className="fill-muted-foreground"
                           >
-                            Accuracy
+                            {t("accuracy")}
                           </tspan>
                         </text>
                       );
@@ -90,7 +94,7 @@ export default function IntentDetectionAccuracy() {
         </CardContent>
         <div className="z-50 p-4 w-full h-full bg-[#FFFFFFBF] dark:bg-[#001434A6] rounded-2xl shadow-sm flex items-center">
           <div className="flex justify-around items-center gap-2 flex-col">
-            <h1 className="text-2xl font-semibold">Keyword Insights</h1>
+            <h1 className="text-2xl font-semibold">{t("keywordInsights")}</h1>
             <ul className="flex justify-center items-center gap-2 flex-wrap">
               <li className="flex justify-center items-center gap-1">
                 <Image
@@ -100,7 +104,7 @@ export default function IntentDetectionAccuracy() {
                   width={10}
                   height={10}
                 />
-                Appointment
+                {t("appointment")}
               </li>
               <li className="flex justify-center items-center gap-1">
                 <Image
@@ -110,7 +114,7 @@ export default function IntentDetectionAccuracy() {
                   width={10}
                   height={10}
                 />
-                Location
+                {t("location")}
               </li>
               <li className="flex justify-center items-center gap-1">
                 <Image
@@ -120,7 +124,7 @@ export default function IntentDetectionAccuracy() {
                   width={10}
                   height={10}
                 />
-                Price
+                {t("price")}
               </li>
               <li className="flex justify-center items-center gap-1">
                 <Image
@@ -130,7 +134,7 @@ export default function IntentDetectionAccuracy() {
                   width={10}
                   height={10}
                 />
-                Hours
+                {t("hours")}
               </li>
               <li className="flex justify-center items-center gap-1">
                 <Image
@@ -140,7 +144,7 @@ export default function IntentDetectionAccuracy() {
                   width={10}
                   height={10}
                 />
-                Services
+                {t("services")}
               </li>
             </ul>
           </div>

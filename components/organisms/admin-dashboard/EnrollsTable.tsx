@@ -12,6 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useLocale, useTranslations } from "next-intl";
 
 type Client = {
   id: number;
@@ -19,6 +20,7 @@ type Client = {
   company: string;
   phone: string;
   email: string;
+  industry: string;
   status: "Active" | "Inactive";
   users: number;
   startDate: string;
@@ -30,14 +32,16 @@ const clients: Client[] = Array.from({ length: 10 }).map((_, i) => ({
   company: `Company ${String.fromCharCode(65 + i)}`,
   phone: `+12345678${i}`,
   email: `john${i}@example.com`,
+  industry: `tech${i}`,
   status: i % 2 === 0 ? "Active" : "Inactive",
   users: i,
   startDate: `2022-01-${String(i + 1).padStart(2, "0")}`,
 }));
 
 export default function EnrollsTable() {
+  const t = useTranslations("adminEnrollmentForms");
+  const locale = useLocale();
   const [selected, setSelected] = React.useState<number[]>([]);
-
   const allChecked = selected.length === clients.length;
 
   const toggleAll = () => {
@@ -58,7 +62,7 @@ export default function EnrollsTable() {
 
     return (
       <Badge variant="secondary" className={styles}>
-        {status}
+        {t(`status.${status.toLowerCase()}`)}
       </Badge>
     );
   };
@@ -70,14 +74,46 @@ export default function EnrollsTable() {
           <TableHead>
             <Checkbox checked={allChecked} onCheckedChange={toggleAll} />
           </TableHead>
-          <TableHead>Name</TableHead>
-          <TableHead>Company</TableHead>
-          <TableHead>Email</TableHead>
-          <TableHead>Phone</TableHead>
-          <TableHead>Industry</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Submitted On</TableHead>
-          <TableHead>Actions</TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("table.name")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("table.company")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("table.email")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("table.phone")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("table.industry")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("table.status")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("table.submittedOn")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("table.actions")}
+          </TableHead>
         </TableRow>
       </TableHeader>
 
@@ -88,6 +124,7 @@ export default function EnrollsTable() {
             className="hover:bg-white/10 transition-colors"
           >
             <TableCell>
+              x
               <Checkbox
                 checked={selected.includes(client.id)}
                 onCheckedChange={() => toggleOne(client.id)}
@@ -95,14 +132,14 @@ export default function EnrollsTable() {
             </TableCell>
             <TableCell>{client.name}</TableCell>
             <TableCell>{client.company}</TableCell>
-            <TableCell>{client.phone}</TableCell>
             <TableCell>{client.email}</TableCell>
+            <TableCell>{client.phone}</TableCell>
+            <TableCell>{client.industry}</TableCell>
             <TableCell>{renderStatusBadge(client.status)}</TableCell>
-            <TableCell>{client.users}</TableCell>
             <TableCell>{client.startDate}</TableCell>
             <TableCell>
               <Button variant="outline" size="sm">
-                View
+                {t("actions.view")}
               </Button>
             </TableCell>
           </TableRow>

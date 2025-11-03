@@ -19,7 +19,11 @@ import {
  * Pagination bar for Recent Clients table
  * Includes page selector and items-per-page dropdown.
  */
-export default function CallsAndTicketsTablePagination() {
+export default function CallsAndTicketsTablePagination({
+  t,
+}: {
+  t: (key: string) => string;
+}) {
   return (
     <div className="w-full flex justify-between items-center  py-2 bg-transparent">
       {/* Clients-per-page selector */}
@@ -37,17 +41,16 @@ export default function CallsAndTicketsTablePagination() {
             <SelectItem value="24">24</SelectItem>
           </SelectContent>
         </Select>
-        <p className="text-sm text-foreground">of 120 Clients</p>
+        <p className="text-sm text-foreground">
+          {t("of")} 120 {t("clients")}
+        </p>
       </div>
 
       {/* Pagination navigation */}
       <Pagination className="dark:bg-[#001434A6] bg-[#FFFFFFBF] rounded-[6px] mx-0  py-1 w-fit">
         <PaginationContent className="gap-1">
           <PaginationItem>
-            <PaginationPrevious
-              href="#"
-              className="rounded-md  text-foreground"
-            />
+            <PaginationNext />
           </PaginationItem>
           <PaginationItem>
             <PaginationLink
@@ -75,8 +78,9 @@ export default function CallsAndTicketsTablePagination() {
               12
             </PaginationLink>
           </PaginationItem>
+
           <PaginationItem>
-            <PaginationNext href="#" className="rounded-md  text-foreground" />
+            <PaginationPrevious />
           </PaginationItem>
         </PaginationContent>
       </Pagination>

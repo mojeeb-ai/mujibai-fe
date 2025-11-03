@@ -4,35 +4,33 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 export default function AccountSettings() {
+  const t = useTranslations("settings.accountSettings");
   return (
     <div className="w-full">
       <Card className="bg-transparent shadow-none border-none">
         <CardHeader>
-          <CardTitle className="text-xl font-semibold">
-            Profile Settings
-          </CardTitle>
+          <CardTitle className="text-xl font-semibold">{t("title")}</CardTitle>
         </CardHeader>
 
         <CardContent className="p-6 dark:bg-[#00143473] bg-[#FFFFFFBF] rounded-2xl">
           <div className="flex flex-col gap-2 mb-6">
-            <h1 className="font-semibold text-lg">Profile Information</h1>
-            <p className="text-sm text-gray-400">
-              Update your personal details and contact information.
-            </p>
+            <h1 className="font-semibold text-lg">{t("profileInformation")}</h1>
+            <p className="text-sm text-gray-400">{t("subTitle")}</p>
           </div>
 
           <form className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {/* First Name */}
             <div className="flex flex-col gap-2">
               <Label htmlFor="firstName" className="text-sm font-medium">
-                First Name
+                {t("firstName")}
               </Label>
               <Input
                 id="firstName"
                 type="text"
-                placeholder="Your first name"
+                placeholder={t("firstNamePlaceholder")}
                 className="bg-[#06B6D40F] dark:bg-[#FFFFFF0F] border-none text-white placeholder:text-gray-400 focus-visible:ring-1 focus-visible:ring-primary"
               />
             </div>
@@ -40,12 +38,12 @@ export default function AccountSettings() {
             {/* Last Name */}
             <div className="flex flex-col gap-2">
               <Label htmlFor="lastName" className="text-sm font-medium">
-                Last Name
+                {t("lastName")}
               </Label>
               <Input
                 id="lastName"
                 type="text"
-                placeholder="Your last name"
+                placeholder={t("lastNamePlaceholder")}
                 className="bg-[#06B6D40F] dark:bg-[#FFFFFF0F] border-none text-white placeholder:text-gray-400 focus-visible:ring-1 focus-visible:ring-primary"
               />
             </div>
@@ -53,12 +51,12 @@ export default function AccountSettings() {
             {/* Email */}
             <div className="flex flex-col gap-2">
               <Label htmlFor="email" className="text-sm font-medium">
-                Email
+                {t("email")}
               </Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="Your email address"
+                placeholder={t("emailPlaceholder")}
                 className="bg-[#06B6D40F] dark:bg-[#FFFFFF0F] border-none text-white placeholder:text-gray-400 focus-visible:ring-1 focus-visible:ring-primary"
               />
             </div>
@@ -66,12 +64,12 @@ export default function AccountSettings() {
             {/* Phone */}
             <div className="flex flex-col gap-2">
               <Label htmlFor="phone" className="text-sm font-medium">
-                Phone
+                {t("phone")}
               </Label>
               <Input
                 id="phone"
                 type="text"
-                placeholder="Your phone number"
+                placeholder={t("phonePlaceholder")}
                 className="bg-[#06B6D40F] dark:bg-[#FFFFFF0F] border-none text-white placeholder:text-gray-400 focus-visible:ring-1 focus-visible:ring-primary"
               />
             </div>
@@ -79,12 +77,12 @@ export default function AccountSettings() {
             {/* Location */}
             <div className="flex flex-col gap-2">
               <Label htmlFor="location" className="text-sm font-medium">
-                Location
+                {t("location")}
               </Label>
               <Input
                 id="location"
                 type="text"
-                placeholder="Your location"
+                placeholder={t("locationPlaceholder")}
                 className="bg-[#06B6D40F] dark:bg-[#FFFFFF0F] border-none text-white placeholder:text-gray-400 focus-visible:ring-1 focus-visible:ring-primary"
               />
             </div>
@@ -92,28 +90,30 @@ export default function AccountSettings() {
             {/* Bio */}
             <div className="flex flex-col gap-2">
               <Label htmlFor="bio" className="text-sm font-medium">
-                Bio
+                {t("bio")}
               </Label>
               <Input
                 id="bio"
                 type="text"
-                placeholder="Your bio"
+                placeholder={t("bioPlaceholder")}
                 className="bg-[#06B6D40F] dark:bg-[#FFFFFF0F] border-none text-white placeholder:text-gray-400 focus-visible:ring-1 focus-visible:ring-primary"
               />
             </div>
 
             {/* ===== Password Section ===== */}
             <div className="flex flex-col col-span-full mt-8 gap-2">
-              <h1 className="font-semibold text-lg">Password Management</h1>
+              <h1 className="font-semibold text-lg">
+                {t("passwordManagement")}
+              </h1>
               <p className="text-sm text-gray-400">
-                Update your password for enhanced account security.
+                {t("passwordManagementDescription")}
               </p>
             </div>
 
             {/* Current Password */}
             <div className="flex flex-col gap-2">
               <Label htmlFor="currentPassword" className="text-sm font-medium">
-                Current Password
+                {t("currentPassword")}
               </Label>
               <PasswordInput placeholder="********" />
             </div>
@@ -121,7 +121,7 @@ export default function AccountSettings() {
             {/* New Password */}
             <div className="flex flex-col gap-2">
               <Label htmlFor="newPassword" className="text-sm font-medium">
-                New Password
+                {t("newPassword")}
               </Label>
               <PasswordInput placeholder="********" />
             </div>
@@ -129,7 +129,7 @@ export default function AccountSettings() {
             {/* Confirm Password */}
             <div className="flex flex-col gap-2">
               <Label htmlFor="confirmPassword" className="text-sm font-medium">
-                Confirm Password
+                {t("confirmPassword")}
               </Label>
               <PasswordInput placeholder="********" />
             </div>
@@ -140,7 +140,7 @@ export default function AccountSettings() {
                 className="font-semibold px-8 py-2 rounded-full"
                 type="button"
               >
-                Save Changes
+                {t("saveChanges")}
               </Button>
             </div>
           </form>

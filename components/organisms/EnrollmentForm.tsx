@@ -1,12 +1,19 @@
+"use client";
+
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { useTranslations } from "next-intl";
 
 /**
- * EnrollmentForm — Company Enrollment Form section
+ * @component EnrollmentForm
+ * @description Displays the company enrollment form where users can fill out their details.
+ * Uses i18n translations via `next-intl` for full multilingual support.
  */
 export default function EnrollmentForm() {
+  const t = useTranslations("enrollPage.enrollForm");
+
   return (
     <div
       className="
@@ -17,117 +24,83 @@ export default function EnrollmentForm() {
         transition-all duration-200
       "
     >
+      {/* Form Title */}
       <h2 className="text-2xl font-semibold mb-6 text-foreground">
-        Company Enrollment form
+        {t("title")}
       </h2>
 
+      {/* Form Fields */}
       <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Full Name */}
-        <div className="flex flex-col gap-1">
-          <Label className="text-sm font-medium">
-            Full Name <span className="text-cyan-500">*</span>
-          </Label>
-          <Input
-            placeholder="Your full name"
-            className="bg-[#06B6D40F] border-none rounded-lg h-11 text-gray-900 placeholder:text-gray-500"
-          />
-        </div>
+        <FormField
+          label={t("fullName")}
+          placeholder={t("fullNamePlaceholder")}
+          required
+        />
 
         {/* Email */}
-        <div className="flex flex-col gap-1">
-          <Label className="text-sm font-medium">
-            Email <span className="text-cyan-500">*</span>
-          </Label>
-          <Input
-            placeholder="Your email"
-            className="bg-[#06B6D40F] border-none rounded-lg h-11 text-gray-900 placeholder:text-gray-500"
-          />
-        </div>
+        <FormField
+          label={t("email")}
+          placeholder={t("emailPlaceholder")}
+          required
+        />
 
         {/* Phone */}
-        <div className="flex flex-col gap-1">
-          <Label className="text-sm font-medium">
-            Phone <span className="text-cyan-500">*</span>
-          </Label>
-          <Input
-            placeholder="Your phone"
-            className="bg-[#06B6D40F] border-none rounded-lg h-11 text-gray-900 placeholder:text-gray-500"
-          />
-        </div>
+        <FormField
+          label={t("phone")}
+          placeholder={t("phonePlaceholder")}
+          required
+        />
 
         {/* Company Name */}
-        <div className="flex flex-col gap-1">
-          <Label className="text-sm font-medium">
-            Company Name <span className="text-cyan-500">*</span>
-          </Label>
-          <Input
-            placeholder="Your company name"
-            className="bg-[#06B6D40F] border-none rounded-lg h-11 text-gray-900 placeholder:text-gray-500"
-          />
-        </div>
+        <FormField
+          label={t("companyName")}
+          placeholder={t("companyNamePlaceholder")}
+          required
+        />
 
         {/* Company Website */}
-        <div className="flex flex-col gap-1">
-          <Label className="text-sm font-medium">
-            Company Website <span className="text-cyan-500">*</span>
-          </Label>
-          <Input
-            placeholder="Your company website URL"
-            className="bg-[#06B6D40F] border-none rounded-lg h-11 text-gray-900 placeholder:text-gray-500"
-          />
-        </div>
+        <FormField
+          label={t("companyWebsite")}
+          placeholder={t("companyWebsitePlaceholder")}
+          required
+        />
 
         {/* Address */}
-        <div className="flex flex-col gap-1">
-          <Label className="text-sm font-medium">
-            Address <span className="text-cyan-500">*</span>
-          </Label>
-          <Input
-            placeholder="Your address"
-            className="bg-[#06B6D40F] border-none rounded-lg h-11 text-gray-900 placeholder:text-gray-500"
-          />
-        </div>
+        <FormField
+          label={t("address")}
+          placeholder={t("addressPlaceholder")}
+          required
+        />
 
         {/* Industry */}
-        <div className="flex flex-col gap-1">
-          <Label className="text-sm font-medium">
-            Industry <span className="text-cyan-500">*</span>
-          </Label>
-          <Input
-            placeholder="Your industry"
-            className="bg-[#06B6D40F] border-none rounded-lg h-11 text-gray-900 placeholder:text-gray-500"
-          />
-        </div>
+        <FormField
+          label={t("industry")}
+          placeholder={t("industryPlaceholder")}
+          required
+        />
 
         {/* Commercial Register */}
-        <div className="flex flex-col gap-1">
-          <Label className="text-sm font-medium">
-            Commercial Register <span className="text-cyan-500">*</span>
-          </Label>
-          <Input
-            placeholder="Your commercial register"
-            className="bg-[#06B6D40F] border-none rounded-lg h-11 text-gray-900 placeholder:text-gray-500"
-          />
-        </div>
+        <FormField
+          label={t("commercialRegister")}
+          placeholder={t("commercialRegisterPlaceholder")}
+          required
+        />
 
         {/* Tax ID */}
-        <div className="flex flex-col gap-1">
-          <Label className="text-sm font-medium">
-            Tax ID <span className="text-cyan-500">*</span>
-          </Label>
-          <Input
-            placeholder="Your tax ID start with #"
-            className="bg-[#06B6D40F] border-none rounded-lg h-11 text-gray-900 placeholder:text-gray-500"
-          />
-        </div>
+        <FormField
+          label={t("taxId")}
+          placeholder={t("taxIdPlaceholder")}
+          required
+        />
 
         {/* Message */}
         <div className="flex flex-col gap-1 md:col-span-2">
           <Label className="text-sm font-medium">
-            Message <span className="text-cyan-500">*</span>
+            {t("message")} <span className="text-cyan-500">*</span>
           </Label>
           <Textarea
-            placeholder="Your message"
+            placeholder={t("messagePlaceholder")}
             className="bg-[#06B6D40F] border-none rounded-lg text-gray-900 placeholder:text-gray-500 h-24"
           />
         </div>
@@ -136,9 +109,39 @@ export default function EnrollmentForm() {
       {/* Submit Button */}
       <div className="flex justify-end mt-8">
         <Button className="bg-[#00B4D8] hover:bg-[#0096C7] text-white px-8 py-2 rounded-full shadow-md transition">
-          Submit Application
+          {t("submit")}
         </Button>
       </div>
+    </div>
+  );
+}
+
+/**
+ * @component FormField
+ * @description Reusable input field component for form consistency.
+ * @param {object} props
+ * @param {string} props.label - The label text for the input.
+ * @param {string} props.placeholder - The placeholder text for the input.
+ * @param {boolean} [props.required=false] - Whether the field is required.
+ */
+function FormField({
+  label,
+  placeholder,
+  required = false,
+}: {
+  label: string;
+  placeholder: string;
+  required?: boolean;
+}) {
+  return (
+    <div className="flex flex-col gap-1">
+      <Label className="text-sm font-medium">
+        {label} {required && <span className="text-cyan-500">*</span>}
+      </Label>
+      <Input
+        placeholder={placeholder}
+        className="bg-[#06B6D40F] border-none rounded-lg h-11 text-gray-900 placeholder:text-gray-500"
+      />
     </div>
   );
 }

@@ -1,0 +1,185 @@
+{
+  "adminSidebar": {
+    "dashboard": "Dashboard",
+    "clients": "Clients",
+    "analytics": "Analytics",
+    "userRoles": "User Roles",
+    "plans": "Plans",
+    "subscription": "Subscription",
+    "enrollmentForm": "Enrollment Form",
+    "apiKeys": "API Keys",
+    "settings": "Settings",
+    "memberRole": "Member"
+  },
+  "adminDashboardOverview": {
+    "welcome": "Welcome",
+    "totalVisitorsAnalytics": {
+      "title": "Area Chart - Interactive",
+      "description": "Showing total visitors for the last 3 months",
+      "last3Months": "Last 3 months",
+      "last30Days": "Last 30 days",
+      "last7Days": "Last 7 days",
+      "visitors": "Visitors",
+      "desktop": "Desktop",
+      "mobile": "Mobile"
+    },
+    "adminOverviewTable": {
+      "selectAll": "Select all",
+      "selectRow": "Select row",
+      "header": "Header",
+      "sectionType": "Section Type",
+      "process": "Process",
+      "progress": "Progress",
+      "status": "Status",
+      "done": "Done",
+      "error": "Error",
+      "saving": "Saving {{name}}",
+      "target": "Target",
+      "limit": "Limit",
+      "owner": "Owner",
+      "reviewer": "Reviewer",
+      "assignReviewer": "Assign reviewer",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At",
+      "openMenu": "Open menu",
+      "edit": "Edit",
+      "copy": "Make a copy",
+      "favorite": "Favorite",
+      "delete": "Delete",
+      "view": "View",
+      "selectView": "Select a view",
+      "outline": "Outline",
+      "pastPerformance": "Past Performance",
+      "keyPersonnel": "Key Personnel",
+      "focusDocuments": "Focus Documents",
+      "customizeColumns": "Customize Columns",
+      "columns": "Columns",
+      "addSection": "Add Section",
+      "noResults": "No results.",
+      "rowsSelected": "of",
+      "rowsPerPage": "Rows per page",
+      "page": "Page",
+      "of": "of",
+      "goToFirst": "Go to first page",
+      "goToPrev": "Go to previous page",
+      "goToNext": "Go to next page",
+      "goToLast": "Go to last page"
+    }
+  },
+  "adminClients": {
+    "welcome": "Welcome",
+
+    "ClientsSearchAndFiltering": {
+      "searchPlaceholder": "Search by name, email or sector...",
+      "filterButton": "Filter clients",
+      "addClientButton": "Add Client"
+    },
+    "clientsTable": {
+      "name": "Name",
+      "company": "Company",
+      "phone": "Phone",
+      "email": "Email",
+      "status": "Status",
+      "users": "Users",
+      "startDate": "Start Date",
+      "actions": "Actions",
+      "view": "View",
+      "active": "Active",
+      "inactive": "Inactive"
+    }
+  },
+  "adminAnalyticsPage": {
+    "title": "Analytics",
+    "callsOverTimeAnalytics": {
+      "title": "Calls Over Time",
+      "desktop": "Desktop",
+      "mobile": "Mobile"
+    },
+    "ticketVolumeAnalytics": {
+      "title": "Ticket Volume Analytics"
+    },
+    "top5ActiveClients": {
+      "title": "Top 5 Active Clients",
+      "clientName": "Client Name",
+      "calls": "Calls",
+      "sampleClient": "Client Name"
+    }
+  },
+  "adminUserRoles": {
+    "welcome": "Welcome",
+    "title": "User Roles",
+    "searchPlaceholder": "Search by name, email or sector...",
+    "addNewUser": "Add New User",
+    "userRolesTable": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "role": "Role",
+      "status": "Status",
+      "lastActive": "Last Active",
+      "actions": "Actions",
+      "view": "View",
+      "active": "Active",
+      "inactive": "Inactive"
+    }
+  },
+  "adminPlans": {
+    "searchPlaceholder": "Search by name, email or sector...",
+    "addNewPlan": "Add New Plan",
+    "plansTable": {
+      "name": "Name",
+      "price": "Price",
+      "includes": "Includes",
+      "actions": "Actions"
+    }
+  },
+  "adminSubscription": {
+    "title": "Subscriptions",
+    "searchPlaceholder": "Search by name, email or plan...",
+    "name": "Name",
+    "email": "Email",
+    "plan": "Plan",
+    "clientUsage": "Client Usage"
+  },
+  "adminEnrollmentForms": {
+    "title": "Enrollment Forms",
+    "subTitle": "Manage company enrollment applications and their status",
+    "searchPlaceholder": "Search by name, email or sector...",
+    "table": {
+      "name": "Name",
+      "company": "Company",
+      "email": "Email",
+      "phone": "Phone",
+      "industry": "Industry",
+      "status": "Status",
+      "submittedOn": "Submitted On",
+      "actions": "Actions"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "actions": {
+      "view": "View"
+    }
+  },
+  "adminSettings": {
+    "welcome": "Welcome, ",
+    "theme": {
+      "title": "Theme",
+      "description": "Choose your preferred theme",
+      "options": {
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+      }
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "Manage your notification preferences",
+      "email": "Enable email notifications",
+      "sms": "Enable SMS notifications",
+      "browser": "Enable browser notifications"
+    }
+  }
+}

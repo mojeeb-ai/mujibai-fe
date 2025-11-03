@@ -1,6 +1,4 @@
 "use client";
-
-import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
@@ -12,6 +10,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 
 type Client = {
   role: string;
@@ -38,7 +38,9 @@ const clients: Client[] = Array.from({ length: 10 }).map((_, i) => ({
 }));
 
 export default function UserRolesTable() {
-  const [selected, setSelected] = React.useState<number[]>([]);
+  const t = useTranslations("adminUserRoles");
+  const locale = useLocale();
+  const [selected, setSelected] = useState<number[]>([]);
 
   const allChecked = selected.length === clients.length;
 
@@ -60,7 +62,9 @@ export default function UserRolesTable() {
 
     return (
       <Badge variant="secondary" className={styles}>
-        {status}
+        {status === "Active"
+          ? t("userRolesTable.active")
+          : t("userRolesTable.inactive")}
       </Badge>
     );
   };
@@ -72,13 +76,41 @@ export default function UserRolesTable() {
           <TableHead>
             <Checkbox checked={allChecked} onCheckedChange={toggleAll} />
           </TableHead>
-          <TableHead>Name</TableHead>
-          <TableHead>Email</TableHead>
-          <TableHead>Phone</TableHead>
-          <TableHead>Role</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Last Active</TableHead>
-          <TableHead>Actions</TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("userRolesTable.name")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("userRolesTable.email")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("userRolesTable.phone")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("userRolesTable.role")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("userRolesTable.status")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("userRolesTable.lastActive")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("userRolesTable.actions")}
+          </TableHead>
         </TableRow>
       </TableHeader>
 
@@ -99,11 +131,10 @@ export default function UserRolesTable() {
             <TableCell>{client.phone}</TableCell>
             <TableCell>{client.role}</TableCell>
             <TableCell>{renderStatusBadge(client.status)}</TableCell>
-            <TableCell>{client.users}</TableCell>
             <TableCell>{client.startDate}</TableCell>
             <TableCell>
               <Button variant="outline" size="sm">
-                View
+                {t("userRolesTable.view")}
               </Button>
             </TableCell>
           </TableRow>

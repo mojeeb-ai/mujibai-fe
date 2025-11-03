@@ -9,65 +9,68 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function NotificationPreference() {
+  const t = useTranslations("settings.notificationPreference");
   const [selected, setSelected] = useState("Daily");
-  const options = ["Daily", "Weekly", "Monthly", "Never"];
+  const options = [
+    t("newInvoice.daily"),
+    t("newInvoice.weekly"),
+    t("newInvoice.monthly"),
+    t("newInvoice.never"),
+  ];
 
   return (
     <div>
       <Card className="bg-transparent shadow-none border-none">
         <CardHeader>
           <CardTitle className="text-lg font-semibold">
-            Email Notification
+            {t("emailsNotifications.title")}
           </CardTitle>
-          <CardDescription>
-            Control which emails you receive about your activity and important
-            updates
-          </CardDescription>
+          <CardDescription>{t("emailsNotifications.subTitle")}</CardDescription>
         </CardHeader>
         <CardContent className="bg-white dark:bg-[#00143473] py-6 rounded-xl">
           <NotificationController
-            title="Daily Performance Reports"
-            description="Receive a summary of your dashboard activity and insights."
+            title={t("emailsNotifications.dailyPerformanceReportsTitle")}
+            description={t(
+              "emailsNotifications.dailyPerformanceReportsSubTitle"
+            )}
           />
           <NotificationController
-            title="Product Updates & Announcements"
-            description="Stay informed about new features,improvements and changes"
+            title={t("emailsNotifications.productUpdatesTitle")}
+            description={t("emailsNotifications.productUpdatesSubTitle")}
           />
           <NotificationController
-            title="Marketing & Promotional Emails"
-            description="Receive offres,tips and news from Mujib AI & partners."
+            title={t("emailsNotifications.marketingTitle")}
+            description={t("emailsNotifications.marketingSubTitle")}
           />
           <NotificationController
-            title="Security & Account Alerts"
-            description="Important notifications about your account security."
+            title={t("emailsNotifications.securityTitle")}
+            description={t("emailsNotifications.securitySubTitle")}
           />
         </CardContent>
       </Card>
 
-      <Card className="bg-transparent shadow-none border-none">
+      <Card className="bg-transparent sha dow-none border-none">
         <CardHeader>
           <CardTitle className="text-lg font-semibold">
-            In App Notification
+            {t("inAppNotifications.title")}
           </CardTitle>
-          <CardDescription>
-            Control which emails you receive about your activity and important
-            updates
-          </CardDescription>
+          <CardDescription>{t("inAppNotifications.subTitle")}</CardDescription>
         </CardHeader>
         <CardContent className="bg-white dark:bg-[#00143473] py-6 rounded-xl">
           <NotificationController
-            title=" New Message Notification"
-            description="Get alerts for new messages or comments in linked integrations"
+            title={t("inAppNotifications.newMessageTitle")}
+            description={t("inAppNotifications.newMessageSubTitle")}
           />
           <NotificationController
-            title="Task Completion Alerts"
-            description="Receive a notification when a connected task or automation completes"
+            title={t("inAppNotifications.taskCompletionTitle")}
+            description={t("inAppNotifications.taskCompletionSubTitle")}
           />
           <NotificationController
-            title="Feature Usage Tips & Tutorials"
-            description="Receive in-app suggestions to help discover and utilize features"
+            title={t("inAppNotifications.featureUsageTipsTitle")}
+            description={t("inAppNotifications.featureUsageTipsSubTitle")}
           />
         </CardContent>
       </Card>
@@ -76,41 +79,36 @@ export default function NotificationPreference() {
         <Card className="bg-transparent shadow-none border-none">
           <CardHeader>
             <CardTitle className="text-lg font-semibold">
-              Usage & Billing Alerts
+              {t("usageBilling.title")}
             </CardTitle>
-            <CardDescription>
-              Controls which emails you receive about your activity and
-              important updates.
-            </CardDescription>
+            <CardDescription>{t("usageBilling.subTitle")}</CardDescription>
           </CardHeader>
           <CardContent className="bg-white dark:bg-[#00143473] py-6 rounded-xl">
             <NotificationController
-              title="Usage Exceeds Limit"
-              description="Notify when my plan usage approaches or exceeds limits"
+              title={t("usageBilling.usageExceedsTitle")}
+              description={t("usageBilling.usageExceedsSubTitle")}
             />
             <NotificationController
-              title="Task Completion Alerts"
-              description="Receive a notification when a connected task or automation completes"
+              title={t("usageBilling.taskCompletionAlertsTitle")}
+              description={t("usageBilling.taskCompletionAlertsSubTitle")}
             />
             <NotificationController
-              title="New Invoice Ready"
-              description="Receive an alert when a new invoice is generated for your subscription"
+              title={t("usageBilling.newInvoiceTitle")}
+              description={t("usageBilling.newInvoiceSubTitle")}
             />
           </CardContent>
         </Card>
         <Card className="bg-transparent shadow-none border-none">
           <CardHeader>
             <CardTitle className="text-lg font-semibold">
-              Billing Alerts Frequency
+              {t("newInvoice.title")}
             </CardTitle>
-            <CardDescription>
-              Controls how often you want to receive email.
-            </CardDescription>
+            <CardDescription>{t("newInvoice.subTitle")}</CardDescription>
           </CardHeader>
           <CardContent className="bg-white dark:bg-[#00143473] py-6 rounded-xl">
             <div className="flex flex-col gap-4">
               <Label className="text-base font-medium text-white">
-                Choose your preference.
+                {t("newInvoice.chooseYourPreference")}
               </Label>
 
               <div className="grid grid-cols-2 gap-4">

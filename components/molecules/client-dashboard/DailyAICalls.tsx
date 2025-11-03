@@ -29,11 +29,13 @@ const chartConfig = {
     color: "var(--chart-2)",
   },
 } satisfies ChartConfig;
-export default function DailyAICalls() {
+export default function DailyAICalls({ t }: { t: (key: string) => string }) {
   return (
     <Card className="border-none bg-transparent shadow-none gap-3 col-span-2">
       <CardHeader className="p-2">
-        <CardTitle className="font-semibold text-xl">Daily AI Calls</CardTitle>
+        <CardTitle className="font-semibold text-xl">
+          {t("dailyAICalls")}
+        </CardTitle>
       </CardHeader>
       <CardContent className="dark:bg-[#00143473] bg-[#FFFFFFBF] rounded-2xl p-4">
         <ChartContainer config={chartConfig}>

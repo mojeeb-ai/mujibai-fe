@@ -19,7 +19,13 @@ import {
  * Pagination bar for Recent Clients table
  * Includes page selector and items-per-page dropdown.
  */
-export default function RecentClientsTablePagination() {
+export default function RecentClientsTablePagination({
+  t,
+  locale,
+}: {
+  t: any;
+  locale: string;
+}) {
   return (
     <div className="w-full flex justify-between items-center  py-2 bg-transparent">
       {/* Clients-per-page selector */}
@@ -37,33 +43,29 @@ export default function RecentClientsTablePagination() {
             <SelectItem value="24">24</SelectItem>
           </SelectContent>
         </Select>
-        <p className="text-sm text-gray-300">of 120 Clients</p>
+        <p className="text-sm text-gray-300">
+          {t("of")} 120 {t("clients")}
+        </p>
       </div>
 
       {/* Pagination navigation */}
       <Pagination className="dark:bg-[#001434A6] bg-[#FFFFFFBF] rounded-[6px] mx-0  py-1 w-fit">
         <PaginationContent className="gap-1">
           <PaginationItem>
-            <PaginationPrevious
-              href="#"
-              className="rounded-md  text-foreground"
-            />
+            <PaginationPrevious locale={locale} text={t("previous")} />
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink
-              href="#"
-              className="rounded-md bg-[#00d9ff] text-foreground font-medium hover:bg-[#00b9e6]"
-            >
+            <PaginationLink className="rounded-md bg-[#00d9ff] text-foreground font-medium hover:bg-[#00b9e6]">
               1
             </PaginationLink>
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink href="#" className="rounded-md text-foreground ">
+            <PaginationLink className="rounded-md text-foreground ">
               2
             </PaginationLink>
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink href="#" className="rounded-md text-foreground ">
+            <PaginationLink className="rounded-md text-foreground ">
               3
             </PaginationLink>
           </PaginationItem>
@@ -71,12 +73,12 @@ export default function RecentClientsTablePagination() {
             <PaginationEllipsis className="text-foreground" />
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink href="#" className="rounded-md text-foreground ">
+            <PaginationLink className="rounded-md text-foreground ">
               12
             </PaginationLink>
           </PaginationItem>
           <PaginationItem>
-            <PaginationNext href="#" className="rounded-md  text-foreground" />
+            <PaginationNext text={t("next")} />
           </PaginationItem>
         </PaginationContent>
       </Pagination>

@@ -11,25 +11,29 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import { Moon, Settings, Sun } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 
 export default function SettingsPage() {
   const { theme, setTheme } = useTheme();
+  const t = useTranslations("adminSettings");
 
   const options = [
-    { label: "Light", value: "light", Icon: Sun },
-    { label: "Dark", value: "dark", Icon: Moon },
-    { label: "System", value: "system", Icon: Settings },
+    { label: t("theme.options.light"), value: "light", Icon: Sun },
+    { label: t("theme.options.dark"), value: "dark", Icon: Moon },
+    { label: t("theme.options.system"), value: "system", Icon: Settings },
   ];
+
   return (
     <div className="flex flex-col gap-4 w-full h-full">
-      <DashboardHeader title="Welcome, Abdulrahman Alharbi!" />
+      <DashboardHeader title={t("welcome") + " " + "Abdulrahman Alharbi"} />
 
       <div className="z-50 p-4 w-full h-full bg-[#FFFFFFBF] dark:bg-[#001434A6] rounded-2xl shadow-sm">
+        {/* Theme Section */}
         <Card className="border-none shadow-none bg-transparent">
           <CardHeader>
-            <CardTitle>Theme</CardTitle>
-            <CardDescription>Choose your preferred theme</CardDescription>
+            <CardTitle>{t("theme.title")}</CardTitle>
+            <CardDescription>{t("theme.description")}</CardDescription>
           </CardHeader>
 
           <CardContent>
@@ -66,24 +70,23 @@ export default function SettingsPage() {
           </CardContent>
         </Card>
 
+        {/* Notifications Section */}
         <Card className="border-none shadow-none bg-transparent">
           <CardHeader>
-            <CardTitle>Notifications</CardTitle>
-            <CardDescription>
-              Manage your notification preference
-            </CardDescription>
+            <CardTitle>{t("notifications.title")}</CardTitle>
+            <CardDescription>{t("notifications.description")}</CardDescription>
           </CardHeader>
           <CardContent className="flex gap-2 flex-col dark:bg-[#001434A6] bg-[#FFFFFFBF] py-7 rounded-2xl">
             <div className="flex items-center justify-between py-3 px-3 rounded-xl bg-[#3B82F614] dark:bg-[#3B82F614]">
-              <h1>Enable email notifications</h1>
+              <h1>{t("notifications.email")}</h1>
               <Switch />
             </div>
             <div className="flex items-center justify-between py-3 px-3 rounded-xl bg-[#3B82F614] dark:bg-[#3B82F614]">
-              <h1>Enable SMS notifications</h1>
+              <h1>{t("notifications.sms")}</h1>
               <Switch />
             </div>
             <div className="flex items-center justify-between py-3 px-3 rounded-xl bg-[#3B82F614] dark:bg-[#3B82F614]">
-              <h1>Enable browser notification</h1>
+              <h1>{t("notifications.browser")}</h1>
               <Switch />
             </div>
           </CardContent>
