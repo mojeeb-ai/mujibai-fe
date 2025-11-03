@@ -83,13 +83,18 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 }
+import { Tajawal, Poppins } from "next/font/google";
 
-import { Cairo } from "next/font/google";
+const tajawal = Tajawal({
+  subsets: ["arabic"],
+  variable: "--font-tajawal",
+  weight: ["400", "500", "700", "800"],
+});
 
-const cairo = Cairo({
-  subsets: ["arabic", "latin"],
-  weight: ["400", "700"],
-  variable: "--font-cairo",
+const poppins = Poppins({
+  subsets: ["latin"],
+  variable: "--font-poppins",
+  weight: ["400", "500", "600", "700"],
 });
 
 export default async function RootLayout({
@@ -102,7 +107,7 @@ export default async function RootLayout({
 
   return (
     <html
-      className={`${cairo.variable}`}
+      className={`${poppins.variable} ${tajawal.variable}`}
       suppressHydrationWarning
       lang={locale}
       dir={locale === "ar" ? "rtl" : "ltr"}
@@ -110,7 +115,13 @@ export default async function RootLayout({
       <head>
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       </head>
-      <body suppressHydrationWarning>
+      <body
+        suppressHydrationWarning
+        style={{
+          fontFamily:
+            locale === "ar" ? "var(--font-tajawal)" : "var(--font-poppins)",
+        }}
+      >
         <Providers locale={locale} messages={messages}>
           <ThemeProvider
             attribute="class"

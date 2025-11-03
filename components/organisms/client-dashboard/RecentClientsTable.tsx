@@ -10,12 +10,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import RecentClientsTablePagination from "@/components/molecules/client-dashboard/RecentClientsTablePagination";
+import { useLocale, useTranslations } from "next-intl";
 
 /**
  * RecentClientsTable component
  * Displays a styled table of recent clients with pagination.
  */
-export default function RecentClientsTable() {
+export default function RecentClientsTable({ title }: { title: string }) {
   const clients = [
     {
       name: "Cristiano Ronaldo",
@@ -79,19 +80,33 @@ export default function RecentClientsTable() {
     },
   ];
 
+  const t = useTranslations("dashboardOverview");
+  const locale = useLocale();
   return (
     <Card className="w-full bg-transparent border-0 shadow-none">
       <CardHeader>
-        <CardTitle className="text-xl font-semibold">Recent Clients</CardTitle>
+        <CardTitle className="text-xl font-semibold">{title}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto rounded-lg border">
           <Table className="dark:bg-[#001434A6] bg-[#FFFFFFBF] rounded-lg border-0 ">
             <TableHeader>
               <TableRow>
-                <TableHead>Client Name</TableHead>
-                <TableHead>Date</TableHead>
-                <TableHead>Duration</TableHead>
+                <TableHead
+                  className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                >
+                  {t("clientName")}
+                </TableHead>
+                <TableHead
+                  className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                >
+                  {t("date")}
+                </TableHead>
+                <TableHead
+                  className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                >
+                  {t("duration")}
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -107,7 +122,7 @@ export default function RecentClientsTable() {
         </div>
 
         <div className="mt-4 flex justify-center">
-          <RecentClientsTablePagination />
+          <RecentClientsTablePagination t={t} locale={locale} />
         </div>
       </CardContent>
     </Card>

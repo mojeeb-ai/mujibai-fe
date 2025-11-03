@@ -2,13 +2,20 @@ import ConversationScriptDescriptionTab from "@/components/molecules/client-dash
 import MainConversationScriptTab from "@/components/molecules/client-dashboard/MainConversationScriptTab";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export default function MainConversationScript() {
+export default function MainConversationScript({
+  t,
+  locale,
+}: {
+  t: (key: string) => string;
+  locale: string;
+}) {
+  console.log(t);
   return (
     <div className="w-full flex justify-center items-center py-10">
-      <Tabs defaultValue="account" className="w-full">
+      <Tabs defaultValue="conversation" className="w-full">
         <TabsList className="w-[30%] mx-auto rounded-full bg-[#06B6D44D] dark:bg-[#3B82F614]">
           <TabsTrigger
-            value="account"
+            value="conversation"
             className="
               w-full rounded-full 
               data-[state=active]:bg-[#06B6D4] 
@@ -16,11 +23,11 @@ export default function MainConversationScript() {
               font-normal
             "
           >
-            Conversation
+            {t("conversation")}
           </TabsTrigger>
 
           <TabsTrigger
-            value="password"
+            value="descriptions"
             className="
               w-full rounded-full 
               data-[state=active]:bg-[#06B6D4] 
@@ -28,14 +35,14 @@ export default function MainConversationScript() {
               font-normal
             "
           >
-            Descriptions
+            {t("descriptions")}
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="account">
-          <MainConversationScriptTab />
+        <TabsContent value="conversation">
+          <MainConversationScriptTab t={t} locale={locale} />
         </TabsContent>
-        <TabsContent value="password">
-          <ConversationScriptDescriptionTab />
+        <TabsContent value="descriptions">
+          <ConversationScriptDescriptionTab t={t} locale={locale} />
         </TabsContent>
       </Tabs>
     </div>

@@ -11,7 +11,6 @@ import useLandingPage from "@/hooks/useLandingPage";
 
 export default function LandingPage() {
   const { handleListen, currentTheme } = useLandingPage();
-
   return (
     <main className="w-screen h-screen overflow-x-hidden">
       <HeroSection handleListenMethod={handleListen} />

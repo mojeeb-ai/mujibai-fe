@@ -12,44 +12,59 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 
-type Client = {
-  id: number;
-  name: string;
-  company: string;
-  phone: string;
-  email: string;
-  status: "Active" | "Inactive";
-  users: number;
-  startDate: string;
-};
-
-const clients: Client[] = Array.from({ length: 10 }).map((_, i) => ({
-  id: i + 1,
-  name: `John Doe ${i + 1}`,
-  company: `Company ${String.fromCharCode(65 + i)}`,
-  phone: `+12345678${i}`,
-  email: `john${i}@example.com`,
-  status: i % 2 === 0 ? "Active" : "Inactive",
-  users: i,
-  startDate: `2022-01-${String(i + 1).padStart(2, "0")}`,
-}));
-
+/**
+ * ClientsTable Component
+ * ----------------------
+ * Displays a table of clients with selection checkboxes,
+ * status badges, and action buttons.
+ * Uses `next-intl` for multilingual support (Arabic / English).
+ */
 export default function ClientsTable() {
-  const [selected, setSelected] = React.useState<number[]>([]);
+  const t = useTranslations("adminClients.clientsTable");
+  const locale = useLocale();
 
+  type Client = {
+    id: number;
+    name: string;
+    company: string;
+    phone: string;
+    email: string;
+    status: "Active" | "Inactive";
+    users: number;
+    startDate: string;
+  };
+
+  // 🧑‍💼 Mock client data for demonstration
+  const clients: Client[] = Array.from({ length: 10 }).map((_, i) => ({
+    id: i + 1,
+    name: `John Doe ${i + 1}`,
+    company: `Company ${String.fromCharCode(65 + i)}`,
+    phone: `+12345678${i}`,
+    email: `john${i}@example.com`,
+    status: i % 2 === 0 ? "Active" : "Inactive",
+    users: i + 2,
+    startDate: `2022-01-${String(i + 1).padStart(2, "0")}`,
+  }));
+
+  const [selected, setSelected] = React.useState<number[]>([]);
   const allChecked = selected.length === clients.length;
 
+  /** Toggle all checkboxes at once */
   const toggleAll = () => {
     setSelected(allChecked ? [] : clients.map((c) => c.id));
   };
 
+  /** Toggle individual client selection */
   const toggleOne = (id: number) => {
     setSelected((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
     );
   };
 
+  /** Render colored badge based on client status */
   const renderStatusBadge = (status: Client["status"]) => {
     const styles =
       status === "Active"
@@ -58,7 +73,7 @@ export default function ClientsTable() {
 
     return (
       <Badge variant="secondary" className={styles}>
-        {status}
+        {t(status.toLowerCase())}
       </Badge>
     );
   };
@@ -70,14 +85,46 @@ export default function ClientsTable() {
           <TableHead>
             <Checkbox checked={allChecked} onCheckedChange={toggleAll} />
           </TableHead>
-          <TableHead>Name</TableHead>
-          <TableHead>Company</TableHead>
-          <TableHead>Phone</TableHead>
-          <TableHead>Email</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Users</TableHead>
-          <TableHead>Start Date</TableHead>
-          <TableHead>Actions</TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("name")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("company")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("phone")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("email")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("status")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("users")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("startDate")}
+          </TableHead>
+          <TableHead
+            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+          >
+            {t("actions")}
+          </TableHead>
         </TableRow>
       </TableHeader>
 
@@ -102,7 +149,7 @@ export default function ClientsTable() {
             <TableCell>{client.startDate}</TableCell>
             <TableCell>
               <Button variant="outline" size="sm">
-                View
+                {t("view")}
               </Button>
             </TableCell>
           </TableRow>

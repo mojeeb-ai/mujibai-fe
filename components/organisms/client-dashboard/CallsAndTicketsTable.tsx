@@ -1,5 +1,3 @@
-"use client";
-
 import CallsAndTicketsTablePagination from "@/components/molecules/client-dashboard/CallsAndTicketsTablePagination";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -15,7 +13,13 @@ import { Play, Eye } from "lucide-react";
 /**
  * CallsAndTicketsTable — displays styled table of recent service calls & tickets.
  */
-export default function CallsAndTicketsTable() {
+export default function CallsAndTicketsTable({
+  t,
+  locale,
+}: {
+  t: any;
+  locale: string;
+}) {
   const calls = [
     {
       customer: "Toni Kroos",
@@ -51,7 +55,7 @@ export default function CallsAndTicketsTable() {
     <Card className="w-full bg-transparent border-0 shadow-none">
       <CardHeader>
         <CardTitle className="text-xl font-semibold text-foreground">
-          Calls & Tickets
+          {t("title")}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -59,27 +63,33 @@ export default function CallsAndTicketsTable() {
           <Table className="w-full rounded-xl dark:bg-[#001434A6] bg-[#FFFFFFBF] border-0">
             <TableHeader>
               <TableRow className="border-none text-foreground">
-                <TableHead className="text-sm font-semibold text-foreground">
-                  Customer
+                <TableHead
+                  className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                >
+                  {t("customer")}
                 </TableHead>
-                <TableHead className="text-sm font-semibold text-foreground">
-                  Phone
+                <TableHead
+                  className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                >
+                  {t("phone")}
                 </TableHead>
-                <TableHead className="text-sm font-semibold text-foreground">
-                  Duration
+                <TableHead
+                  className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                >
+                  {t("duration")}
                 </TableHead>
-                <TableHead className="text-sm font-semibold text-foreground">
-                  Scenario
+                <TableHead
+                  className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                >
+                  {t("scenario")}
                 </TableHead>
-                <TableHead className="text-sm font-semibold text-foreground">
-                  Date
+                <TableHead
+                  className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                >
+                  {t("date")}
                 </TableHead>
-                <TableHead className="text-sm font-semibold text-foreground text-center">
-                  Status
-                </TableHead>
-                <TableHead className="text-sm font-semibold text-foreground text-center">
-                  Receipt
-                </TableHead>
+                <TableHead className={`text-center`}>{t("status")}</TableHead>
+                <TableHead className={`text-center`}>{t("receipt")}</TableHead>
               </TableRow>
             </TableHeader>
 
@@ -121,7 +131,7 @@ export default function CallsAndTicketsTable() {
             </TableBody>
           </Table>
         </div>
-        <CallsAndTicketsTablePagination />
+        <CallsAndTicketsTablePagination locale={locale} t={t} />
       </CardContent>
     </Card>
   );

@@ -14,13 +14,19 @@ import { Filter } from "lucide-react";
  * CallsAndTicketsFiltering
  * Filter bar with two dropdowns and a filter button.
  */
-export default function CallsAndTicketsFiltering() {
+export default function CallsAndTicketsFiltering({
+  filterPlaceholderOne,
+  filterPlaceholderTwo,
+}: {
+  filterPlaceholderOne: string;
+  filterPlaceholderTwo: string;
+}) {
   return (
     <div className="flex justify-end items-center gap-3 w-full px-2 py-2">
       {/* Filter 1 */}
       <Select>
         <SelectTrigger className="w-[260px] h-[44px] rounded-lg dark:bg-[#001434A6] bg-[#F7F7F7F2] border-0 shadow-none transition-colors">
-          <SelectValue placeholder="Filter 1" />
+          <SelectValue placeholder={filterPlaceholderOne} />
         </SelectTrigger>
         <SelectContent className="bg-[#001434] text-gray-200 border-[#0b254a]">
           <SelectItem value="apple">Apple</SelectItem>
@@ -32,7 +38,7 @@ export default function CallsAndTicketsFiltering() {
       {/* Filter 2 */}
       <Select>
         <SelectTrigger className="w-[260px] h-[44px] rounded-lg dark:bg-[#001434A6] bg-[#F7F7F7F2] border-0 shadow-none transition-colors">
-          <SelectValue placeholder="Filter 2" />
+          <SelectValue placeholder={filterPlaceholderTwo} />
         </SelectTrigger>
         <SelectContent className="bg-[#001434] text-gray-200 border-[#0b254a]">
           <SelectItem value="option1">Option 1</SelectItem>

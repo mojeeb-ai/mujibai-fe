@@ -9,6 +9,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useTranslations } from "next-intl";
 
 export const description = "A bar chart";
 
@@ -29,10 +30,11 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function TicketVolumeAnalytics() {
+  const t = useTranslations("adminAnalyticsPage.ticketVolumeAnalytics");
   return (
     <Card className="bg-transparent border-none shadow-none">
       <CardHeader className="px-0">
-        <CardTitle>Ticket Volume Per Day</CardTitle>
+        <CardTitle>{t("title")}</CardTitle>
       </CardHeader>
       <CardContent className="bg-[#FFFFFFBF] dark:bg-[#00143473] py-7 rounded-2xl">
         <ChartContainer config={chartConfig}>

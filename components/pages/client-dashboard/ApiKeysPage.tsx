@@ -10,40 +10,68 @@ import {
 } from "@/components/ui/table";
 import { Edit, Plus, Trash2 } from "lucide-react";
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function ApiKeysPage() {
+  const t = useTranslations("APIKeys");
+  const locale = useLocale();
   return (
     <div className="flex flex-col gap-4 w-full h-full">
-      <DashboardHeader
-        title="API Keys"
-        subtitle="You have permission to view and manage all API keys in this project"
-      />
+      <DashboardHeader title={t("title")} subtitle={t("subTitle")} />
       <div className="z-50 p-4 w-full h-full bg-[#FFFFFFBF] dark:bg-[#001434A6] rounded-2xl shadow-sm">
         <div className="flex justify-between items-center px-2">
           <h4>
-            View usage per API key on the{" "}
+            {t("viewUsage")}{" "}
             <Link
               href="/dashboard/usage"
               className="text-primary border-b-1 border-dashed border-primary"
             >
-              Usage Page
+              {t("usagePage")}
             </Link>
           </h4>
           <Button className="rounded-full py-5">
             <Plus className="size-4" />
-            Create New Secret Key
+            {t("createNewSecretKey")}
           </Button>
         </div>
         <Table className="dark:bg-[#00143473] bg-white my-10">
           <TableHeader>
             <TableRow>
-              <TableHead>Name</TableHead>
-              <TableHead>Secret Key</TableHead>
-              <TableHead>Created On</TableHead>
-              <TableHead>Created By</TableHead>
-              <TableHead>Last Used</TableHead>
-              <TableHead>Permission</TableHead>
-              <TableHead>Action</TableHead>
+              <TableHead
+                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+              >
+                {t("name")}
+              </TableHead>
+              <TableHead
+                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+              >
+                {t("secretKey")}
+              </TableHead>
+              <TableHead
+                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+              >
+                {t("createdOn")}
+              </TableHead>
+              <TableHead
+                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+              >
+                {t("createdBy")}
+              </TableHead>
+              <TableHead
+                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+              >
+                {t("lastUsed")}
+              </TableHead>
+              <TableHead
+                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+              >
+                {t("permission")}
+              </TableHead>
+              <TableHead
+                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+              >
+                {t("actions")}
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

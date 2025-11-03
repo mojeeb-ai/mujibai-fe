@@ -3,11 +3,13 @@ import AnalyticsStatistics from "@/components/organisms/admin-dashboard/Analytic
 import CallsOverTimeAnalytics from "@/components/organisms/admin-dashboard/CallsOverTimeAnalytics";
 import TicketVolumeAnalytics from "@/components/organisms/admin-dashboard/TicketVolumeAnalytics";
 import DashboardHeader from "@/components/organisms/client-dashboard/DashboardHeader";
+import { useTranslations } from "next-intl";
 
 export default function AdminAnalyticsPage() {
+  const t = useTranslations("adminAnalyticsPage");
   return (
     <div className="flex flex-col gap-4 w-full h-full">
-      <DashboardHeader title="Analytics" />
+      <DashboardHeader title={t("title")} />
 
       <div className="z-50 p-4 w-full h-full bg-[#FFFFFFBF] dark:bg-[#001434A6] rounded-2xl shadow-sm">
         <AnalyticsStatistics />

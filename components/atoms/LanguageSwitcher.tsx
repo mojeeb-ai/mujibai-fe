@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useQueryClient } from "@tanstack/react-query";
 import { useTransition } from "react";
 import { AxiosAPI } from "@/axios/axiosInstance";
 import {
@@ -16,7 +15,6 @@ import Image from "next/image";
 
 export default function LanguageSwitcher() {
   const router = useRouter();
-  const queryClient = useQueryClient();
   const [, startTransition] = useTransition();
 
   function switchTo(locale: string) {
@@ -27,7 +25,6 @@ export default function LanguageSwitcher() {
       router.refresh();
     });
     AxiosAPI.defaults.headers["Accept-Language"] = locale;
-    queryClient.invalidateQueries();
   }
 
   const currentLang =

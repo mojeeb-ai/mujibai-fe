@@ -11,33 +11,57 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Download, Plus } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function AiOutboundPage() {
+  const t = useTranslations("aiOutbound");
+  const locale = useLocale();
   return (
     <div className="flex flex-col gap-4 w-full h-full">
-      <DashboardHeader
-        title="AI Outbound Calls"
-        subtitle="Reach your clients automatically with smart conversations"
-      />
+      <DashboardHeader title={t("title")} subtitle={t("subTitle")} />
       <div className="z-50 p-4 w-full h-full bg-[#FFFFFFBF] dark:bg-[#001434A6] rounded-2xl shadow-sm">
         <div className="w-full flex justify-end items-center gap-3 my-6">
           <Button className="rounded-full py-5">
             <Plus className="size-4" />
-            Add Call Task
+            {t("addCallTask")}
           </Button>
           <Button className="rounded-full py-5 bg-transparent border-2 border-primary text-primary hover:bg-transparent">
-            <Download className="size-4" /> Import CSV
+            <Download className="size-4" /> {t("ImportCSV")}
           </Button>
         </div>
         <Table className="dark:bg-[#00143473] bg-[#FFFFFF73]">
           <TableHeader>
             <TableRow>
-              <TableHead>#</TableHead>
-              <TableHead>Phone</TableHead>
-              <TableHead>Duration</TableHead>
-              <TableHead>Scenario</TableHead>
-              <TableHead>Duration</TableHead>
-              <TableHead>Satisfaction</TableHead>
+              <TableHead
+                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+              >
+                #
+              </TableHead>
+              <TableHead
+                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+              >
+                {t("phone")}
+              </TableHead>
+              <TableHead
+                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+              >
+                {t("duration")}
+              </TableHead>
+              <TableHead
+                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+              >
+                {t("scenario")}
+              </TableHead>
+              <TableHead
+                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+              >
+                {t("duration")}
+              </TableHead>
+              <TableHead
+                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+              >
+                {t("satisfaction")}
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -60,7 +84,7 @@ export default function AiOutboundPage() {
             ))}
           </TableBody>
         </Table>
-        <CallsAndTicketsTablePagination />
+        <CallsAndTicketsTablePagination t={t} />
       </div>
     </div>
   );

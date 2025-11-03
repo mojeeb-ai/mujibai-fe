@@ -2,19 +2,30 @@ import DashboardHeader from "@/components/organisms/client-dashboard/DashboardHe
 import DataUsageCard from "@/components/organisms/client-dashboard/DataUsageCard";
 import RecentClientsTable from "@/components/organisms/client-dashboard/RecentClientsTable";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 export default function ClientDashboardOverviewPage() {
+  const t = useTranslations("dashboardOverview");
+
   return (
     <div className="flex flex-col gap-4 w-full h-full">
-      <DashboardHeader title="Welcome, Salman Khan!" />
+      <DashboardHeader title={t("welcome") + " " + "Abdelrahman"} />
 
       <div className="z-50 p-4 w-full h-full bg-[#FFFFFFBF] dark:bg-[#001434A6] rounded-2xl shadow-sm">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="col-span-2 md:col-span-2">
-            <RecentClientsTable />
+            <RecentClientsTable title={t("recentClients")} />
           </div>
           <div className="col-span-1">
-            <DataUsageCard />
+            <DataUsageCard
+              used={10}
+              total={100}
+              title={t("dataUsage")}
+              upgradePlan={t("upgradePlan")}
+              of={t("of")}
+              more={t("more")}
+              dataTitle={t("dataTitle")}
+            />
           </div>
         </div>
       </div>

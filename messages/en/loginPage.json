@@ -1,0 +1,11 @@
+{
+  "loginPage": {
+    "title": "Account Login",
+    "email": "Email",
+    "emailPlaceholder": "Your Email",
+    "password": "Password",
+    "passwordPlaceholder": "Your Password",
+    "forgotPassword": "Forgot password?",
+    "loginButton": "Log In"
+  }
+}

@@ -5,10 +5,12 @@ export default function IntegrationCard({
   title,
   subtitle,
   image,
+  add,
 }: {
   title: string;
   subtitle: string;
   image: string;
+  add: string;
 }) {
   return (
     <div className="flex flex-col items-center justify-center text-center gap-2 p-4 rounded-lg bg-white dark:bg-[#FFFFFF0F]">
@@ -21,7 +23,7 @@ export default function IntegrationCard({
       <p className="text-gray-600 dark:text-gray-400 w-[80%] mx-auto">
         {subtitle}
       </p>
-      <Button className="w-full rounded-full py-6 mt-5">Add</Button>
+      <Button className="w-full rounded-full py-6 mt-5">{add}</Button>
     </div>
   );
 }

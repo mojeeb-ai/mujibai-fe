@@ -23,22 +23,26 @@ const chartConfig = {
     color: "var(--chart-1)",
   },
 } satisfies ChartConfig;
-export default function ConversionsOverview() {
+export default function ConversionsOverview({
+  t,
+}: {
+  t: (key: string) => string;
+}) {
   return (
     <Card className="border-none bg-transparent shadow-none gap-3">
       <CardHeader className="p-2">
         <CardTitle className="font-semibold text-xl">
-          Conversions Overview
+          {t("conversionsOverview")}
         </CardTitle>
       </CardHeader>
       <CardContent className="dark:bg-[#00143473] bg-[#FFFFFFBF] rounded-2xl p-4 grid grid-cols-2 gap-4">
         <div className="dark:bg-[#FFFFFF0F] bg-[#06B6D40F] rounded-2xl p-4">
           <h4 className="text-2xl font-bold">43%</h4>
-          <p>Conversion Rate</p>
+          <p> {t("conversionRate")}</p>
         </div>
         <div className="dark:bg-[#FFFFFF0F] bg-[#06B6D40F] rounded-2xl p-4">
           <h4 className="text-2xl font-bold">56</h4>
-          <p>AI Missed Intents</p>
+          <p>{t("aiMissedIntents")}</p>
         </div>
 
         <div className="my-5 col-span-2">

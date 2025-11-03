@@ -1,29 +1,39 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function MainConversationScriptTab() {
+export default function MainConversationScriptTab({
+  t,
+  locale,
+}: {
+  t: (key: string) => string;
+  locale: string;
+}) {
   return (
     <div>
       <Card className=" my-10 p-0 dark:bg-[#00143473] border-none">
         <CardHeader className="dark:bg-[#00143473] py-2">
-          <CardTitle className="text-xl font-semibold">
-            Main Conversation Script
+          <CardTitle
+            className={`text-xl font-semibold ${
+              locale === "ar" ? "text-right" : "text-left"
+            }`}
+          >
+            {t("conversationScript")}
           </CardTitle>
         </CardHeader>
         <CardContent className="p-8">
           <div className="flex justify-center items-center flex-col gap-2">
             <h3 className="text-xl font-semibold">
-              No conversation script available
+              {t("noConversationScriptAvailable")}
             </h3>
             <p className="text-base font-normal">
-              Start by adding your first script
+              {t("startByAddingYourFirstConversationScript")}
             </p>
           </div>
         </CardContent>
       </Card>
       <div className="w-full py-8 flex justify-center items-center gap-2">
         <Button className="rounded-full w-40 py-2 text-sm text-foreground">
-          Add New Line
+          {t("addNewLine")}
         </Button>
 
         <Button
@@ -40,7 +50,7 @@ export default function MainConversationScriptTab() {
                     active:scale-100
                   "
         >
-          <span className="relative z-[1]">Create Script</span>
+          <span className="relative z-[1]">{t("createScript")}</span>
         </Button>
       </div>
     </div>

@@ -1,0 +1,11 @@
+{
+  "loginPage": {
+    "title": "تسجيل الدخول إلى الحساب",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "password": "كلمة المرور",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "forgotPassword": "هل نسيت كلمة المرور؟",
+    "loginButton": "تسجيل الدخول"
+  }
+}
