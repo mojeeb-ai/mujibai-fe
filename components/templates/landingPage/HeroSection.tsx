@@ -1,11 +1,21 @@
-import { AudioLines } from "lucide-react";
 import Header from "../../organisms/Header";
 import { Button } from "../../ui/button";
-
+import SessionControls from "../../organisms/SessionControls";
 export default function HeroSection({
-  handleListenMethod,
+  startSession,
+  stopSession,
+  sendClientEvent,
+  sendTextMessage,
+  events,
+  isSessionActive,
 }: {
-  handleListenMethod: () => void;
+  startSession: () => void;
+  stopSession: () => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  sendClientEvent: (message: any) => void;
+  sendTextMessage: (text: string) => void;
+  events: unknown[];
+  isSessionActive: boolean;
 }) {
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
@@ -65,24 +75,14 @@ export default function HeroSection({
             >
               Get Started
             </Button>
-            <Button
-              variant="outline"
-              style={{
-                paddingLeft: "2rem !important",
-                paddingRight: "2rem !important",
-              }}
-              onClick={handleListenMethod}
-              className={`
-                       py-6 rounded-full font-medium
-                      border-2 border-primary text-primary bg-transparent
-                      hover:bg-transparent hover:text-primary transition
-                      flex items-center justify-center gap-2
-                      text-base sm:text-lg shadow-md
-                    `}
-            >
-              <AudioLines className="size-4" />
-              Listen Now
-            </Button>
+            <SessionControls
+              startSession={startSession}
+              stopSession={stopSession}
+              sendClientEvent={sendClientEvent}
+              sendTextMessage={sendTextMessage}
+              serverEvents={events}
+              isSessionActive={isSessionActive}
+            />
           </div>
         </div>
       </div>

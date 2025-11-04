@@ -1,181 +1,140 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import useRealTime from "@/hooks/useRealTime";
 import { useTheme } from "next-themes";
+import { useEffect, useRef, useState } from "react";
 
-interface AudioState {
-  isListening: boolean;
-  isProcessing: boolean;
-  isPlaying: boolean;
-  transcribedText: string;
-  replyText: string;
-}
-
-/** Handles all voice assistant logic */
 export default function useLandingPage() {
-  const { theme, resolvedTheme } = useTheme();
-  const currentTheme = theme === "system" ? resolvedTheme : theme;
+  const { theme } = useTheme();
+  const currentTheme = theme;
+  const [isSessionActive, setIsSessionActive] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [events, setEvents] = useState<any[]>([]);
+  const [dataChannel, setDataChannel] = useState<RTCDataChannel | null>(null);
+  const peerConnection = useRef<RTCPeerConnection | null>(null);
+  const audioElement = useRef<HTMLAudioElement | null>(null);
 
-  const { emit, on, off } = useRealTime();
-  const [state, setState] = useState<AudioState>({
-    isListening: false,
-    isProcessing: false,
-    isPlaying: false,
-    transcribedText: "",
-    replyText: "",
-  });
-
-  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
-  const streamRef = useRef<MediaStream | null>(null);
-  const queueRef = useRef<string[]>([]);
-  const playingRef = useRef(false);
-
-  /** Stop mic & cleanup resources */
-  const cleanup = useCallback(() => {
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach((t) => t.stop());
-      streamRef.current = null;
-    }
-    mediaRecorderRef.current = null;
-  }, []);
-
-  /** Play next audio in queue */
-  const playNext = useCallback(() => {
-    if (playingRef.current || queueRef.current.length === 0) return;
-    playingRef.current = true;
-    const url = queueRef.current.shift()!;
-    const audio = new Audio(url);
-
-    audio.onended = () => {
-      URL.revokeObjectURL(url);
-      playingRef.current = false;
-      playNext();
-    };
-    audio.onerror = () => {
-      URL.revokeObjectURL(url);
-      playingRef.current = false;
-      playNext();
-    };
-    audio.play().catch(() => {
-      playingRef.current = false;
-      playNext();
-    });
-  }, []);
-
-  /** Start mic recording */
-  const startListening = useCallback(async () => {
+  async function startSession() {
     try {
-      cleanup();
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: {
-          sampleRate: 16000,
-          channelCount: 1,
-          echoCancellation: true,
-          noiseSuppression: true,
-        },
-      });
+      // Get ephemeral key from backend (NestJS)
+      const res = await fetch(
+        process.env.NEXT_PUBLIC_NODE_ENV === "development"
+          ? `${process.env.NEXT_PUBLIC_BACKEND_DEVELOPMENT}/api/v1/core/token`
+          : `${process.env.NEXT_PUBLIC_BACKEND_PRODUCTION}/api/v1/core/token`
+      );
+      const data = await res.json();
+      const EPHEMERAL_KEY = data.token;
 
-      streamRef.current = stream;
-      const mediaRecorder = new MediaRecorder(stream, {
-        mimeType: "audio/webm;codecs=opus",
-      });
-      mediaRecorderRef.current = mediaRecorder;
+      const pc = new RTCPeerConnection();
+      peerConnection.current = pc;
 
-      mediaRecorder.ondataavailable = async (e) => {
-        if (e.data.size > 0) {
-          const buf = await e.data.arrayBuffer();
-          const b64 = btoa(String.fromCharCode(...new Uint8Array(buf)));
-          emit("audio_chunk", { data: b64 });
-        }
+      // Setup remote audio
+      audioElement.current = document.createElement("audio");
+      audioElement.current.autoplay = true;
+      pc.ontrack = (e) => {
+        audioElement.current!.srcObject = e.streams[0];
       };
 
-      mediaRecorder.onstop = () => emit("end_turn");
-      mediaRecorder.start(250);
-      setState((s) => ({ ...s, isListening: true }));
-    } catch {
-      setState((s) => ({ ...s, isListening: false }));
+      // Add microphone input
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      pc.addTrack(stream.getTracks()[0]);
+
+      // Create data channel
+      const dc = pc.createDataChannel("oai-events");
+      setDataChannel(dc);
+
+      // Create SDP offer
+      const offer = await pc.createOffer();
+      await pc.setLocalDescription(offer);
+
+      const response = await fetch(
+        "https://api.openai.com/v1/realtime?model=gpt-4o-realtime-preview",
+        {
+          method: "POST",
+          body: offer.sdp,
+          headers: {
+            Authorization: `Bearer ${EPHEMERAL_KEY}`,
+            "Content-Type": "application/sdp",
+          },
+        }
+      );
+
+      const answerSDP = await response.text();
+      await pc.setRemoteDescription({ type: "answer", sdp: answerSDP });
+    } catch (error) {
+      console.error("Session start error:", error);
     }
-  }, [emit, cleanup]);
+  }
 
-  /** Stop mic recording */
-  const stopListening = useCallback(() => {
-    if (mediaRecorderRef.current && state.isListening) {
-      mediaRecorderRef.current.stop();
-      setState((s) => ({ ...s, isListening: false }));
+  function stopSession() {
+    if (dataChannel) dataChannel.close();
+    if (peerConnection.current) {
+      peerConnection.current.getSenders().forEach((s) => s.track?.stop());
+      peerConnection.current.close();
     }
-  }, [state.isListening]);
+    setIsSessionActive(false);
+    setDataChannel(null);
+    peerConnection.current = null;
+  }
 
-  /** Play received intro */
-  const handleIntroAudio = useCallback(
-    async (msg: any) => {
-      try {
-        setState((s) => ({ ...s, isPlaying: true }));
-        const data = Uint8Array.from(atob(msg.data), (c) => c.charCodeAt(0));
-        const blob = new Blob([data], { type: msg.mime || "audio/mp3" });
-        const url = URL.createObjectURL(blob);
-        const audio = new Audio(url);
-        audio.onended = () => {
-          URL.revokeObjectURL(url);
-          setState((s) => ({ ...s, isPlaying: false }));
-          startListening();
-        };
-        await audio.play();
-      } catch {
-        setState((s) => ({ ...s, isPlaying: false }));
-      }
-    },
-    [startListening]
-  );
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function sendClientEvent(message: any) {
+    if (!dataChannel) return console.error("No data channel!");
 
-  /** Handle server events */
+    message.event_id = message.event_id || crypto.randomUUID();
+    const msgStr = JSON.stringify(message);
+
+    // 🔹 Chunking large messages
+    const chunkSize = 1200;
+    for (let i = 0; i < msgStr.length; i += chunkSize) {
+      const chunk = msgStr.slice(i, i + chunkSize);
+      dataChannel.send(chunk);
+    }
+
+    message.timestamp = new Date().toLocaleTimeString();
+    setEvents((prev) => [message, ...prev]);
+  }
+
+  function sendTextMessage(text: string) {
+    const event = {
+      type: "conversation.item.create",
+      item: {
+        type: "message",
+        role: "user",
+        content: [{ type: "input_text", text }],
+      },
+    };
+    sendClientEvent(event);
+    sendClientEvent({ type: "response.create" });
+  }
+
   useEffect(() => {
-    const handleProcessing = () =>
-      setState((s) => ({ ...s, isProcessing: true }));
-    const handleTranscribed = (m: any) =>
-      setState((s) => ({ ...s, transcribedText: m.text }));
-    const handleReply = (m: any) =>
-      setState((s) => ({ ...s, replyText: m.text }));
-    const handleChunk = (m: any) => {
-      if (!m.isReply) return;
-      const data = Uint8Array.from(atob(m.data), (c) => c.charCodeAt(0));
-      const blob = new Blob([data], { type: "audio/mp3" });
-      const url = URL.createObjectURL(blob);
-      queueRef.current.push(url);
-      playNext();
-    };
-    const handleEnd = () => {
-      setState((s) => ({ ...s, isProcessing: false, isListening: false }));
-      cleanup();
-    };
-    const handleError = () => {
-      setState((s) => ({ ...s, isProcessing: false, isListening: false }));
-      cleanup();
-    };
+    if (!dataChannel) return;
 
-    on("intro_audio", handleIntroAudio);
-    on("processing_started", handleProcessing);
-    on("transcribed_text", handleTranscribed);
-    on("reply_text", handleReply);
-    on("audio_chunk", handleChunk);
-    on("reply_end", handleEnd);
-    on("error", handleError);
+    dataChannel.addEventListener("open", () => {
+      setIsSessionActive(true);
+      setEvents([]);
+    });
 
-    return () => {
-      off("intro_audio", handleIntroAudio);
-      off("processing_started", handleProcessing);
-      off("transcribed_text", handleTranscribed);
-      off("reply_text", handleReply);
-      off("audio_chunk", handleChunk);
-      off("reply_end", handleEnd);
-      off("error", handleError);
-    };
-  }, [on, off, handleIntroAudio, cleanup, playNext]);
+    let buffer = "";
 
-  /** Handle listen button */
-  const handleListen = useCallback(() => {
-    if (state.isProcessing || state.isPlaying) return;
-    if (state.isListening) stopListening();
-    else emit("intro_request");
-  }, [state, emit, stopListening]);
+    dataChannel.addEventListener("message", (e) => {
+      buffer += e.data;
+      try {
+        const parsed = JSON.parse(buffer);
+        parsed.timestamp = new Date().toLocaleTimeString();
+        setEvents((prev) => [parsed, ...prev]);
+        buffer = "";
+      } catch {
+        // wait for full chunk
+      }
+    });
+  }, [dataChannel]);
 
-  return { state, handleListen, currentTheme };
+  return {
+    startSession,
+    stopSession,
+    sendClientEvent,
+    sendTextMessage,
+    isSessionActive,
+    events,
+    currentTheme,
+  };
 }
