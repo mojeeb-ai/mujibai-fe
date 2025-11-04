@@ -1,11 +1,16 @@
 {
   "loginPage": {
-    "title": "Account Login",
+    "title": "Login to your account",
     "email": "Email",
-    "emailPlaceholder": "Your Email",
+    "emailPlaceholder": "Enter your email",
+    "emailInvalid": "Please enter a valid email address",
+    "emailRequired": "Email is required",
     "password": "Password",
-    "passwordPlaceholder": "Your Password",
-    "forgotPassword": "Forgot password?",
-    "loginButton": "Log In"
+    "passwordPlaceholder": "Enter your password",
+    "passwordMin": "Password must be at least 6 characters",
+    "passwordRequired": "Password is required",
+    "forgotPassword": "Forgot your password?",
+    "loginButton": "Login",
+    "loading": "Logging in..."
   }
 }

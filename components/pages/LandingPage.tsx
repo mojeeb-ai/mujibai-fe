@@ -10,10 +10,25 @@ import Footer from "../templates/Footer";
 import useLandingPage from "@/hooks/useLandingPage";
 
 export default function LandingPage() {
-  const { handleListen, currentTheme } = useLandingPage();
+  const {
+    startSession,
+    stopSession,
+    sendClientEvent,
+    sendTextMessage,
+    isSessionActive,
+    events,
+    currentTheme,
+  } = useLandingPage();
   return (
     <main className="w-screen h-screen overflow-x-hidden">
-      <HeroSection handleListenMethod={handleListen} />
+      <HeroSection
+        startSession={startSession}
+        stopSession={stopSession}
+        sendClientEvent={sendClientEvent}
+        sendTextMessage={sendTextMessage}
+        isSessionActive={isSessionActive}
+        events={events}
+      />
       <FeaturesSection />
       <TargetedSectorsSection theme={currentTheme || "dark"} />
       <WhyChooseUs />

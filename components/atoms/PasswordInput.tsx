@@ -2,59 +2,73 @@
 
 import { useState } from "react";
 import { useLocale } from "next-intl";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { Eye, EyeOff } from "lucide-react";
 
+interface PasswordInputProps {
+  id: string;
+  name: string;
+  placeholder: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  error?: string;
+  touched?: boolean;
+}
+
 /**
- * PasswordInput component
- *
- * A password input field with a toggle to show/hide text.
- * Automatically adjusts icon position based on locale (RTL/LTR).
- * Prevents entering spaces in the password field.
+ * PasswordInput — controlled password input field with show/hide toggle
+ * Designed for use with form libraries like Formik (SOLID: SRP & OCP)
  */
 export default function PasswordInput({
+  id,
+  name,
   placeholder,
-}: {
-  placeholder: string;
-}) {
+  value,
+  onChange,
+  onBlur,
+  error,
+  touched,
+}: PasswordInputProps) {
   const [showPassword, setShowPassword] = useState(false);
   const locale = useLocale();
   const isRTL = locale === "ar";
 
-  /** Prevent spaces inside the password input */
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === " ") e.preventDefault();
   };
 
   return (
-    <div className="relative w-full max-w-md">
+    <div className="relative w-full flex flex-col">
       <Input
+        id={id}
+        name={name}
         type={showPassword ? "text" : "password"}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
         onKeyDown={handleKeyDown}
-        className={`
-          w-full ${isRTL ? "pl-12 pr-3" : "pr-12 pl-3"} mt-3
+        className={`w-full mt-3 ${
+          isRTL ? "pl-12 pr-3 text-right" : "pr-12 pl-3 text-left"
+        }
           bg-[#06B6D40F] dark:bg-[#3B82F633]
           border border-transparent focus:border-primary
-          text-gray-800 dark:text-gray-100
           placeholder:text-[#000000BF] dark:placeholder:text-[#FFFFFFBF]
-          shadow-none focus:ring-2 focus:ring-primary/30
-          transition-all duration-200
-          text-${isRTL ? "right" : "left"}
+          focus:ring-2 focus:ring-primary/30 transition-all duration-200
         `}
       />
 
+      {/* Toggle visibility */}
       <Button
         type="button"
         variant="ghost"
         size="icon"
         onClick={() => setShowPassword((prev) => !prev)}
-        className={`
-          absolute ${isRTL ? "left-2" : "right-2"} top-1/2 -translate-y-1/2
-          w-9 h-9 text-primary hover:bg-primary/20
-          transition-all duration-200
-        `}
+        className={`absolute ${
+          isRTL ? "left-2" : "right-2"
+        } top-1/2 -translate-y-1/2 w-9 h-9 text-primary hover:bg-primary/20`}
         aria-label={showPassword ? "Hide password" : "Show password"}
       >
         {showPassword ? (
@@ -63,6 +77,9 @@ export default function PasswordInput({
           <EyeOff className="w-4 h-4" />
         )}
       </Button>
+
+      {/* Error Message */}
+      {touched && error && <p className="text-red-500 text-sm mt-2">{error}</p>}
     </div>
   );
 }
