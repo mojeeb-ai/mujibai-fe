@@ -2,7 +2,8 @@
 
 import { NextIntlClientProvider } from "next-intl";
 import { ErrorMessageProvider } from "@/hooks/useErrorMessage";
-
+import { Provider } from "react-redux";
+import store from "@/store/store";
 export function Providers({
   children,
   locale,
@@ -14,7 +15,9 @@ export function Providers({
 }) {
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <ErrorMessageProvider>{children}</ErrorMessageProvider>
+      <Provider store={store}>
+        <ErrorMessageProvider>{children}</ErrorMessageProvider>
+      </Provider>
     </NextIntlClientProvider>
   );
 }
