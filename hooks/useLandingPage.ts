@@ -1,6 +1,7 @@
 import { useTheme } from "next-themes";
 import { useEffect, useRef, useState } from "react";
 
+/** Hook for handling realtime Arabic-only chat logic */
 export default function useLandingPage() {
   const { theme } = useTheme();
   const currentTheme = theme;
@@ -11,9 +12,9 @@ export default function useLandingPage() {
   const peerConnection = useRef<RTCPeerConnection | null>(null);
   const audioElement = useRef<HTMLAudioElement | null>(null);
 
+  /** Start realtime session */
   async function startSession() {
     try {
-      // Get ephemeral key from backend (NestJS)
       const res = await fetch(
         process.env.NEXT_PUBLIC_NODE_ENV === "development"
           ? `${process.env.NEXT_PUBLIC_BACKEND_DEVELOPMENT}/api/v1/core/token`
@@ -25,18 +26,15 @@ export default function useLandingPage() {
       const pc = new RTCPeerConnection();
       peerConnection.current = pc;
 
-      // Setup remote audio
       audioElement.current = document.createElement("audio");
       audioElement.current.autoplay = true;
       pc.ontrack = (e) => {
         audioElement.current!.srcObject = e.streams[0];
       };
 
-      // Add microphone input
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       pc.addTrack(stream.getTracks()[0]);
 
-      // Create data channel
       const dc = pc.createDataChannel("oai-events");
       setDataChannel(dc);
 
@@ -63,6 +61,7 @@ export default function useLandingPage() {
     }
   }
 
+  /** Stop realtime session */
   function stopSession() {
     if (dataChannel) dataChannel.close();
     if (peerConnection.current) {
@@ -74,25 +73,39 @@ export default function useLandingPage() {
     peerConnection.current = null;
   }
 
+  /** Send event to data channel */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function sendClientEvent(message: any) {
     if (!dataChannel) return console.error("No data channel!");
-
     message.event_id = message.event_id || crypto.randomUUID();
     const msgStr = JSON.stringify(message);
-
-    // 🔹 Chunking large messages
     const chunkSize = 1200;
     for (let i = 0; i < msgStr.length; i += chunkSize) {
       const chunk = msgStr.slice(i, i + chunkSize);
       dataChannel.send(chunk);
     }
-
     message.timestamp = new Date().toLocaleTimeString();
     setEvents((prev) => [message, ...prev]);
   }
 
+  /** Detects if text is Arabic */
+  function isArabic(text: string) {
+    return /[\u0600-\u06FF]/.test(text);
+  }
+
+  /** Send user text message (Arabic only) */
   function sendTextMessage(text: string) {
+    if (!isArabic(text)) {
+      const warning = {
+        type: "system.message",
+        role: "system",
+        content: [{ type: "text", text: "يرجى التحدث باللغة العربية فقط" }],
+        timestamp: new Date().toLocaleTimeString(),
+      };
+      setEvents((prev) => [warning, ...prev]);
+      return;
+    }
+
     const event = {
       type: "conversation.item.create",
       item: {
@@ -101,10 +114,12 @@ export default function useLandingPage() {
         content: [{ type: "input_text", text }],
       },
     };
+
     sendClientEvent(event);
     sendClientEvent({ type: "response.create" });
   }
 
+  /** Handle data channel messages */
   useEffect(() => {
     if (!dataChannel) return;
 
@@ -114,7 +129,6 @@ export default function useLandingPage() {
     });
 
     let buffer = "";
-
     dataChannel.addEventListener("message", (e) => {
       buffer += e.data;
       try {
@@ -122,9 +136,7 @@ export default function useLandingPage() {
         parsed.timestamp = new Date().toLocaleTimeString();
         setEvents((prev) => [parsed, ...prev]);
         buffer = "";
-      } catch {
-        // wait for full chunk
-      }
+      } catch {}
     });
   }, [dataChannel]);
 

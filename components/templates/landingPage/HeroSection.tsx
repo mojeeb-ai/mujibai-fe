@@ -1,6 +1,7 @@
 import Header from "../../organisms/Header";
 import { Button } from "../../ui/button";
 import SessionControls from "../../organisms/SessionControls";
+import Link from "next/link";
 export default function HeroSection({
   startSession,
   stopSession,
@@ -67,13 +68,15 @@ export default function HeroSection({
           >
             <Button
               className="
-                px-10 sm:px-14 py-6 rounded-full font-medium
+                py-6 rounded-full font-medium
                 bg-primary text-white hover:bg-primary/90
                 text-base sm:text-lg transition
                 shadow-md
               "
             >
-              Get Started
+              <Link href={"/login"} className="px-10 sm:px-14 py-6">
+                Get Started
+              </Link>
             </Button>
             <SessionControls
               startSession={startSession}
