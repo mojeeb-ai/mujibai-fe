@@ -6,7 +6,6 @@ export default function HeroSection({
   startSession,
   stopSession,
   sendClientEvent,
-  sendTextMessage,
   events,
   isSessionActive,
 }: {
@@ -14,7 +13,6 @@ export default function HeroSection({
   stopSession: () => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   sendClientEvent: (message: any) => void;
-  sendTextMessage: (text: string) => void;
   events: unknown[];
   isSessionActive: boolean;
 }) {
@@ -82,7 +80,6 @@ export default function HeroSection({
               startSession={startSession}
               stopSession={stopSession}
               sendClientEvent={sendClientEvent}
-              sendTextMessage={sendTextMessage}
               serverEvents={events}
               isSessionActive={isSessionActive}
             />

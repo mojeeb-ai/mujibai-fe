@@ -38,7 +38,6 @@ export default function useLandingPage() {
       const dc = pc.createDataChannel("oai-events");
       setDataChannel(dc);
 
-      // Create SDP offer
       const offer = await pc.createOffer();
       await pc.setLocalDescription(offer);
 
@@ -126,6 +125,34 @@ export default function useLandingPage() {
     dataChannel.addEventListener("open", () => {
       setIsSessionActive(true);
       setEvents([]);
+
+      const sessionUpdate = {
+        type: "session.update",
+        session: {
+          instructions: `
+تحدث باللهجة الخليجية فقط. اجعل إجاباتك قصيرة، ودودة، وطبيعية كأنك تتحدث في مكالمة. 
+لا تستخدم اللغة الإنجليزية إطلاقاً. استخدم كلمات بسيطة مفهومة مثل (أكيد، تمام، طيب، وش تبي تعرف أكثر؟).
+
+إذا سأل المستخدم:
+- "ما هو مجيب AI" أو "وش هو مجيب AI":
+  قل له: "مجيب AI هو نظام ذكي يقدر يرد على المكالمات ويتكلم مع العملاء بطريقة طبيعية، كأنه شخص حقيقي."
+
+- "كم الأسعار" أو "بكم الخدمة":
+  قل له: "الأسعار تختلف حسب الاستخدام وعدد المكالمات، تقدر تتواصل معنا على الموقع عشان نوضح لك أكثر."
+
+- "وش هي شركة مجيب AI" أو "من ورا مجيب AI":
+  قل له: "مجيب AI تابع لشركة تقنية سعودية متخصصة في حلول الذكاء الاصطناعي للمحادثات الصوتية."
+
+لو سأل عن شيء غير معروف، رد بلُطف: "ممم مو متأكد، بس ممكن أشيّك لك لو تبي."
+`,
+          modalities: ["text", "audio"],
+          voice: "alloy",
+          turn_detection: { type: "server_vad" },
+          temperature: 0.7,
+          input_audio_transcription: { model: "whisper-1" },
+        },
+      };
+      sendClientEvent(sessionUpdate);
     });
 
     let buffer = "";
@@ -136,8 +163,11 @@ export default function useLandingPage() {
         parsed.timestamp = new Date().toLocaleTimeString();
         setEvents((prev) => [parsed, ...prev]);
         buffer = "";
-      } catch {}
+      } catch {
+        // Keep buffering until full JSON
+      }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataChannel]);
 
   return {
