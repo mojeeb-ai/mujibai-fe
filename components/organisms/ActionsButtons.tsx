@@ -10,16 +10,20 @@ export default function ActionsButtons() {
       <LanguageSwitcher />
       <div className="flex gap-2.5">
         <Button
-          className="px-9 py-3 rounded-full font-medium dark:text-white"
+          className="rounded-full font-medium dark:text-white"
           variant="default"
         >
-          <Link href={"/login"}>Get Started</Link>
+          <Link href={"/login"} className="px-9 py-3">
+            Get Started
+          </Link>
         </Button>
         <Button
-          className="px-9 py-3 rounded-full font-bold hover:bg-transparent hover:text-primary border-2 border-primary text-primary dark:border-primary"
+          className="rounded-full font-bold hover:bg-transparent hover:text-primary border-2 border-primary text-primary dark:border-primary"
           variant="outline"
         >
-          <Link href={"/enroll"}>Enroll</Link>
+          <Link href={"/enroll"} className="px-9 py-3">
+            Enroll
+          </Link>
         </Button>
       </div>
     </div>
