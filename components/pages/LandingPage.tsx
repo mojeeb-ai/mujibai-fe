@@ -14,7 +14,6 @@ export default function LandingPage() {
     startSession,
     stopSession,
     sendClientEvent,
-    sendTextMessage,
     isSessionActive,
     events,
     currentTheme,
@@ -25,7 +24,6 @@ export default function LandingPage() {
         startSession={startSession}
         stopSession={stopSession}
         sendClientEvent={sendClientEvent}
-        sendTextMessage={sendTextMessage}
         isSessionActive={isSessionActive}
         events={events}
       />

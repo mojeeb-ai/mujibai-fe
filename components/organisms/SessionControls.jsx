@@ -28,14 +28,7 @@ function SessionStopped({ startSession }) {
   );
 }
 
-function SessionActive({ stopSession, sendTextMessage }) {
-  const [message, setMessage] = useState("");
-
-  function handleSendClientEvent() {
-    sendTextMessage(message);
-    setMessage("");
-  }
-
+function SessionActive({ stopSession }) {
   return (
     <Button
       className="
@@ -56,7 +49,6 @@ export default function SessionControls({
   startSession,
   stopSession,
   sendClientEvent,
-  sendTextMessage,
   serverEvents,
   isSessionActive,
 }) {
@@ -66,7 +58,6 @@ export default function SessionControls({
         <SessionActive
           stopSession={stopSession}
           sendClientEvent={sendClientEvent}
-          sendTextMessage={sendTextMessage}
           serverEvents={serverEvents}
         />
       ) : (
