@@ -84,6 +84,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 import { Tajawal, Poppins } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 
 const tajawal = Tajawal({
   subsets: ["arabic"],
@@ -130,6 +131,7 @@ export default async function RootLayout({
             disableTransitionOnChange
           >
             {children}
+            <Toaster position="top-right" />
           </ThemeProvider>
         </Providers>
       </body>

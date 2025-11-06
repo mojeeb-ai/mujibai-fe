@@ -1,19 +1,17 @@
 "use client";
-import logo from "@/public/logo.svg";
-import Image from "next/image";
+
 import Navbar from "../molecules/landing/Navbar";
 import ActionsButtons from "./ActionsButtons";
 import { Menu, X } from "lucide-react";
 import { Button } from "../ui/button";
 import { useState } from "react";
 import MobileView from "../molecules/landing/MobileView";
+import Logo from "../atoms/Logo";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <header className="flex justify-around items-center py-5">
-      <div className="logo">
-        <Image src={logo} alt="logo" width={200} height={200} loading="lazy" />
-      </div>
+      <Logo />
       <Navbar />
       <ActionsButtons />
 

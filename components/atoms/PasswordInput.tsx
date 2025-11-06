@@ -15,6 +15,8 @@ interface PasswordInputProps {
   onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   error?: string;
   touched?: boolean;
+  disabled?: boolean;
+  className?: string;
 }
 
 /**
@@ -30,6 +32,8 @@ export default function PasswordInput({
   onBlur,
   error,
   touched,
+  disabled,
+  className,
 }: PasswordInputProps) {
   const [showPassword, setShowPassword] = useState(false);
   const locale = useLocale();
@@ -50,7 +54,8 @@ export default function PasswordInput({
         onChange={onChange}
         onBlur={onBlur}
         onKeyDown={handleKeyDown}
-        className={`w-full mt-3 ${
+        disabled={disabled}
+        className={`w-full mt-3 ${className} ${
           isRTL ? "pl-12 pr-3 text-right" : "pr-12 pl-3 text-left"
         }
           bg-[#06B6D40F] dark:bg-[#3B82F633]
