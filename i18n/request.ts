@@ -17,6 +17,7 @@ export default getRequestConfig(async () => {
       ...(await import(`../messages/${locale}/passwordResetRequested.json`))
         .default,
       ...(await import(`../messages/${locale}/adminDashboard.json`)).default,
+      ...(await import(`../messages/${locale}/landingPage.json`)).default,
     },
   };
 });

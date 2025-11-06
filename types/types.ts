@@ -7,6 +7,13 @@ export interface Plan {
   isPopular: boolean;
 }
 
+export interface User {
+  _id: number;
+  fullName: string;
+  email: string;
+  role: string;
+}
+
 import * as yup from "yup";
 
 export const schema = yup.object({

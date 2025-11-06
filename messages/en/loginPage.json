@@ -9,7 +9,7 @@
     "passwordPlaceholder": "Enter your password",
     "passwordMin": "Password must be at least 6 characters",
     "passwordRequired": "Password is required",
-    "forgotPassword": "Forgot your password?",
+    "forgotPassword": "Forgot password?",
     "loginButton": "Login",
     "loading": "Logging in..."
   }
