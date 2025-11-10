@@ -1,8 +1,23 @@
 {
-  "logoutDialog": {
-    "title": "تسجيل الخروج",
-    "message": "هل أنت متأكد من تسجيل الخروج؟",
-    "confirm": "تسجيل الخروج",
-    "cancel": "إلغاء"
+  "landingPage": {
+    "logoutDialog": {
+      "title": "تسجيل الخروج",
+      "message": "هل أنت متأكد من تسجيل الخروج؟",
+      "confirm": "تسجيل الخروج",
+      "cancel": "إلغاء"
+    },
+
+    "header": {
+      "dashboard": "لوحة التحكم",
+      "enroll": "سجل",
+      "getStarted": "ابدأ الآن",
+      "logout": "تسجيل الخروج",
+      "features": "الميزات",
+      "pricing": "الأسعار",
+      "contact": "اتصل بنا",
+      "whyUs": "لماذا نحن",
+      "targetSector": "القطاع المستهدف",
+      "about": "من نحن"
+    }
   }
 }

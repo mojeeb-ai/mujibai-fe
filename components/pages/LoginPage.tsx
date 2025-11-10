@@ -6,13 +6,13 @@ import * as Yup from "yup";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
-import Logo from "@/components/atoms/Logo";
 import PasswordInput from "@/components/atoms/PasswordInput";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useAuth from "@/hooks/useAuth";
-
+import Image from "next/image";
+import logoImage from "../../public/logo.svg";
 /**
  * Login page component with authentication form
  * @returns {JSX.Element} Login page UI
@@ -46,7 +46,6 @@ export default function LoginPage() {
 
   return (
     <div className="w-screen h-screen relative flex justify-center items-center">
-      {/* Background Glow */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
           w-[65%] h-[65%] rounded-full 
@@ -55,7 +54,12 @@ export default function LoginPage() {
       />
 
       <div className="sm:w-[50%] w-full h-[50%] flex items-center justify-center flex-col gap-5">
-        <Logo />
+        <Link
+          href={"/"}
+          className="hover:scale-110 transition-all duration-300"
+        >
+          <Image src={logoImage} alt="Logo" width={200} height={50} />
+        </Link>
 
         <div className="sm:w-full md:w-[80%] lg:w-[60%] border-t border-b border-white p-10 rounded-2xl bg-[#FFFFFF80] dark:bg-[#06B6D40F]">
           <h1 className="text-2xl font-semibold">{t("title")}</h1>

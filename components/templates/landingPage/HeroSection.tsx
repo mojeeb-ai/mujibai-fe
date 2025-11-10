@@ -2,12 +2,14 @@ import Header from "../../organisms/Header";
 import { Button } from "../../ui/button";
 import SessionControls from "../../organisms/SessionControls";
 import Link from "next/link";
+import { User } from "@/types/types";
 export default function HeroSection({
   startSession,
   stopSession,
   sendClientEvent,
   events,
   isSessionActive,
+  user,
 }: {
   startSession: () => void;
   stopSession: () => void;
@@ -15,12 +17,13 @@ export default function HeroSection({
   sendClientEvent: (message: any) => void;
   events: unknown[];
   isSessionActive: boolean;
+  user: User | null;
 }) {
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
       <div className="absolute bottom-0 h-[60%] w-full bg-gradient-to-t from-primary/40 dark:from-primary/20 from-[40%] to-transparent -z-10"></div>
       <div className="relative z-50">
-        <Header />
+        <Header user={user} />
       </div>
       <div className="flex justify-center items-center h-full px-6">
         <div

@@ -1,8 +1,23 @@
 {
-  "logoutDialog": {
-    "title": "Logout",
-    "message": "Are you sure you want to logout?",
-    "confirm": "Logout",
-    "cancel": "Cancel"
+  "landingPage": {
+    "logoutDialog": {
+      "title": "Logout",
+      "message": "Are you sure you want to logout?",
+      "confirm": "Logout",
+      "cancel": "Cancel"
+    },
+
+    "header": {
+      "dashboard": "Dashboard",
+      "enroll": "Enroll",
+      "getStarted": "Get Started",
+      "logout": "Logout",
+      "features": "Features",
+      "pricing": "Pricing",
+      "contact": "Contact",
+      "whyUs": "Whay Us",
+      "targetSector": "Target Sector",
+      "about": "About"
+    }
   }
 }

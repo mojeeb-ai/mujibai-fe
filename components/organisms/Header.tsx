@@ -7,13 +7,15 @@ import { Button } from "../ui/button";
 import { useState } from "react";
 import MobileView from "../molecules/landing/MobileView";
 import Logo from "../atoms/Logo";
-export default function Header() {
+import { User } from "@/types/types";
+// import { useTranslations } from "next-intl";
+export default function Header({ user }: { user: User | null }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <header className="flex justify-around items-center py-5">
       <Logo />
       <Navbar />
-      <ActionsButtons />
+      <ActionsButtons user={user} />
 
       <div className="sm:hidden flex">
         <Button className="flex" onClick={() => setIsMenuOpen(!isMenuOpen)}>

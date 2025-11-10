@@ -22,7 +22,7 @@ export default function LogoutDailog({
   onConfirm: () => void;
   loading: boolean;
 }) {
-  const t = useTranslations("logoutDialog");
+  const t = useTranslations("landingPage.logoutDialog");
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent showCloseButton={false}>

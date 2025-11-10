@@ -8,8 +8,9 @@ import AboutUsSection from "../templates/landingPage/AboutUsSection";
 import ContactUsSection from "../templates/landingPage/ContactUsSection";
 import Footer from "../templates/Footer";
 import useLandingPage from "@/hooks/useLandingPage";
+import { User } from "@/types/types";
 
-export default function LandingPage() {
+export default function LandingPage({ user }: { user: User | null }) {
   const {
     startSession,
     stopSession,
@@ -26,6 +27,7 @@ export default function LandingPage() {
         sendClientEvent={sendClientEvent}
         isSessionActive={isSessionActive}
         events={events}
+        user={user || null}
       />
       <FeaturesSection />
       <TargetedSectorsSection theme={currentTheme || "dark"} />
