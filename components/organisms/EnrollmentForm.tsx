@@ -5,14 +5,62 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useTranslations } from "next-intl";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { EnrollmentFormValues } from "@/types/types";
+import useEnroll from "@/hooks/useEnroll";
+import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 /**
  * @component EnrollmentForm
- * @description Displays the company enrollment form where users can fill out their details.
- * Uses i18n translations via `next-intl` for full multilingual support.
+ * @description Displays a company enrollment form that allows users to submit company details.
+ * The form uses Formik for form state management and Yup for validation.
+ * Supports multilingual labels via `next-intl`.
  */
 export default function EnrollmentForm() {
   const t = useTranslations("enrollPage.enrollForm");
+
+  const { handleEnroll, isEnrollLoading } = useEnroll();
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      website: "",
+      address: "",
+      industry: "",
+      commercialRegister: "",
+      taxId: "",
+      message: "",
+    },
+    validationSchema: Yup.object({
+      name: Yup.string().required("Full name is required"),
+      email: Yup.string().email("Invalid email").required("Email is required"),
+      phone: Yup.string().required("Phone is required"),
+      company: Yup.string().required("Company name is required"),
+      website: Yup.string()
+        .url("Invalid website URL")
+        .required("Website is required"),
+      address: Yup.string().required("Address is required"),
+      industry: Yup.string().required("Industry is required"),
+      commercialRegister: Yup.string().required(
+        "Commercial register is required"
+      ),
+      taxId: Yup.string().required("Tax ID is required"),
+      message: Yup.string().required("Message is required").min(10).max(500),
+    }),
+    onSubmit: async (values: EnrollmentFormValues, { resetForm }) => {
+      const res = await handleEnroll(values);
+      console.log(values);
+
+      if (res) {
+        toast.success("Enrollment successful");
+        resetForm();
+      }
+    },
+  });
 
   return (
     <div
@@ -29,69 +77,103 @@ export default function EnrollmentForm() {
         {t("title")}
       </h2>
 
-      {/* Form Fields */}
-      <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Full Name */}
+      {/* Enrollment Form */}
+      <form
+        onSubmit={formik.handleSubmit}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+      >
         <FormField
-          label={t("fullName")}
-          placeholder={t("fullNamePlaceholder")}
+          label={t("name")}
+          placeholder={t("namePlaceholder")}
           required
+          name="name"
+          value={formik.values.name}
+          onChange={formik.handleChange}
+          error={formik.touched.name ? formik.errors.name : undefined}
         />
 
-        {/* Email */}
         <FormField
           label={t("email")}
           placeholder={t("emailPlaceholder")}
           required
+          name="email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          error={formik.touched.email ? formik.errors.email : undefined}
         />
 
-        {/* Phone */}
         <FormField
           label={t("phone")}
           placeholder={t("phonePlaceholder")}
           required
+          name="phone"
+          value={formik.values.phone}
+          onChange={formik.handleChange}
+          error={formik.touched.phone ? formik.errors.phone : undefined}
         />
 
-        {/* Company Name */}
         <FormField
-          label={t("companyName")}
+          label={t("company")}
           placeholder={t("companyNamePlaceholder")}
           required
+          name="company"
+          value={formik.values.company}
+          onChange={formik.handleChange}
+          error={formik.touched.company ? formik.errors.company : undefined}
         />
 
-        {/* Company Website */}
         <FormField
-          label={t("companyWebsite")}
+          label={t("website")}
           placeholder={t("companyWebsitePlaceholder")}
           required
+          name="website"
+          value={formik.values.website}
+          onChange={formik.handleChange}
+          error={formik.touched.website ? formik.errors.website : undefined}
         />
 
-        {/* Address */}
         <FormField
           label={t("address")}
           placeholder={t("addressPlaceholder")}
           required
+          name="address"
+          value={formik.values.address}
+          onChange={formik.handleChange}
+          error={formik.touched.address ? formik.errors.address : undefined}
         />
 
-        {/* Industry */}
         <FormField
           label={t("industry")}
           placeholder={t("industryPlaceholder")}
           required
+          name="industry"
+          value={formik.values.industry}
+          onChange={formik.handleChange}
+          error={formik.touched.industry ? formik.errors.industry : undefined}
         />
 
-        {/* Commercial Register */}
         <FormField
           label={t("commercialRegister")}
           placeholder={t("commercialRegisterPlaceholder")}
           required
+          name="commercialRegister"
+          value={formik.values.commercialRegister}
+          onChange={formik.handleChange}
+          error={
+            formik.touched.commercialRegister
+              ? formik.errors.commercialRegister
+              : undefined
+          }
         />
 
-        {/* Tax ID */}
         <FormField
           label={t("taxId")}
           placeholder={t("taxIdPlaceholder")}
           required
+          name="taxId"
+          value={formik.values.taxId}
+          onChange={formik.handleChange}
+          error={formik.touched.taxId ? formik.errors.taxId : undefined}
         />
 
         {/* Message */}
@@ -101,17 +183,34 @@ export default function EnrollmentForm() {
           </Label>
           <Textarea
             placeholder={t("messagePlaceholder")}
-            className="bg-[#06B6D40F] border-none rounded-lg text-gray-900 placeholder:text-gray-500 h-24"
+            className="bg-[#06B6D40F] border-none rounded-lg placeholder:text-gray-500 h-24"
+            value={formik.values.message}
+            onChange={formik.handleChange}
+            name="message"
           />
+          {formik.touched.message && formik.errors.message && (
+            <p className="text-red-500 text-xs mt-1">{formik.errors.message}</p>
+          )}
+        </div>
+
+        {/* Submit Button */}
+        <div className="flex justify-end md:col-span-2 mt-6">
+          <Button
+            type="submit"
+            className="bg-[#00B4D8] hover:bg-[#0096C7] text-white px-8 py-2 rounded-full shadow-md transition disabled:opacity-50"
+            disabled={isEnrollLoading}
+          >
+            {isEnrollLoading ? (
+              <>
+                <Loader2 className="size-5 animate-spin" />
+                <span className="ml-2">{t("submitting")}</span>
+              </>
+            ) : (
+              t("submit")
+            )}
+          </Button>
         </div>
       </form>
-
-      {/* Submit Button */}
-      <div className="flex justify-end mt-8">
-        <Button className="bg-[#00B4D8] hover:bg-[#0096C7] text-white px-8 py-2 rounded-full shadow-md transition">
-          {t("submit")}
-        </Button>
-      </div>
     </div>
   );
 }
@@ -123,15 +222,27 @@ export default function EnrollmentForm() {
  * @param {string} props.label - The label text for the input.
  * @param {string} props.placeholder - The placeholder text for the input.
  * @param {boolean} [props.required=false] - Whether the field is required.
+ * @param {string} props.name - The field name for formik.
+ * @param {string} props.value - The field value.
+ * @param {(e: React.ChangeEvent<HTMLInputElement>) => void} props.onChange - The onChange handler.
+ * @param {string} [props.error] - Optional error message.
  */
 function FormField({
   label,
   placeholder,
   required = false,
+  name,
+  value,
+  onChange,
+  error,
 }: {
   label: string;
   placeholder: string;
   required?: boolean;
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: string;
 }) {
   return (
     <div className="flex flex-col gap-1">
@@ -140,8 +251,14 @@ function FormField({
       </Label>
       <Input
         placeholder={placeholder}
-        className="bg-[#06B6D40F] border-none rounded-lg h-11 text-gray-900 placeholder:text-gray-500"
+        className={`bg-[#06B6D40F] border-none rounded-lg h-11 placeholder:text-gray-500 ${
+          error ? "border border-red-500" : ""
+        }`}
+        value={value}
+        onChange={onChange}
+        name={name}
       />
+      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
     </div>
   );
 }

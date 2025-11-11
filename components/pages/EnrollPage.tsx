@@ -22,7 +22,7 @@ export default function EnrollPage() {
     t("instructions.inst10"),
   ];
   return (
-    <div className="w-screen min-h-screen overflow-x-hidden relative flex flex-col items-center py-12">
+    <div className="w-full min-h-screen overflow-x-hidden relative flex flex-col items-center py-12">
       {/* Background Glow */}
       <div
         className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 

@@ -7,8 +7,8 @@ import {
   Lightbulb,
   Key,
   Settings,
+  EllipsisVertical,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -18,10 +18,26 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import Logo from "@/components/atoms/Logo";
 import { useTranslations } from "next-intl";
-
-export default function ClientSidebar({ dir }: { dir: "left" | "right" }) {
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { User } from "@/types/types";
+import useAuth from "@/hooks/useAuth";
+export default function ClientSidebar({
+  dir,
+  user,
+}: {
+  dir: "left" | "right";
+  user: User;
+}) {
   const t = useTranslations("sidebar");
   const pathname = usePathname();
 
@@ -51,6 +67,8 @@ export default function ClientSidebar({ dir }: { dir: "left" | "right" }) {
     { title: t("settings"), icon: Settings, href: "/dashboard/settings" },
   ];
 
+  const { handleLogout } = useAuth();
+
   return (
     <Sidebar
       side={dir}
@@ -58,9 +76,7 @@ export default function ClientSidebar({ dir }: { dir: "left" | "right" }) {
     >
       {/* Logo Section */}
       <div className="flex flex-col items-center mb-6 mt-2">
-        <Link href="/" className="flex items-center gap-2">
-          <Logo />
-        </Link>
+        <Logo />
       </div>
 
       {/* Menu Section */}
@@ -98,21 +114,39 @@ export default function ClientSidebar({ dir }: { dir: "left" | "right" }) {
 
       {/* User Section */}
       <div className="bg-[#06B6D40F] dark:bg-[#0e2235] p-3 rounded-xl flex items-center gap-3 mt-6">
-        <Image
-          src="/assets/salman.jpg"
-          alt="Salman"
-          width={40}
-          height={40}
-          className="rounded-full object-cover"
-          loading="lazy"
-        />
+        <Avatar>
+          <AvatarImage
+            src={`https://api.dicebear.com/6.x/initials/svg?seed=${user?.fullName}&backgroundColor=2563eb&backgroundType=solid`}
+            alt={user?.fullName}
+            className="group-hover:scale-105 transition-transform duration-300"
+          />
+          <AvatarFallback>{user?.fullName}</AvatarFallback>
+        </Avatar>
+
         <div className="flex flex-col text-sm">
           <span className="font-semibold text-gray-900 dark:text-white">
-            Salman K.
+            {user?.fullName}
           </span>
-          <span className="text-gray-500 text-xs">Member</span>
+          <span className="text-gray-500 text-xs">{user?.role}</span>
         </div>
-        <div className="ml-auto text-gray-500">⋮</div>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="ghost"
+              className="p-0 hover:bg-transparent m-0 dark:bg-transparent"
+            >
+              <EllipsisVertical className="size-5" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            className="w-56 dark:bg-[#0e2235] bg-[#fff]"
+            align="start"
+          >
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+
+            <DropdownMenuItem onClick={handleLogout}>Log out</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </Sidebar>
   );

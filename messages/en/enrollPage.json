@@ -16,17 +16,17 @@
     },
     "enrollForm": {
       "title": "Company Enrollment Form",
-      "fullName": "Full Name",
-      "fullNamePlaceholder": "Your full name",
+      "name": "Full Name",
+      "namePlaceholder": "Your full name",
       "email": "Email",
       "emailPlaceholder": "Your email",
-      "companyName": "Company Name",
+      "company": "Company Name",
       "companyNamePlaceholder": "Your company name",
       "phone": "Phone",
       "phonePlaceholder": "Your phone",
       "address": "Address",
       "addressPlaceholder": "Your address",
-      "companyWebsite": "Company Website",
+      "website": "Company Website",
       "companyWebsitePlaceholder": "Your company website URL",
       "commercialRegister": "Commercial Register",
       "commercialRegisterPlaceholder": "Your commercial register",
@@ -36,7 +36,8 @@
       "taxIdPlaceholder": "# Your tax ID start with",
       "message": "Message",
       "messagePlaceholder": "Your message",
-      "submit": "Submit"
+      "submit": "Submit",
+      "submitting": "Submitting..."
     }
   }
 }

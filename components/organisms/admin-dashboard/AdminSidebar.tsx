@@ -112,7 +112,7 @@ export default function AdminSidebar({ dir }: { dir: "left" | "right" }) {
       {/* User Section */}
       <div className="bg-[#284b520f] dark:bg-[#0e2235] p-3 rounded-xl flex items-center gap-3 mt-6">
         <Image
-          src="/assets/salman.jpg"
+          src="/salman.jpg"
           alt="Salman"
           width={40}
           height={40}

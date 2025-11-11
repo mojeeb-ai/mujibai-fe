@@ -16,17 +16,17 @@
     },
     "enrollForm": {
       "title": "نموذج تسجيل الشركة",
-      "fullName": "الاسم الكامل",
-      "fullNamePlaceholder": "اكتب اسمك الكامل",
+      "name": "الاسم الكامل",
+      "namePlaceholder": "اكتب اسمك الكامل",
       "email": "البريد الإلكتروني",
       "emailPlaceholder": "أدخل بريدك الإلكتروني",
-      "companyName": "اسم الشركة",
+      "company": "اسم الشركة",
       "companyNamePlaceholder": "اكتب اسم شركتك",
       "phone": "رقم الهاتف",
       "phonePlaceholder": "أدخل رقم هاتفك",
       "address": "العنوان",
       "addressPlaceholder": "أدخل عنوانك",
-      "companyWebsite": "موقع الشركة الإلكتروني",
+      "website": "موقع الشركة الإلكتروني",
       "companyWebsitePlaceholder": "رابط موقع شركتك الإلكتروني",
       "commercialRegister": "السجل التجاري",
       "commercialRegisterPlaceholder": "أدخل رقم السجل التجاري",
@@ -36,7 +36,8 @@
       "taxIdPlaceholder": "# الرقم الضريبي يبدأ بـ",
       "message": "الرسالة",
       "messagePlaceholder": "اكتب رسالتك",
-      "submit": "إرسال"
+      "submit": "إرسال",
+      "submitting": "جاري الإرسال..."
     }
   }
 }
