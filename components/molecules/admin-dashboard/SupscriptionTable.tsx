@@ -1,5 +1,5 @@
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
+import { Badge } from '@/components/ui/badge'
+import { Progress } from '@/components/ui/progress'
 import {
   Table,
   TableBody,
@@ -7,59 +7,59 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { useLocale } from "next-intl";
-import { useTranslations } from "next-intl";
+} from '@/components/ui/table'
+import { useLocale } from 'next-intl'
+import { useTranslations } from 'next-intl'
 
 export default function SupscriptionsTable() {
-  const locale = useLocale();
-  const t = useTranslations("adminSubscription");
+  const locale = useLocale()
+  const t = useTranslations('adminSubscription')
   const subscriptions = [
     {
       id: 1,
-      name: "Basic",
-      email: "example@example.com",
-      plan: "Basic",
+      name: 'Basic',
+      email: 'example@example.com',
+      plan: 'Basic',
       clientUsage: 30,
     },
     {
       id: 2,
-      name: "Standard",
-      email: "example@example.com",
-      plan: "Standard",
+      name: 'Standard',
+      email: 'example@example.com',
+      plan: 'Standard',
       clientUsage: 80,
     },
     {
       id: 3,
-      name: "Premium",
-      email: "example@example.com",
-      plan: "Premium",
+      name: 'Premium',
+      email: 'example@example.com',
+      plan: 'Premium',
       clientUsage: 50,
     },
-  ];
+  ]
   return (
-    <Table className="my-10 dark:bg-[#001434A6] bg-[#FFFFFFBF] rounded-2xl">
+    <Table className="my-10 rounded-2xl bg-[#FFFFFFBF] dark:bg-[#001434A6]">
       <TableHeader>
         <TableRow>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("name")}
+            {t('name')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("email")}
+            {t('email')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("plan")}
+            {t('plan')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("clientUsage")}
+            {t('clientUsage')}
           </TableHead>
         </TableRow>
       </TableHeader>
@@ -68,7 +68,7 @@ export default function SupscriptionsTable() {
         {subscriptions.map((subscription) => (
           <TableRow
             key={subscription.id}
-            className="hover:bg-white/10 transition-colors"
+            className="transition-colors hover:bg-white/10"
           >
             <TableCell>{subscription.name}</TableCell>
             <TableCell>{subscription.email}</TableCell>
@@ -78,7 +78,7 @@ export default function SupscriptionsTable() {
               </Badge>
             </TableCell>
             <TableCell>
-              <div className="flex items-start flex-col gap-2">
+              <div className="flex flex-col items-start gap-2">
                 <span>{subscription.clientUsage}</span>
                 <Progress value={subscription.clientUsage} />
               </div>
@@ -87,5 +87,5 @@ export default function SupscriptionsTable() {
         ))}
       </TableBody>
     </Table>
-  );
+  )
 }

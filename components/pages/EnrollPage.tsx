@@ -1,55 +1,50 @@
-import React from "react";
-import Logo from "../atoms/Logo";
-import { CheckCircle } from "lucide-react";
-import EnrollmentForm from "../organisms/EnrollmentForm";
-import { useTranslations } from "next-intl";
+import React from 'react'
+import Logo from '../atoms/Logo'
+import { CheckCircle } from 'lucide-react'
+import EnrollmentForm from '../organisms/EnrollmentForm'
+import { useTranslations } from 'next-intl'
 
 /**
  * EnrollPage — Company enrollment form with instructions section.
  */
 export default function EnrollPage() {
-  const t = useTranslations("enrollPage");
+  const t = useTranslations('enrollPage')
   const instructions = [
-    t("instructions.inst1"),
-    t("instructions.inst2"),
-    t("instructions.inst3"),
-    t("instructions.inst4"),
-    t("instructions.inst5"),
-    t("instructions.inst6"),
-    t("instructions.inst7"),
-    t("instructions.inst8"),
-    t("instructions.inst9"),
-    t("instructions.inst10"),
-  ];
+    t('instructions.inst1'),
+    t('instructions.inst2'),
+    t('instructions.inst3'),
+    t('instructions.inst4'),
+    t('instructions.inst5'),
+    t('instructions.inst6'),
+    t('instructions.inst7'),
+    t('instructions.inst8'),
+    t('instructions.inst9'),
+    t('instructions.inst10'),
+  ]
   return (
-    <div className="w-full min-h-screen overflow-x-hidden relative flex flex-col items-center py-12">
+    <div className="relative flex min-h-screen w-full flex-col items-center overflow-x-hidden py-12">
       {/* Background Glow */}
-      <div
-        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-          w-[60%] h-[60%] rounded-full 
-          bg-[#06B6D4]/40 blur-[160px] 
-          opacity-60 z-[-1]"
-      ></div>
+      <div className="fixed top-1/2 left-1/2 z-[-1] h-[60%] w-[60%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#06B6D4]/40 opacity-60 blur-[160px]"></div>
 
       {/* Logo */}
       <div className="mb-10">
         <Logo />
       </div>
 
-      <div className="w-full flex flex-col lg:flex-row justify-between items-start gap-10 px-6 lg:px-10">
+      <div className="flex w-full flex-col items-start justify-between gap-10 px-6 lg:flex-row lg:px-10">
         {/* Instructions Section */}
-        <div className="flex-1 max-w-xl">
+        <div className="max-w-xl flex-1">
           <div>
-            <h2 className="text-2xl font-semibold mb-3 text-foreground">
-              {t("title")}
+            <h2 className="text-foreground mb-3 text-2xl font-semibold">
+              {t('title')}
             </h2>
-            <p className="text-sm mb-6 text-foreground">{t("description")}</p>
+            <p className="text-foreground mb-6 text-sm">{t('description')}</p>
 
             <ul className="space-y-3">
               {instructions.map((item, index) => (
                 <li key={index} className="flex items-start gap-3">
-                  <CheckCircle className="text-primary w-5 h-5 flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-foreground leading-relaxed">
+                  <CheckCircle className="text-primary mt-0.5 h-5 w-5 flex-shrink-0" />
+                  <span className="text-foreground text-sm leading-relaxed">
                     {item}
                   </span>
                 </li>
@@ -59,10 +54,10 @@ export default function EnrollPage() {
         </div>
 
         {/* Enrollment Form */}
-        <div className="flex-1 w-full">
+        <div className="w-full flex-1">
           <EnrollmentForm />
         </div>
       </div>
     </div>
-  );
+  )
 }

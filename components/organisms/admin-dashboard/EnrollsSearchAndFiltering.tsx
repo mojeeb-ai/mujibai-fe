@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Filter, Search } from "lucide-react";
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Filter, Search } from 'lucide-react'
 
 /**
  * EnrollsSearchAndFiltering component
@@ -10,17 +10,17 @@ import { Filter, Search } from "lucide-react";
 export default function EnrollsSearchAndFiltering({
   t,
 }: {
-  t: (key: string) => string;
+  t: (key: string) => string
 }) {
   return (
-    <div className="w-full grid grid-cols-1 md:grid-cols-6 lg:grid-cols-6 justify-between items-center ">
+    <div className="grid w-full grid-cols-1 items-center justify-between md:grid-cols-6 lg:grid-cols-6">
       {/* Search Section */}
-      <div className="col-span-3 w-full flex items-center gap-2 bg-[#06B6D426] dark:bg-g-white/10 px-3 py-2 rounded-full">
+      <div className="dark:bg-g-white/10 col-span-3 flex w-full items-center gap-2 rounded-full bg-[#06B6D426] px-3 py-2">
         <Input
-          placeholder={t("searchPlaceholder")}
-          className="flex-1 border-0 dark:bg-transparent shadow-none focus-visible:ring-0 py-0"
+          placeholder={t('searchPlaceholder')}
+          className="flex-1 border-0 py-0 shadow-none focus-visible:ring-0 dark:bg-transparent"
         />
-        <div className="flex items-center rounded-full  dark:bg-[#FFFFFF26] p-2 text-primary bg-white">
+        <div className="text-primary flex items-center rounded-full bg-white p-2 dark:bg-[#FFFFFF26]">
           <Search className="size-4" />
         </div>
       </div>
@@ -31,11 +31,11 @@ export default function EnrollsSearchAndFiltering({
           variant="outline"
           size="icon"
           aria-label="Filter clients"
-          className="border-2 border-primary text-primary hover:border-primary hover:text-primary"
+          className="border-primary text-primary hover:border-primary hover:text-primary border-2"
         >
           <Filter className="size-4" />
         </Button>
       </div>
     </div>
-  );
+  )
 }

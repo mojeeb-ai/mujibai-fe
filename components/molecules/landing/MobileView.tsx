@@ -1,84 +1,148 @@
-"use client";
+'use client'
 
-import { motion } from "framer-motion";
-import { Sheet, SheetContent, SheetClose } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import LanguageSwitcher from "@/components/atoms/LanguageSwitcher";
-import { ThemeSwitcher } from "@/components/atoms/ThemeSwitcher";
-
-const links = [
-  { name: "Features", href: "#features" },
-  { name: "Why Us", href: "#why-us" },
-  { name: "Pricing", href: "#pricing" },
-  { name: "Target Sector", href: "#target-sector" },
-  { name: "Contact", href: "#contact" },
-  { name: "About", href: "#about" },
-];
+import { motion } from 'framer-motion'
+import { Sheet, SheetContent, SheetClose } from '@/components/ui/sheet'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import LanguageSwitcher from '@/components/atoms/LanguageSwitcher'
+import { ThemeSwitcher } from '@/components/atoms/ThemeSwitcher'
+import { User } from '@/types/types'
+import { useTranslations } from 'next-intl'
+import useAuth from '@/hooks/useAuth'
+import LogoutDailog from './dialogs/LogoutDailog'
+import { useState } from 'react'
 
 export default function MobileView({
   open,
   onClose,
+  user,
 }: {
-  open: boolean;
-  onClose: () => void;
+  open: boolean
+  onClose: () => void
+  user: User | null
 }) {
+  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false)
+  const t = useTranslations('landingPage')
+  const { handleLogout } = useAuth()
+  const links = [
+    { name: t('header.features'), href: '#features' },
+    { name: t('header.whyUs'), href: '#why-us' },
+    { name: t('header.pricing'), href: '#pricing' },
+    { name: t('header.targetSector'), href: '#target-sector' },
+    { name: t('header.contact'), href: '#contact' },
+    { name: t('header.about'), href: '#about' },
+  ]
+
   return (
-    <Sheet open={open} onOpenChange={onClose}>
-      <SheetContent side="top" className="p-6 bg-background">
-        <motion.div
-          initial={{ opacity: 0, y: -15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.25 }}
-        >
-          <ul className="flex flex-col gap-4 mt-6">
-            {links.map((link) => (
-              <li key={link.name}>
+    <>
+      <Sheet open={open} onOpenChange={onClose}>
+        <SheetContent side="top" className="bg-background p-6">
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <ul className="mt-6 flex flex-col gap-4">
+              {links.map((link) => (
+                <li key={link.name}>
+                  <SheetClose asChild>
+                    <Link
+                      href={link.href}
+                      onClick={onClose}
+                      className="text-foreground/90 hover:text-primary after:bg-primary relative block w-full text-lg transition-colors duration-300 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:transition-all after:duration-300 after:content-[''] hover:after:w-full"
+                    >
+                      {link.name}
+                    </Link>
+                  </SheetClose>
+                </li>
+              ))}
+
+              {user ? (
+                <>
+                  <li>
+                    <SheetClose asChild>
+                      <Button
+                        variant="default"
+                        className="w-full rounded-3xl px-9 py-6"
+                      >
+                        <Link
+                          href="/dashboard"
+                          onClick={onClose}
+                          className="w-full"
+                        >
+                          {t('header.dashboard')}
+                        </Link>
+                      </Button>
+                    </SheetClose>
+                  </li>
+                  <li>
+                    <SheetClose asChild>
+                      <Button
+                        variant="outline"
+                        className="w-full rounded-3xl px-9 py-6"
+                        onClick={() => {
+                          setIsLogoutDialogOpen(true)
+                          onClose()
+                        }}
+                      >
+                        {t('header.logout')}
+                      </Button>
+                    </SheetClose>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <SheetClose asChild>
+                      <Button variant="default" className="w-full rounded-3xl">
+                        <Link
+                          href="/login"
+                          onClick={onClose}
+                          className="w-full px-9 py-6"
+                        >
+                          {t('header.getStarted')}
+                        </Link>
+                      </Button>
+                    </SheetClose>
+                  </li>
+                  <li>
+                    <SheetClose asChild>
+                      <Button
+                        variant="outline"
+                        className="border-primary text-primary w-full rounded-3xl border-2 font-semibold"
+                      >
+                        <Link
+                          href="/enroll"
+                          onClick={onClose}
+                          className="w-full px-9 py-6"
+                        >
+                          {t('header.enroll')}
+                        </Link>
+                      </Button>
+                    </SheetClose>
+                  </li>
+                </>
+              )}
+              <li>
                 <SheetClose asChild>
-                  <Link
-                    href={link.href}
-                    onClick={onClose}
-                    className="relative block w-full text-lg text-foreground/90 hover:text-primary transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
-                  >
-                    {link.name}
-                  </Link>
+                  <LanguageSwitcher />
                 </SheetClose>
               </li>
-            ))}
-
-            <li>
-              <SheetClose asChild>
-                <Button
-                  variant="default"
-                  className="w-full rounded-3xl px-9 py-6"
-                >
-                  Get started
-                </Button>
-              </SheetClose>
-            </li>
-            <li>
-              <SheetClose asChild>
-                <Button
-                  variant="outline"
-                  className="w-full rounded-3xl px-9 py-6  border-2 font-semibold border-primary text-primary"
-                >
-                  Enroll
-                </Button>
-              </SheetClose>
-            </li>
-            <li>
-              <SheetClose asChild>
-                <LanguageSwitcher />
-              </SheetClose>
-            </li>
-            <li>
-              <SheetClose asChild>
-                <ThemeSwitcher />
-              </SheetClose>
-            </li>
-          </ul>
-        </motion.div>
-      </SheetContent>
-    </Sheet>
-  );
+              <li>
+                <SheetClose asChild>
+                  <ThemeSwitcher />
+                </SheetClose>
+              </li>
+            </ul>
+          </motion.div>
+        </SheetContent>
+      </Sheet>
+      <LogoutDailog
+        open={isLogoutDialogOpen}
+        onClose={() => setIsLogoutDialogOpen(false)}
+        onConfirm={handleLogout}
+        loading={false}
+      />
+    </>
+  )
 }

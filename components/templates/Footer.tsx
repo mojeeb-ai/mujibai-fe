@@ -1,29 +1,22 @@
-"use client";
+'use client'
 
-import {
-  Facebook,
-  Instagram,
-  Mail,
-  MapPin,
-  Phone,
-  Twitter,
-} from "lucide-react";
-import Logo from "../atoms/Logo";
-import Link from "next/link";
-import Image from "next/image";
+import { Facebook, Instagram, Mail, MapPin, Phone, Twitter } from 'lucide-react'
+import Logo from '../atoms/Logo'
+import Link from 'next/link'
+import Image from 'next/image'
 const Footer = ({ theme }: { theme: string }) => {
   return (
-    <footer className=" w-full bg-footer-background mt-[-4px] relative bg-gradient-to-tl from-primary/40 dark:from-primary/40 via-primary/30 dark:via-primary/10 to-transparent/20">
+    <footer className="bg-footer-background from-primary/40 dark:from-primary/40 via-primary/30 dark:via-primary/10 relative mt-[-4px] w-full bg-gradient-to-tl to-transparent/20">
       <div className="relative w-full">
-        <div className="relative w-full  mx-auto px-10">
-          <div className="pt-[39px] md:pt-[78px] pb-[35px] md:pb-[70px]">
-            <div className="flex flex-col lg:flex-row justify-between items-start gap-8 lg:gap-0 mb-8 lg:mb-16">
-              <div className="flex flex-col gap-6 w-full sm:w-[30%]">
+        <div className="relative mx-auto w-full px-10">
+          <div className="pt-[39px] pb-[35px] md:pt-[78px] md:pb-[70px]">
+            <div className="mb-8 flex flex-col items-start justify-between gap-8 lg:mb-16 lg:flex-row lg:gap-0">
+              <div className="flex w-full flex-col gap-6 sm:w-[30%]">
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center gap-[6px]">
                     <Logo />
                   </div>
-                  <p className="text-sm md:text-lg font-normal leading-[20px] md:leading-[27px] text-left text-text-light ">
+                  <p className="text-text-light text-left text-sm leading-[20px] font-normal md:text-lg md:leading-[27px]">
                     Provide a professional patient experience by automatically
                     responding to booking appointments.
                   </p>
@@ -31,18 +24,18 @@ const Footer = ({ theme }: { theme: string }) => {
 
                 {/* Social Media Section */}
                 <div className="flex flex-col gap-4">
-                  <h3 className="text-lg md:text-xl font-semibold leading-[22px] md:leading-[25px] text-left text-text-light">
+                  <h3 className="text-text-light text-left text-lg leading-[22px] font-semibold md:text-xl md:leading-[25px]">
                     Follow Us
                   </h3>
                   <div className="flex items-center gap-[10px]">
-                    <ul className="flex justify-center gap-1 items-center">
-                      <li className="dark:bg-white/20 bg-[#3B82F6]/20 rounded-full p-2 cursor-pointer dark:hover:bg-white/40 hover:bg-[#3B82F6]/40 transition-colors">
+                    <ul className="flex items-center justify-center gap-1">
+                      <li className="cursor-pointer rounded-full bg-[#3B82F6]/20 p-2 transition-colors hover:bg-[#3B82F6]/40 dark:bg-white/20 dark:hover:bg-white/40">
                         <Facebook className="size-5 text-[#3B82F6] dark:text-white" />
                       </li>
-                      <li className="dark:bg-white/20 bg-[#3B82F6]/20 rounded-full p-2 cursor-pointer dark:hover:bg-white/40 hover:bg-[#3B82F6]/40 transition-colors">
+                      <li className="cursor-pointer rounded-full bg-[#3B82F6]/20 p-2 transition-colors hover:bg-[#3B82F6]/40 dark:bg-white/20 dark:hover:bg-white/40">
                         <Instagram className="size-5 text-[#3B82F6] dark:text-white" />
                       </li>
-                      <li className="dark:bg-white/20 bg-[#3B82F6]/20 rounded-full p-2 cursor-pointer dark:hover:bg-white/40 hover:bg-[#3B82F6]/40 transition-colors">
+                      <li className="cursor-pointer rounded-full bg-[#3B82F6]/20 p-2 transition-colors hover:bg-[#3B82F6]/40 dark:bg-white/20 dark:hover:bg-white/40">
                         <Twitter className="size-5 text-[#3B82F6] dark:text-white" />
                       </li>
                     </ul>
@@ -51,15 +44,15 @@ const Footer = ({ theme }: { theme: string }) => {
               </div>
 
               {/* Center Section - Quick Links */}
-              <div className="flex flex-col gap-[14px] w-full lg:w-[20%] lg:self-center">
-                <h3 className="text-lg md:text-xl font-semibold leading-[22px] md:leading-[25px] text-left text-text-light">
+              <div className="flex w-full flex-col gap-[14px] lg:w-[20%] lg:self-center">
+                <h3 className="text-text-light text-left text-lg leading-[22px] font-semibold md:text-xl md:leading-[25px]">
                   Quick Links
                 </h3>
                 <ul className="flex flex-col gap-[6px]">
                   <li>
                     <Link
                       href="#about"
-                      className="text-sm md:text-base font-medium leading-normal text-left text-text-light-muted hover:text-text-light transition-colors"
+                      className="text-text-light-muted hover:text-text-light text-left text-sm leading-normal font-medium transition-colors md:text-base"
                     >
                       About Us
                     </Link>
@@ -67,7 +60,7 @@ const Footer = ({ theme }: { theme: string }) => {
                   <li>
                     <Link
                       href="#features"
-                      className="text-sm md:text-base font-medium leading-normal text-left text-text-light-muted hover:text-text-light transition-colors"
+                      className="text-text-light-muted hover:text-text-light text-left text-sm leading-normal font-medium transition-colors md:text-base"
                     >
                       Features
                     </Link>
@@ -75,7 +68,7 @@ const Footer = ({ theme }: { theme: string }) => {
                   <li>
                     <Link
                       href="#why-us"
-                      className="text-sm md:text-base font-medium leading-normal text-left text-text-light-muted hover:text-text-light transition-colors"
+                      className="text-text-light-muted hover:text-text-light text-left text-sm leading-normal font-medium transition-colors md:text-base"
                     >
                       Why Us
                     </Link>
@@ -83,7 +76,7 @@ const Footer = ({ theme }: { theme: string }) => {
                   <li>
                     <Link
                       href="#contact"
-                      className="text-sm md:text-base font-medium leading-normal text-left text-text-light-muted hover:text-text-light transition-colors"
+                      className="text-text-light-muted hover:text-text-light text-left text-sm leading-normal font-medium transition-colors md:text-base"
                     >
                       Contact US
                     </Link>
@@ -91,7 +84,7 @@ const Footer = ({ theme }: { theme: string }) => {
                   <li>
                     <Link
                       href="#industries"
-                      className="text-sm md:text-base font-medium leading-normal text-left text-text-light-muted hover:text-text-light transition-colors"
+                      className="text-text-light-muted hover:text-text-light text-left text-sm leading-normal font-medium transition-colors md:text-base"
                     >
                       Industries We Serve
                     </Link>
@@ -99,7 +92,7 @@ const Footer = ({ theme }: { theme: string }) => {
                   <li>
                     <Link
                       href="#pricing"
-                      className="text-sm md:text-base font-medium leading-normal text-left text-text-light-muted hover:text-text-light transition-colors"
+                      className="text-text-light-muted hover:text-text-light text-left text-sm leading-normal font-medium transition-colors md:text-base"
                     >
                       Pricing
                     </Link>
@@ -107,31 +100,31 @@ const Footer = ({ theme }: { theme: string }) => {
                 </ul>
               </div>
 
-              <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4 w-full sm:w-[30%]">
+              <div className="flex w-full flex-col items-start gap-4 sm:w-[30%] lg:flex-row lg:items-center">
                 <div className="flex flex-col gap-3">
-                  <h3 className="font-bold text-xl">Contact</h3>
+                  <h3 className="text-xl font-bold">Contact</h3>
 
                   <div className="flex flex-col gap-3">
                     <div className="flex items-center gap-3">
-                      <div className="dark:bg-white/20 bg-[#3B82F6]/20 rounded-full p-2 cursor-pointer dark:hover:bg-white/40 hover:bg-[#3B82F6]/40 transition-colors">
+                      <div className="cursor-pointer rounded-full bg-[#3B82F6]/20 p-2 transition-colors hover:bg-[#3B82F6]/40 dark:bg-white/20 dark:hover:bg-white/40">
                         <Phone className="size-5 text-[#3B82F6] dark:text-white" />
                       </div>
-                      <span className="text-sm md:text-sm font-normal leading-tight text-left text-text-light-muted">
+                      <span className="text-text-light-muted text-left text-sm leading-tight font-normal md:text-sm">
                         +91 72 7602 0908
                       </span>
                     </div>
 
                     <div className="flex items-center gap-3">
-                      <div className="dark:bg-white/20 bg-[#3B82F6]/20 rounded-full p-2 cursor-pointer dark:hover:bg-white/40 hover:bg-[#3B82F6]/40 transition-colors">
+                      <div className="cursor-pointer rounded-full bg-[#3B82F6]/20 p-2 transition-colors hover:bg-[#3B82F6]/40 dark:bg-white/20 dark:hover:bg-white/40">
                         <Mail className="size-5 text-[#3B82F6] dark:text-white" />
                       </div>
-                      <span className="text-sm md:text-base font-normal leading-normal text-left text-text-light-muted">
+                      <span className="text-text-light-muted text-left text-sm leading-normal font-normal md:text-base">
                         info@lorem.com
                       </span>
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="dark:bg-white/20 bg-[#3B82F6]/20 rounded-full p-2 cursor-pointer dark:hover:bg-white/40 hover:bg-[#3B82F6]/40 transition-colors">
+                      <div className="cursor-pointer rounded-full bg-[#3B82F6]/20 p-2 transition-colors hover:bg-[#3B82F6]/40 dark:bg-white/20 dark:hover:bg-white/40">
                         <MapPin className="size-5 text-[#3B82F6] dark:text-white" />
                       </div>
                       <p className="w-[50%]">
@@ -145,18 +138,18 @@ const Footer = ({ theme }: { theme: string }) => {
             </div>
 
             {/* Bottom Section - Copyright */}
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 border-t border-text-light border-opacity-20">
-              <p className="text-xs md:text-xs font-medium leading-tight text-left text-text-light-muted">
+            <div className="border-text-light border-opacity-20 flex flex-col items-center justify-between gap-4 border-t pt-4 sm:flex-row">
+              <p className="text-text-light-muted text-left text-xs leading-tight font-medium md:text-xs">
                 © Copyright Mujib 2025. All Right Reserved.
               </p>
 
               <div className="flex items-center gap-8">
-                <span className="text-xs md:text-xs font-medium leading-tight text-left text-text-light-muted hover:text-text-light transition-colors cursor-pointer">
+                <span className="text-text-light-muted hover:text-text-light cursor-pointer text-left text-xs leading-tight font-medium transition-colors md:text-xs">
                   Terms of use
                 </span>
                 <a
                   href="#privacy"
-                  className="text-xs md:text-xs font-medium leading-tight text-left text-text-light-muted hover:text-text-light transition-colors"
+                  className="text-text-light-muted hover:text-text-light text-left text-xs leading-tight font-medium transition-colors md:text-xs"
                 >
                   Privacy policy
                 </a>
@@ -165,23 +158,23 @@ const Footer = ({ theme }: { theme: string }) => {
           </div>
         </div>
       </div>
-      <div className="absolute top-[10%] right-10 w-[200px] h-[200px]">
+      <div className="absolute top-[10%] right-10 h-[200px] w-[200px]">
         <Image
           src={
-            theme === "dark"
-              ? "/landingPage/flag-logo-footer-dark.png"
-              : "/landingPage/flag-logo-footer-light.png"
+            theme === 'dark'
+              ? '/landingPage/flag-logo-footer-dark.png'
+              : '/landingPage/flag-logo-footer-light.png'
           }
           alt=""
           width={100}
           height={100}
           sizes="100vw,100vh"
-          className="w-[200px] h-[200px] object-contain"
+          className="h-[200px] w-[200px] object-contain"
           loading="lazy"
         />
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

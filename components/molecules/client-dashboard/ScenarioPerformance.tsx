@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   Table,
   TableBody,
@@ -6,35 +6,35 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Progress } from "@/components/ui/progress";
-import CallsAndTicketsTablePagination from "./CallsAndTicketsTablePagination";
+} from '@/components/ui/table'
+import { Progress } from '@/components/ui/progress'
+import CallsAndTicketsTablePagination from './CallsAndTicketsTablePagination'
 export default function ScenarioPerformance({
   t,
 }: {
-  t: (key: string) => string;
+  t: (key: string) => string
 }) {
   return (
-    <Card className="border-none bg-transparent shadow-none gap-3 col-span-2">
+    <Card className="col-span-2 gap-3 border-none bg-transparent shadow-none">
       <CardHeader className="p-2">
-        <CardTitle className="font-semibold text-xl">
-          {t("scenarioPerformance")}
+        <CardTitle className="text-xl font-semibold">
+          {t('scenarioPerformance')}
         </CardTitle>
       </CardHeader>
-      <CardContent className="dark:bg-[#00143473] bg-[#FFFFFFBF] rounded-2xl p-4">
+      <CardContent className="rounded-2xl bg-[#FFFFFFBF] p-4 dark:bg-[#00143473]">
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>{t("scenarioName")}</TableHead>
-              <TableHead>{t("calls")}</TableHead>
-              <TableHead>{t("duration")}</TableHead>
-              <TableHead>{t("satisfaction")}</TableHead>
+              <TableHead>{t('scenarioName')}</TableHead>
+              <TableHead>{t('calls')}</TableHead>
+              <TableHead>{t('duration')}</TableHead>
+              <TableHead>{t('satisfaction')}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {Array.from({ length: 5 }).map((_, index) => (
               <TableRow key={index}>
-                <TableCell>{t("scenarioName")}</TableCell>
+                <TableCell>{t('scenarioName')}</TableCell>
                 <TableCell>31</TableCell>
                 <TableCell>3</TableCell>
                 <TableCell>
@@ -52,5 +52,5 @@ export default function ScenarioPerformance({
         <CallsAndTicketsTablePagination t={t} />
       </CardContent>
     </Card>
-  );
+  )
 }

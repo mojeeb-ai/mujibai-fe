@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { Button } from "../ui/button";
+import Image from 'next/image'
+import { Button } from '../ui/button'
 
 export default function IntegrationCard({
   title,
@@ -7,23 +7,23 @@ export default function IntegrationCard({
   image,
   add,
 }: {
-  title: string;
-  subtitle: string;
-  image: string;
-  add: string;
+  title: string
+  subtitle: string
+  image: string
+  add: string
 }) {
   return (
-    <div className="flex flex-col items-center justify-center text-center gap-2 p-4 rounded-lg bg-white dark:bg-[#FFFFFF0F]">
-      <div className="rounded-full p-3 bg-white dark:bg-[#00143473] shadow-sm">
+    <div className="flex flex-col items-center justify-center gap-2 rounded-lg bg-white p-4 text-center dark:bg-[#FFFFFF0F]">
+      <div className="rounded-full bg-white p-3 shadow-sm dark:bg-[#00143473]">
         <Image src={image} alt={title} width={40} height={40} loading="lazy" />
       </div>
-      <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 capitalize ">
+      <h3 className="text-xl font-semibold text-gray-800 capitalize dark:text-gray-200">
         {title}
       </h3>
-      <p className="text-gray-600 dark:text-gray-400 w-[80%] mx-auto">
+      <p className="mx-auto w-[80%] text-gray-600 dark:text-gray-400">
         {subtitle}
       </p>
-      <Button className="w-full rounded-full py-6 mt-5">{add}</Button>
+      <Button className="mt-5 w-full rounded-full py-6">{add}</Button>
     </div>
-  );
+  )
 }

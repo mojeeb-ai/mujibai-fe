@@ -1,8 +1,8 @@
-"use client";
+'use client'
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import PricingCards from "@/components/organisms/PricingCards";
-import { Plan } from "@/types/types";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import PricingCards from '@/components/organisms/PricingCards'
+import { Plan } from '@/types/types'
 
 /**
  * PricingSection Component
@@ -17,40 +17,40 @@ export default function PricingSection() {
     monthly: [
       {
         id: 1,
-        name: "Starter",
-        price: "$0",
-        period: "month",
+        name: 'Starter',
+        price: '$0',
+        period: 'month',
         features: [
-          { name: "Lorem", included: true },
-          { name: "Lorem Ipsum", included: false },
-          { name: "Lorem Ipsum", included: false },
-          { name: "Lorem Ipsum", included: false },
+          { name: 'Lorem', included: true },
+          { name: 'Lorem Ipsum', included: false },
+          { name: 'Lorem Ipsum', included: false },
+          { name: 'Lorem Ipsum', included: false },
         ],
         isPopular: false,
       },
       {
         id: 2,
-        name: "Pro",
-        price: "$44",
-        period: "month",
+        name: 'Pro',
+        price: '$44',
+        period: 'month',
         features: [
-          { name: "Lorem Ipsum", included: true },
-          { name: "Lorem Ipsum", included: true },
-          { name: "Lorem Ipsum", included: true },
-          { name: "Lorem Ipsum", included: false },
+          { name: 'Lorem Ipsum', included: true },
+          { name: 'Lorem Ipsum', included: true },
+          { name: 'Lorem Ipsum', included: true },
+          { name: 'Lorem Ipsum', included: false },
         ],
         isPopular: true,
       },
       {
         id: 3,
-        name: "Enterprise",
-        price: "$94",
-        period: "month",
+        name: 'Enterprise',
+        price: '$94',
+        period: 'month',
         features: [
-          { name: "Lorem Ipsum", included: true },
-          { name: "Lorem Ipsum", included: true },
-          { name: "Lorem Ipsum", included: true },
-          { name: "Lorem Ipsum", included: true },
+          { name: 'Lorem Ipsum', included: true },
+          { name: 'Lorem Ipsum', included: true },
+          { name: 'Lorem Ipsum', included: true },
+          { name: 'Lorem Ipsum', included: true },
         ],
         isPopular: false,
       },
@@ -58,92 +58,75 @@ export default function PricingSection() {
     yearly: [
       {
         id: 1,
-        name: "Starter",
-        price: "$0",
-        period: "year",
+        name: 'Starter',
+        price: '$0',
+        period: 'year',
         features: [
-          { name: "Lorem", included: true },
-          { name: "Lorem Ipsum", included: false },
-          { name: "Lorem Ipsum", included: false },
-          { name: "Lorem Ipsum", included: false },
+          { name: 'Lorem', included: true },
+          { name: 'Lorem Ipsum', included: false },
+          { name: 'Lorem Ipsum', included: false },
+          { name: 'Lorem Ipsum', included: false },
         ],
         isPopular: false,
       },
       {
         id: 2,
-        name: "Pro",
-        price: "$399",
-        period: "year",
+        name: 'Pro',
+        price: '$399',
+        period: 'year',
         features: [
-          { name: "Lorem Ipsum", included: true },
-          { name: "Lorem Ipsum", included: true },
-          { name: "Lorem Ipsum", included: true },
-          { name: "Lorem Ipsum", included: false },
+          { name: 'Lorem Ipsum', included: true },
+          { name: 'Lorem Ipsum', included: true },
+          { name: 'Lorem Ipsum', included: true },
+          { name: 'Lorem Ipsum', included: false },
         ],
         isPopular: true,
       },
       {
         id: 3,
-        name: "Enterprise",
-        price: "$899",
-        period: "year",
+        name: 'Enterprise',
+        price: '$899',
+        period: 'year',
         features: [
-          { name: "Lorem Ipsum", included: true },
-          { name: "Lorem Ipsum", included: true },
-          { name: "Lorem Ipsum", included: true },
-          { name: "Lorem Ipsum", included: true },
+          { name: 'Lorem Ipsum', included: true },
+          { name: 'Lorem Ipsum', included: true },
+          { name: 'Lorem Ipsum', included: true },
+          { name: 'Lorem Ipsum', included: true },
         ],
         isPopular: false,
       },
     ],
-  };
+  }
 
   return (
     <>
-      <section className=" bg-background-darker relative py-20">
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-            w-[65%] h-[65%] rounded-full 
-            bg-[#06B6D4]/40 blur-[160px] 
-            opacity-60 z-0"
-        ></div>
+      <section className="bg-background-darker relative py-20">
+        <div className="absolute top-1/2 left-1/2 z-0 h-[65%] w-[65%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#06B6D4]/40 opacity-60 blur-[160px]"></div>
 
         <div className="relative mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Tabs
               defaultValue="monthly"
-              className="w-full flex flex-col items-center"
+              className="flex w-full flex-col items-center"
             >
               <div className="mb-20 flex flex-col gap-5">
-                <h2 className="text-[22px] md:text-[44px] font-bold text-text-light">
+                <h2 className="text-text-light text-[22px] font-bold md:text-[44px]">
                   Pricing
                 </h2>
-                <p className="text-sm md:text-base text-text-light mt-2">
+                <p className="text-text-light mt-2 text-sm md:text-base">
                   Plans depending on your needs and use case
                 </p>
-                <TabsList className="flex gap-4 bg-white/20 rounded-full p-1">
+                <TabsList className="flex gap-4 rounded-full bg-white/20 p-1">
                   <TabsTrigger
                     value="monthly"
-                    className="
-                              w-[200px] rounded-full  
-                              transition-all duration-300
-                              bg-transparent hover:bg-cyan-500/20
-                              data-[state=active]:bg-cyan-500
-                              data-[state=inactive]:bg-transparent
-                              "
+                    className="w-[200px] rounded-full bg-transparent transition-all duration-300 hover:bg-cyan-500/20 data-[state=active]:bg-cyan-500 data-[state=inactive]:bg-transparent"
                   >
                     Monthly
                   </TabsTrigger>
 
                   <TabsTrigger
                     value="yearly"
-                    className="
-                            w-[200px] rounded-full 
-                          transition-all duration-300
-                            bg-transparent hover:bg-cyan-500/20
-                            data-[state=active]:bg-cyan-500
-                            data-[state=inactive]:bg-transparent
-                          "
+                    className="w-[200px] rounded-full bg-transparent transition-all duration-300 hover:bg-cyan-500/20 data-[state=active]:bg-cyan-500 data-[state=inactive]:bg-transparent"
                   >
                     Yearly
                   </TabsTrigger>
@@ -162,5 +145,5 @@ export default function PricingSection() {
         </div>
       </section>
     </>
-  );
+  )
 }

@@ -1,8 +1,8 @@
-import Header from "../../organisms/Header";
-import { Button } from "../../ui/button";
-import SessionControls from "../../organisms/SessionControls";
-import Link from "next/link";
-import { User } from "@/types/types";
+import Header from '../../organisms/Header'
+import { Button } from '../../ui/button'
+import SessionControls from '../../organisms/SessionControls'
+import Link from 'next/link'
+import { User } from '@/types/types'
 export default function HeroSection({
   startSession,
   stopSession,
@@ -11,49 +11,30 @@ export default function HeroSection({
   isSessionActive,
   user,
 }: {
-  startSession: () => void;
-  stopSession: () => void;
+  startSession: () => void
+  stopSession: () => void
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  sendClientEvent: (message: any) => void;
-  events: unknown[];
-  isSessionActive: boolean;
-  user: User | null;
+  sendClientEvent: (message: any) => void
+  events: unknown[]
+  isSessionActive: boolean
+  user: User | null
 }) {
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
-      <div className="absolute bottom-0 h-[60%] w-full bg-gradient-to-t from-primary/40 dark:from-primary/20 from-[40%] to-transparent -z-10"></div>
+      <div className="from-primary/40 dark:from-primary/20 absolute bottom-0 -z-10 h-[60%] w-full bg-gradient-to-t from-[40%] to-transparent"></div>
       <div className="relative z-50">
         <Header user={user} />
       </div>
-      <div className="flex justify-center items-center h-full px-6">
-        <div
-          className="
-            mx-auto flex flex-col items-center text-center
-            gap-8
-            w-full
-            max-w-[912px]    /* matches Figma width */
-            mt-32 sm:mt-24 md:mt-20
-          "
-        >
+      <div className="flex h-full items-center justify-center px-6">
+        <div className="/* matches Figma width */ mx-auto mt-32 flex w-full max-w-[912px] flex-col items-center gap-8 text-center sm:mt-24 md:mt-20">
           {/* ====== Headline ====== */}
-          <h1
-            className="
-              font-bold leading-tight text-gray-900 dark:text-white
-              text-3xl sm:text-4xl md:text-5xl lg:text-6xl
-            "
-          >
-            Lorem Ipsum Is Simply Dummy Text Of The{" "}
+          <h1 className="text-3xl leading-tight font-bold text-gray-900 sm:text-4xl md:text-5xl lg:text-6xl dark:text-white">
+            Lorem Ipsum Is Simply Dummy Text Of The{' '}
             <span className="text-primary">Printing.</span>
           </h1>
 
           {/* ====== Paragraph ====== */}
-          <p
-            className="
-              text-gray-600 dark:text-gray-300
-              text-base sm:text-lg md:text-xl
-              max-w-[700px]
-            "
-          >
+          <p className="max-w-[700px] text-base text-gray-600 sm:text-lg md:text-xl dark:text-gray-300">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry s standard dummy text
             ever since the 1500s. Lorem Ipsum is simply dummy text of the
@@ -61,21 +42,9 @@ export default function HeroSection({
           </p>
 
           {/* ====== Buttons ====== */}
-          <div
-            className="
-              flex flex-col sm:flex-row justify-center gap-4 mt-4
-              h-auto sm:h-[70px]
-            "
-          >
-            <Button
-              className="
-                py-6 rounded-full font-medium
-                bg-primary text-white hover:bg-primary/90
-                text-base sm:text-lg transition
-                shadow-md
-              "
-            >
-              <Link href={"/login"} className="px-10 sm:px-14 py-6">
+          <div className="mt-4 flex h-auto flex-col justify-center gap-4 sm:h-[70px] sm:flex-row">
+            <Button className="bg-primary hover:bg-primary/90 rounded-full py-6 text-base font-medium text-white shadow-md transition sm:text-lg">
+              <Link href={'/login'} className="px-10 py-6 sm:px-14">
                 Get Started
               </Link>
             </Button>
@@ -90,5 +59,5 @@ export default function HeroSection({
         </div>
       </div>
     </section>
-  );
+  )
 }

@@ -1,126 +1,125 @@
-"use client";
-import NotificationController from "@/components/atoms/NotificationController";
+'use client'
+import NotificationController from '@/components/atoms/NotificationController'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { useState } from "react";
-import { useTranslations } from "next-intl";
+} from '@/components/ui/card'
+import { Label } from '@/components/ui/label'
+import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 export default function NotificationPreference() {
-  const t = useTranslations("settings.notificationPreference");
-  const [selected, setSelected] = useState("Daily");
+  const t = useTranslations('settings.notificationPreference')
+  const [selected, setSelected] = useState('Daily')
   const options = [
-    t("newInvoice.daily"),
-    t("newInvoice.weekly"),
-    t("newInvoice.monthly"),
-    t("newInvoice.never"),
-  ];
+    t('newInvoice.daily'),
+    t('newInvoice.weekly'),
+    t('newInvoice.monthly'),
+    t('newInvoice.never'),
+  ]
 
   return (
     <div>
-      <Card className="bg-transparent shadow-none border-none">
+      <Card className="border-none bg-transparent shadow-none">
         <CardHeader>
           <CardTitle className="text-lg font-semibold">
-            {t("emailsNotifications.title")}
+            {t('emailsNotifications.title')}
           </CardTitle>
-          <CardDescription>{t("emailsNotifications.subTitle")}</CardDescription>
+          <CardDescription>{t('emailsNotifications.subTitle')}</CardDescription>
         </CardHeader>
-        <CardContent className="bg-white dark:bg-[#00143473] py-6 rounded-xl">
+        <CardContent className="rounded-xl bg-white py-6 dark:bg-[#00143473]">
           <NotificationController
-            title={t("emailsNotifications.dailyPerformanceReportsTitle")}
+            title={t('emailsNotifications.dailyPerformanceReportsTitle')}
             description={t(
-              "emailsNotifications.dailyPerformanceReportsSubTitle"
+              'emailsNotifications.dailyPerformanceReportsSubTitle',
             )}
           />
           <NotificationController
-            title={t("emailsNotifications.productUpdatesTitle")}
-            description={t("emailsNotifications.productUpdatesSubTitle")}
+            title={t('emailsNotifications.productUpdatesTitle')}
+            description={t('emailsNotifications.productUpdatesSubTitle')}
           />
           <NotificationController
-            title={t("emailsNotifications.marketingTitle")}
-            description={t("emailsNotifications.marketingSubTitle")}
+            title={t('emailsNotifications.marketingTitle')}
+            description={t('emailsNotifications.marketingSubTitle')}
           />
           <NotificationController
-            title={t("emailsNotifications.securityTitle")}
-            description={t("emailsNotifications.securitySubTitle")}
+            title={t('emailsNotifications.securityTitle')}
+            description={t('emailsNotifications.securitySubTitle')}
           />
         </CardContent>
       </Card>
 
-      <Card className="bg-transparent sha dow-none border-none">
+      <Card className="sha dow-none border-none bg-transparent">
         <CardHeader>
           <CardTitle className="text-lg font-semibold">
-            {t("inAppNotifications.title")}
+            {t('inAppNotifications.title')}
           </CardTitle>
-          <CardDescription>{t("inAppNotifications.subTitle")}</CardDescription>
+          <CardDescription>{t('inAppNotifications.subTitle')}</CardDescription>
         </CardHeader>
-        <CardContent className="bg-white dark:bg-[#00143473] py-6 rounded-xl">
+        <CardContent className="rounded-xl bg-white py-6 dark:bg-[#00143473]">
           <NotificationController
-            title={t("inAppNotifications.newMessageTitle")}
-            description={t("inAppNotifications.newMessageSubTitle")}
+            title={t('inAppNotifications.newMessageTitle')}
+            description={t('inAppNotifications.newMessageSubTitle')}
           />
           <NotificationController
-            title={t("inAppNotifications.taskCompletionTitle")}
-            description={t("inAppNotifications.taskCompletionSubTitle")}
+            title={t('inAppNotifications.taskCompletionTitle')}
+            description={t('inAppNotifications.taskCompletionSubTitle')}
           />
           <NotificationController
-            title={t("inAppNotifications.featureUsageTipsTitle")}
-            description={t("inAppNotifications.featureUsageTipsSubTitle")}
+            title={t('inAppNotifications.featureUsageTipsTitle')}
+            description={t('inAppNotifications.featureUsageTipsSubTitle')}
           />
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 items-start justify-start">
-        <Card className="bg-transparent shadow-none border-none">
+      <div className="grid grid-cols-1 items-start justify-start gap-4 md:grid-cols-1 lg:grid-cols-2">
+        <Card className="border-none bg-transparent shadow-none">
           <CardHeader>
             <CardTitle className="text-lg font-semibold">
-              {t("usageBilling.title")}
+              {t('usageBilling.title')}
             </CardTitle>
-            <CardDescription>{t("usageBilling.subTitle")}</CardDescription>
+            <CardDescription>{t('usageBilling.subTitle')}</CardDescription>
           </CardHeader>
-          <CardContent className="bg-white dark:bg-[#00143473] py-6 rounded-xl">
+          <CardContent className="rounded-xl bg-white py-6 dark:bg-[#00143473]">
             <NotificationController
-              title={t("usageBilling.usageExceedsTitle")}
-              description={t("usageBilling.usageExceedsSubTitle")}
+              title={t('usageBilling.usageExceedsTitle')}
+              description={t('usageBilling.usageExceedsSubTitle')}
             />
             <NotificationController
-              title={t("usageBilling.taskCompletionAlertsTitle")}
-              description={t("usageBilling.taskCompletionAlertsSubTitle")}
+              title={t('usageBilling.taskCompletionAlertsTitle')}
+              description={t('usageBilling.taskCompletionAlertsSubTitle')}
             />
             <NotificationController
-              title={t("usageBilling.newInvoiceTitle")}
-              description={t("usageBilling.newInvoiceSubTitle")}
+              title={t('usageBilling.newInvoiceTitle')}
+              description={t('usageBilling.newInvoiceSubTitle')}
             />
           </CardContent>
         </Card>
-        <Card className="bg-transparent shadow-none border-none">
+        <Card className="border-none bg-transparent shadow-none">
           <CardHeader>
             <CardTitle className="text-lg font-semibold">
-              {t("newInvoice.title")}
+              {t('newInvoice.title')}
             </CardTitle>
-            <CardDescription>{t("newInvoice.subTitle")}</CardDescription>
+            <CardDescription>{t('newInvoice.subTitle')}</CardDescription>
           </CardHeader>
-          <CardContent className="bg-white dark:bg-[#00143473] py-6 rounded-xl">
+          <CardContent className="rounded-xl bg-white py-6 dark:bg-[#00143473]">
             <div className="flex flex-col gap-4">
               <Label className="text-base font-medium text-white">
-                {t("newInvoice.chooseYourPreference")}
+                {t('newInvoice.chooseYourPreference')}
               </Label>
 
               <div className="grid grid-cols-2 gap-4">
                 {options.map((option) => (
                   <label
                     key={option}
-                    className={`cursor-pointer h-20 rounded-2xl px-5 flex items-center gap-4 transition-all duration-200
-              ${
-                selected === option
-                  ? "bg-[#3B82F633] border border-[#06B6D4]"
-                  : "bg-[#3B82F614] border border-transparent hover:border-[#3B82F640]"
-              }`}
+                    className={`flex h-20 cursor-pointer items-center gap-4 rounded-2xl px-5 transition-all duration-200 ${
+                      selected === option
+                        ? 'border border-[#06B6D4] bg-[#3B82F633]'
+                        : 'border border-transparent bg-[#3B82F614] hover:border-[#3B82F640]'
+                    }`}
                   >
                     <input
                       type="radio"
@@ -128,12 +127,7 @@ export default function NotificationPreference() {
                       value={option}
                       checked={selected === option}
                       onChange={() => setSelected(option)}
-                      className="appearance-none w-5 h-5 border-2 border-[#06B6D4] rounded-full
-                          checked:bg-[#06B6D4] checked:border-[#06B6D4]
-                          transition-all duration-200 relative
-                          before:content-[''] before:absolute before:inset-1
-                          before:rounded-full before:bg-[#06B6D4]
-                        checked:before:bg-white"
+                      className="relative h-5 w-5 appearance-none rounded-full border-2 border-[#06B6D4] transition-all duration-200 before:absolute before:inset-1 before:rounded-full before:bg-[#06B6D4] before:content-[''] checked:border-[#06B6D4] checked:bg-[#06B6D4] checked:before:bg-white"
                     />
                     <span className="text-[16px] font-normal">{option}</span>
                   </label>
@@ -144,5 +138,5 @@ export default function NotificationPreference() {
         </Card>
       </div>
     </div>
-  );
+  )
 }

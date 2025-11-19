@@ -1,11 +1,11 @@
-import logoImage from "@/public/logo.svg";
-import Image from "next/image";
-import Link from "next/link";
+import logoImage from '@/public/logo.svg'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Logo() {
   return (
-    <Link href="/" className="block w-[200px] h-[50px]">
-      <div className="relative w-full h-full">
+    <Link href="/" className="block h-[50px] w-[200px]">
+      <div className="relative h-full w-full">
         <Image
           src={logoImage}
           alt="Logo"
@@ -15,5 +15,5 @@ export default function Logo() {
         />
       </div>
     </Link>
-  );
+  )
 }

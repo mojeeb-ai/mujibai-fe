@@ -1,43 +1,43 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export default function ConversationScriptDescriptionTab({
   t,
   locale,
 }: {
-  t: (key: string) => string;
-  locale: string;
+  t: (key: string) => string
+  locale: string
 }) {
   return (
     <div>
-      <Card className=" my-10 p-0 dark:bg-[#00143473] border-none">
-        <CardHeader className="dark:bg-[#00143473] py-2">
+      <Card className="my-10 border-none p-0 dark:bg-[#00143473]">
+        <CardHeader className="py-2 dark:bg-[#00143473]">
           <CardTitle
             className={`${
-              locale === "ar"
-                ? "text-xl font-semibold text-right"
-                : "text-xl font-semibold text-left"
+              locale === 'ar'
+                ? 'text-right text-xl font-semibold'
+                : 'text-left text-xl font-semibold'
             }`}
           >
-            {t("descriptionScript")}
+            {t('descriptionScript')}
           </CardTitle>
         </CardHeader>
         <CardContent className="p-8">
-          <div className="flex justify-center items-center flex-col gap-2">
+          <div className="flex flex-col items-center justify-center gap-2">
             <h3 className="text-xl font-semibold">
-              {t("noDescriptionAvailable")}
+              {t('noDescriptionAvailable')}
             </h3>
             <p className="text-base font-normal">
-              {t("startByAddingYourFirstDescription")}
+              {t('startByAddingYourFirstDescription')}
             </p>
           </div>
         </CardContent>
       </Card>
-      <div className="w-full py-8 flex justify-center items-center">
-        <Button className="rounded-full w-40 py-2 text-sm text-foreground">
-          {t("editDescription")}
+      <div className="flex w-full items-center justify-center py-8">
+        <Button className="text-foreground w-40 rounded-full py-2 text-sm">
+          {t('editDescription')}
         </Button>
       </div>
     </div>
-  );
+  )
 }

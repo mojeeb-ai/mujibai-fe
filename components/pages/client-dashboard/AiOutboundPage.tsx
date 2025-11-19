@@ -1,7 +1,7 @@
-import CallsAndTicketsTablePagination from "@/components/molecules/client-dashboard/CallsAndTicketsTablePagination";
-import DashboardHeader from "@/components/organisms/client-dashboard/DashboardHeader";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
+import CallsAndTicketsTablePagination from '@/components/molecules/client-dashboard/CallsAndTicketsTablePagination'
+import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader'
+import { Button } from '@/components/ui/button'
+import { Progress } from '@/components/ui/progress'
 import {
   Table,
   TableBody,
@@ -9,58 +9,58 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Download, Plus } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+} from '@/components/ui/table'
+import { Download, Plus } from 'lucide-react'
+import { useLocale, useTranslations } from 'next-intl'
 
 export default function AiOutboundPage() {
-  const t = useTranslations("aiOutbound");
-  const locale = useLocale();
+  const t = useTranslations('aiOutbound')
+  const locale = useLocale()
   return (
-    <div className="flex flex-col gap-4 w-full h-full">
-      <DashboardHeader title={t("title")} subtitle={t("subTitle")} />
-      <div className="z-50 p-4 w-full h-full bg-[#FFFFFFBF] dark:bg-[#001434A6] rounded-2xl shadow-sm">
-        <div className="w-full flex justify-end items-center gap-3 my-6">
+    <div className="flex h-full w-full flex-col gap-4">
+      <DashboardHeader title={t('title')} subtitle={t('subTitle')} />
+      <div className="z-50 h-full w-full rounded-2xl bg-[#FFFFFFBF] p-4 shadow-sm dark:bg-[#001434A6]">
+        <div className="my-6 flex w-full items-center justify-end gap-3">
           <Button className="rounded-full py-5">
             <Plus className="size-4" />
-            {t("addCallTask")}
+            {t('addCallTask')}
           </Button>
-          <Button className="rounded-full py-5 bg-transparent border-2 border-primary text-primary hover:bg-transparent">
-            <Download className="size-4" /> {t("ImportCSV")}
+          <Button className="border-primary text-primary rounded-full border-2 bg-transparent py-5 hover:bg-transparent">
+            <Download className="size-4" /> {t('ImportCSV')}
           </Button>
         </div>
-        <Table className="dark:bg-[#00143473] bg-[#FFFFFF73]">
+        <Table className="bg-[#FFFFFF73] dark:bg-[#00143473]">
           <TableHeader>
             <TableRow>
               <TableHead
-                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
               >
                 #
               </TableHead>
               <TableHead
-                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
               >
-                {t("phone")}
+                {t('phone')}
               </TableHead>
               <TableHead
-                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
               >
-                {t("duration")}
+                {t('duration')}
               </TableHead>
               <TableHead
-                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
               >
-                {t("scenario")}
+                {t('scenario')}
               </TableHead>
               <TableHead
-                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
               >
-                {t("duration")}
+                {t('duration')}
               </TableHead>
               <TableHead
-                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
               >
-                {t("satisfaction")}
+                {t('satisfaction')}
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -87,5 +87,5 @@ export default function AiOutboundPage() {
         <CallsAndTicketsTablePagination t={t} />
       </div>
     </div>
-  );
+  )
 }

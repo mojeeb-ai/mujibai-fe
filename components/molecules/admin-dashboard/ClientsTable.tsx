@@ -1,9 +1,9 @@
-"use client";
+'use client'
 
-import * as React from "react";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Badge } from "@/components/ui/badge";
+import * as React from 'react'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Badge } from '@/components/ui/badge'
 import {
   Table,
   TableBody,
@@ -11,9 +11,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { useTranslations } from "next-intl";
-import { useLocale } from "next-intl";
+} from '@/components/ui/table'
+import { useTranslations } from 'next-intl'
+import { useLocale } from 'next-intl'
 
 /**
  * ClientsTable Component
@@ -23,19 +23,19 @@ import { useLocale } from "next-intl";
  * Uses `next-intl` for multilingual support (Arabic / English).
  */
 export default function ClientsTable() {
-  const t = useTranslations("adminClients.clientsTable");
-  const locale = useLocale();
+  const t = useTranslations('adminClients.clientsTable')
+  const locale = useLocale()
 
   type Client = {
-    id: number;
-    name: string;
-    company: string;
-    phone: string;
-    email: string;
-    status: "Active" | "Inactive";
-    users: number;
-    startDate: string;
-  };
+    id: number
+    name: string
+    company: string
+    phone: string
+    email: string
+    status: 'Active' | 'Inactive'
+    users: number
+    startDate: string
+  }
 
   // 🧑‍💼 Mock client data for demonstration
   const clients: Client[] = Array.from({ length: 10 }).map((_, i) => ({
@@ -44,86 +44,86 @@ export default function ClientsTable() {
     company: `Company ${String.fromCharCode(65 + i)}`,
     phone: `+12345678${i}`,
     email: `john${i}@example.com`,
-    status: i % 2 === 0 ? "Active" : "Inactive",
+    status: i % 2 === 0 ? 'Active' : 'Inactive',
     users: i + 2,
-    startDate: `2022-01-${String(i + 1).padStart(2, "0")}`,
-  }));
+    startDate: `2022-01-${String(i + 1).padStart(2, '0')}`,
+  }))
 
-  const [selected, setSelected] = React.useState<number[]>([]);
-  const allChecked = selected.length === clients.length;
+  const [selected, setSelected] = React.useState<number[]>([])
+  const allChecked = selected.length === clients.length
 
   /** Toggle all checkboxes at once */
   const toggleAll = () => {
-    setSelected(allChecked ? [] : clients.map((c) => c.id));
-  };
+    setSelected(allChecked ? [] : clients.map((c) => c.id))
+  }
 
   /** Toggle individual client selection */
   const toggleOne = (id: number) => {
     setSelected((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-    );
-  };
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
+    )
+  }
 
   /** Render colored badge based on client status */
-  const renderStatusBadge = (status: Client["status"]) => {
+  const renderStatusBadge = (status: Client['status']) => {
     const styles =
-      status === "Active"
-        ? "bg-green-500/20 text-green-600 dark:text-green-400"
-        : "bg-red-500/20 text-red-600 dark:text-red-400";
+      status === 'Active'
+        ? 'bg-green-500/20 text-green-600 dark:text-green-400'
+        : 'bg-red-500/20 text-red-600 dark:text-red-400'
 
     return (
       <Badge variant="secondary" className={styles}>
         {t(status.toLowerCase())}
       </Badge>
-    );
-  };
+    )
+  }
 
   return (
-    <Table className="my-10 dark:bg-[#001434A6] bg-[#FFFFFFBF] rounded-2xl">
+    <Table className="my-10 rounded-2xl bg-[#FFFFFFBF] dark:bg-[#001434A6]">
       <TableHeader>
         <TableRow>
           <TableHead>
             <Checkbox checked={allChecked} onCheckedChange={toggleAll} />
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("name")}
+            {t('name')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("company")}
+            {t('company')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("phone")}
+            {t('phone')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("email")}
+            {t('email')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("status")}
+            {t('status')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("users")}
+            {t('users')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("startDate")}
+            {t('startDate')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("actions")}
+            {t('actions')}
           </TableHead>
         </TableRow>
       </TableHeader>
@@ -132,7 +132,7 @@ export default function ClientsTable() {
         {clients.map((client) => (
           <TableRow
             key={client.id}
-            className="hover:bg-white/10 transition-colors"
+            className="transition-colors hover:bg-white/10"
           >
             <TableCell>
               <Checkbox
@@ -149,12 +149,12 @@ export default function ClientsTable() {
             <TableCell>{client.startDate}</TableCell>
             <TableCell>
               <Button variant="outline" size="sm">
-                {t("view")}
+                {t('view')}
               </Button>
             </TableCell>
           </TableRow>
         ))}
       </TableBody>
     </Table>
-  );
+  )
 }

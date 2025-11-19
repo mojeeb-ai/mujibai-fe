@@ -1,27 +1,22 @@
-import { featuresData } from "@/data/featuresData";
-import FeatureCard from "../../atoms/FeatureCard";
+import { featuresData } from '@/data/featuresData'
+import FeatureCard from '../../atoms/FeatureCard'
 
 export default function FeaturesSection() {
   return (
     <section className="relative py-10">
-      <div className="flex justify-center items-center flex-col gap-3 my-10 text-center">
-        <h1 className="font-bold leading-tight text-gray-900 dark:text-white text-4xl">
+      <div className="my-10 flex flex-col items-center justify-center gap-3 text-center">
+        <h1 className="text-4xl leading-tight font-bold text-gray-900 dark:text-white">
           Features
         </h1>
-        <p className="text-gray-600 dark:text-gray-300 text-base max-w-[700px]">
+        <p className="max-w-[700px] text-base text-gray-600 dark:text-gray-300">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry.
         </p>
       </div>
 
       <div className="relative">
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-            w-[65%] h-[65%] rounded-full 
-            bg-[#06B6D4]/40 blur-[160px] 
-              opacity-60 z-0"
-        ></div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-auto max-w-[80%] z-50">
+        <div className="absolute top-1/2 left-1/2 z-0 h-[65%] w-[65%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#06B6D4]/40 opacity-60 blur-[160px]"></div>
+        <div className="z-50 mx-auto grid max-w-[80%] grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {featuresData.map((feature) => (
             <FeatureCard
               key={feature.id}
@@ -34,5 +29,5 @@ export default function FeaturesSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }

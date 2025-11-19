@@ -1,7 +1,7 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Badge } from "@/components/ui/badge";
+'use client'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Badge } from '@/components/ui/badge'
 import {
   Table,
   TableBody,
@@ -9,21 +9,21 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { useState } from "react";
-import { useLocale, useTranslations } from "next-intl";
+} from '@/components/ui/table'
+import { useState } from 'react'
+import { useLocale, useTranslations } from 'next-intl'
 
 type Client = {
-  role: string;
-  id: number;
-  name: string;
-  company: string;
-  phone: string;
-  email: string;
-  status: "Active" | "Inactive";
-  users: number;
-  startDate: string;
-};
+  role: string
+  id: number
+  name: string
+  company: string
+  phone: string
+  email: string
+  status: 'Active' | 'Inactive'
+  users: number
+  startDate: string
+}
 
 const clients: Client[] = Array.from({ length: 10 }).map((_, i) => ({
   id: i + 1,
@@ -32,84 +32,84 @@ const clients: Client[] = Array.from({ length: 10 }).map((_, i) => ({
   phone: `+12345678${i}`,
   email: `john${i}@example.com`,
   role: `Role ${String.fromCharCode(65 + i)}`,
-  status: i % 2 === 0 ? "Active" : "Inactive",
+  status: i % 2 === 0 ? 'Active' : 'Inactive',
   users: i,
-  startDate: `2022-01-${String(i + 1).padStart(2, "0")}`,
-}));
+  startDate: `2022-01-${String(i + 1).padStart(2, '0')}`,
+}))
 
 export default function UserRolesTable() {
-  const t = useTranslations("adminUserRoles");
-  const locale = useLocale();
-  const [selected, setSelected] = useState<number[]>([]);
+  const t = useTranslations('adminUserRoles')
+  const locale = useLocale()
+  const [selected, setSelected] = useState<number[]>([])
 
-  const allChecked = selected.length === clients.length;
+  const allChecked = selected.length === clients.length
 
   const toggleAll = () => {
-    setSelected(allChecked ? [] : clients.map((c) => c.id));
-  };
+    setSelected(allChecked ? [] : clients.map((c) => c.id))
+  }
 
   const toggleOne = (id: number) => {
     setSelected((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-    );
-  };
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
+    )
+  }
 
-  const renderStatusBadge = (status: Client["status"]) => {
+  const renderStatusBadge = (status: Client['status']) => {
     const styles =
-      status === "Active"
-        ? "bg-green-500/20 text-green-600 dark:text-green-400"
-        : "bg-red-500/20 text-red-600 dark:text-red-400";
+      status === 'Active'
+        ? 'bg-green-500/20 text-green-600 dark:text-green-400'
+        : 'bg-red-500/20 text-red-600 dark:text-red-400'
 
     return (
       <Badge variant="secondary" className={styles}>
-        {status === "Active"
-          ? t("userRolesTable.active")
-          : t("userRolesTable.inactive")}
+        {status === 'Active'
+          ? t('userRolesTable.active')
+          : t('userRolesTable.inactive')}
       </Badge>
-    );
-  };
+    )
+  }
 
   return (
-    <Table className="my-10 dark:bg-[#001434A6] bg-[#FFFFFFBF] rounded-2xl">
+    <Table className="my-10 rounded-2xl bg-[#FFFFFFBF] dark:bg-[#001434A6]">
       <TableHeader>
         <TableRow>
           <TableHead>
             <Checkbox checked={allChecked} onCheckedChange={toggleAll} />
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("userRolesTable.name")}
+            {t('userRolesTable.name')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("userRolesTable.email")}
+            {t('userRolesTable.email')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("userRolesTable.phone")}
+            {t('userRolesTable.phone')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("userRolesTable.role")}
+            {t('userRolesTable.role')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("userRolesTable.status")}
+            {t('userRolesTable.status')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("userRolesTable.lastActive")}
+            {t('userRolesTable.lastActive')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("userRolesTable.actions")}
+            {t('userRolesTable.actions')}
           </TableHead>
         </TableRow>
       </TableHeader>
@@ -118,7 +118,7 @@ export default function UserRolesTable() {
         {clients.map((client) => (
           <TableRow
             key={client.id}
-            className="hover:bg-white/10 transition-colors"
+            className="transition-colors hover:bg-white/10"
           >
             <TableCell>
               <Checkbox
@@ -134,12 +134,12 @@ export default function UserRolesTable() {
             <TableCell>{client.startDate}</TableCell>
             <TableCell>
               <Button variant="outline" size="sm">
-                {t("userRolesTable.view")}
+                {t('userRolesTable.view')}
               </Button>
             </TableCell>
           </TableRow>
         ))}
       </TableBody>
     </Table>
-  );
+  )
 }

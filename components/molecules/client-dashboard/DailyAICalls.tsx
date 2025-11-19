@@ -1,43 +1,43 @@
-"use client";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+'use client'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
+} from '@/components/ui/chart'
+import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
 
-export const description = "A stacked area chart";
+export const description = 'A stacked area chart'
 
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-];
+  { month: 'January', desktop: 186, mobile: 80 },
+  { month: 'February', desktop: 305, mobile: 200 },
+  { month: 'March', desktop: 237, mobile: 120 },
+  { month: 'April', desktop: 73, mobile: 190 },
+  { month: 'May', desktop: 209, mobile: 130 },
+  { month: 'June', desktop: 214, mobile: 140 },
+]
 
 const chartConfig = {
   desktop: {
-    label: "Desktop",
-    color: "var(--chart-1)",
+    label: 'Desktop',
+    color: 'var(--chart-1)',
   },
   mobile: {
-    label: "Mobile",
-    color: "var(--chart-2)",
+    label: 'Mobile',
+    color: 'var(--chart-2)',
   },
-} satisfies ChartConfig;
+} satisfies ChartConfig
 export default function DailyAICalls({ t }: { t: (key: string) => string }) {
   return (
-    <Card className="border-none bg-transparent shadow-none gap-3 col-span-2">
+    <Card className="col-span-2 gap-3 border-none bg-transparent shadow-none">
       <CardHeader className="p-2">
-        <CardTitle className="font-semibold text-xl">
-          {t("dailyAICalls")}
+        <CardTitle className="text-xl font-semibold">
+          {t('dailyAICalls')}
         </CardTitle>
       </CardHeader>
-      <CardContent className="dark:bg-[#00143473] bg-[#FFFFFFBF] rounded-2xl p-4">
+      <CardContent className="rounded-2xl bg-[#FFFFFFBF] p-4 dark:bg-[#00143473]">
         <ChartContainer config={chartConfig}>
           <AreaChart
             accessibilityLayer
@@ -102,5 +102,5 @@ export default function DailyAICalls({ t }: { t: (key: string) => string }) {
         </ChartContainer>
       </CardContent>
     </Card>
-  );
+  )
 }

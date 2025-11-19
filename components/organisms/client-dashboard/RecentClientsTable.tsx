@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   Table,
   TableBody,
@@ -8,9 +8,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import RecentClientsTablePagination from "@/components/molecules/client-dashboard/RecentClientsTablePagination";
-import { useLocale, useTranslations } from "next-intl";
+} from '@/components/ui/table'
+import RecentClientsTablePagination from '@/components/molecules/client-dashboard/RecentClientsTablePagination'
+import { useLocale, useTranslations } from 'next-intl'
 
 /**
  * RecentClientsTable component
@@ -19,93 +19,93 @@ import { useLocale, useTranslations } from "next-intl";
 export default function RecentClientsTable({ title }: { title: string }) {
   const clients = [
     {
-      name: "Cristiano Ronaldo",
-      id: "C001",
-      duration: "20",
-      date: "26 Jan 2025",
+      name: 'Cristiano Ronaldo',
+      id: 'C001',
+      duration: '20',
+      date: '26 Jan 2025',
     },
     {
-      name: "Cristiano Ronaldo",
-      id: "C002",
-      duration: "20",
-      date: "26 Jan 2025",
+      name: 'Cristiano Ronaldo',
+      id: 'C002',
+      duration: '20',
+      date: '26 Jan 2025',
     },
     {
-      name: "Cristiano Ronaldo",
-      id: "C003",
-      duration: "20",
-      date: "26 Jan 2025",
+      name: 'Cristiano Ronaldo',
+      id: 'C003',
+      duration: '20',
+      date: '26 Jan 2025',
     },
     {
-      name: "Cristiano Ronaldo",
-      id: "C004",
-      duration: "20",
-      date: "26 Jan 2025",
+      name: 'Cristiano Ronaldo',
+      id: 'C004',
+      duration: '20',
+      date: '26 Jan 2025',
     },
     {
-      name: "Cristiano Ronaldo",
-      id: "C005",
-      duration: "20",
-      date: "26 Jan 2025",
+      name: 'Cristiano Ronaldo',
+      id: 'C005',
+      duration: '20',
+      date: '26 Jan 2025',
     },
     {
-      name: "Cristiano Ronaldo",
-      id: "C006",
-      duration: "20",
-      date: "26 Jan 2025",
+      name: 'Cristiano Ronaldo',
+      id: 'C006',
+      duration: '20',
+      date: '26 Jan 2025',
     },
     {
-      name: "Cristiano Ronaldo",
-      id: "C007",
-      duration: "20",
-      date: "26 Jan 2025",
+      name: 'Cristiano Ronaldo',
+      id: 'C007',
+      duration: '20',
+      date: '26 Jan 2025',
     },
     {
-      name: "Cristiano Ronaldo",
-      id: "C008",
-      duration: "20",
-      date: "26 Jan 2025",
+      name: 'Cristiano Ronaldo',
+      id: 'C008',
+      duration: '20',
+      date: '26 Jan 2025',
     },
     {
-      name: "Cristiano Ronaldo",
-      id: "C009",
-      duration: "20",
-      date: "26 Jan 2025",
+      name: 'Cristiano Ronaldo',
+      id: 'C009',
+      duration: '20',
+      date: '26 Jan 2025',
     },
     {
-      name: "Cristiano Ronaldo",
-      id: "C010",
-      duration: "20",
-      date: "26 Jan 2025",
+      name: 'Cristiano Ronaldo',
+      id: 'C010',
+      duration: '20',
+      date: '26 Jan 2025',
     },
-  ];
+  ]
 
-  const t = useTranslations("dashboardOverview");
-  const locale = useLocale();
+  const t = useTranslations('dashboardOverview')
+  const locale = useLocale()
   return (
-    <Card className="w-full bg-transparent border-0 shadow-none">
+    <Card className="w-full border-0 bg-transparent shadow-none">
       <CardHeader>
         <CardTitle className="text-xl font-semibold">{title}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto rounded-lg border">
-          <Table className="dark:bg-[#001434A6] bg-[#FFFFFFBF] rounded-lg border-0 ">
+          <Table className="rounded-lg border-0 bg-[#FFFFFFBF] dark:bg-[#001434A6]">
             <TableHeader>
               <TableRow>
                 <TableHead
-                  className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                  className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
                 >
-                  {t("clientName")}
+                  {t('clientName')}
                 </TableHead>
                 <TableHead
-                  className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                  className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
                 >
-                  {t("date")}
+                  {t('date')}
                 </TableHead>
                 <TableHead
-                  className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                  className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
                 >
-                  {t("duration")}
+                  {t('duration')}
                 </TableHead>
               </TableRow>
             </TableHeader>
@@ -126,5 +126,5 @@ export default function RecentClientsTable({ title }: { title: string }) {
         </div>
       </CardContent>
     </Card>
-  );
+  )
 }

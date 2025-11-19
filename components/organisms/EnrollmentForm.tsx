@@ -1,16 +1,16 @@
-"use client";
+'use client'
 
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { useTranslations } from "next-intl";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { EnrollmentFormValues } from "@/types/types";
-import useEnroll from "@/hooks/useEnroll";
-import { Loader2 } from "lucide-react";
-import { toast } from "sonner";
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { Textarea } from '@/components/ui/textarea'
+import { useTranslations } from 'next-intl'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import { EnrollmentFormValues } from '@/types/types'
+import useEnroll from '@/hooks/useEnroll'
+import { Loader2 } from 'lucide-react'
+import { toast } from 'sonner'
 
 /**
  * @component EnrollmentForm
@@ -19,72 +19,64 @@ import { toast } from "sonner";
  * Supports multilingual labels via `next-intl`.
  */
 export default function EnrollmentForm() {
-  const t = useTranslations("enrollPage.enrollForm");
+  const t = useTranslations('enrollPage.enrollForm')
 
-  const { handleEnroll, isEnrollLoading } = useEnroll();
+  const { handleEnroll, isEnrollLoading } = useEnroll()
   const formik = useFormik({
     initialValues: {
-      name: "",
-      email: "",
-      phone: "",
-      company: "",
-      website: "",
-      address: "",
-      industry: "",
-      commercialRegister: "",
-      taxId: "",
-      message: "",
+      name: '',
+      email: '',
+      phone: '',
+      company: '',
+      website: '',
+      address: '',
+      industry: '',
+      commercialRegister: '',
+      taxId: '',
+      message: '',
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("Full name is required"),
-      email: Yup.string().email("Invalid email").required("Email is required"),
-      phone: Yup.string().required("Phone is required"),
-      company: Yup.string().required("Company name is required"),
+      name: Yup.string().required('Full name is required'),
+      email: Yup.string().email('Invalid email').required('Email is required'),
+      phone: Yup.string().required('Phone is required'),
+      company: Yup.string().required('Company name is required'),
       website: Yup.string()
-        .url("Invalid website URL")
-        .required("Website is required"),
-      address: Yup.string().required("Address is required"),
-      industry: Yup.string().required("Industry is required"),
+        .url('Invalid website URL')
+        .required('Website is required'),
+      address: Yup.string().required('Address is required'),
+      industry: Yup.string().required('Industry is required'),
       commercialRegister: Yup.string().required(
-        "Commercial register is required"
+        'Commercial register is required',
       ),
-      taxId: Yup.string().required("Tax ID is required"),
-      message: Yup.string().required("Message is required").min(10).max(500),
+      taxId: Yup.string().required('Tax ID is required'),
+      message: Yup.string().required('Message is required').min(10).max(500),
     }),
     onSubmit: async (values: EnrollmentFormValues, { resetForm }) => {
-      const res = await handleEnroll(values);
-      console.log(values);
+      const res = await handleEnroll(values)
+      console.log(values)
 
       if (res) {
-        toast.success("Enrollment successful");
-        resetForm();
+        toast.success('Enrollment successful')
+        resetForm()
       }
     },
-  });
+  })
 
   return (
-    <div
-      className="
-        rounded-2xl p-8 w-full
-        bg-[#FFFFFFCC] dark:bg-[#06B6D40F]
-        shadow-[0_0_25px_rgba(0,0,0,0.05)]
-        backdrop-blur-md
-        transition-all duration-200
-      "
-    >
+    <div className="w-full rounded-2xl bg-[#FFFFFFCC] p-8 shadow-[0_0_25px_rgba(0,0,0,0.05)] backdrop-blur-md transition-all duration-200 dark:bg-[#06B6D40F]">
       {/* Form Title */}
-      <h2 className="text-2xl font-semibold mb-6 text-foreground">
-        {t("title")}
+      <h2 className="text-foreground mb-6 text-2xl font-semibold">
+        {t('title')}
       </h2>
 
       {/* Enrollment Form */}
       <form
         onSubmit={formik.handleSubmit}
-        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        className="grid grid-cols-1 gap-6 md:grid-cols-2"
       >
         <FormField
-          label={t("name")}
-          placeholder={t("namePlaceholder")}
+          label={t('name')}
+          placeholder={t('namePlaceholder')}
           required
           name="name"
           value={formik.values.name}
@@ -93,8 +85,8 @@ export default function EnrollmentForm() {
         />
 
         <FormField
-          label={t("email")}
-          placeholder={t("emailPlaceholder")}
+          label={t('email')}
+          placeholder={t('emailPlaceholder')}
           required
           name="email"
           value={formik.values.email}
@@ -103,8 +95,8 @@ export default function EnrollmentForm() {
         />
 
         <FormField
-          label={t("phone")}
-          placeholder={t("phonePlaceholder")}
+          label={t('phone')}
+          placeholder={t('phonePlaceholder')}
           required
           name="phone"
           value={formik.values.phone}
@@ -113,8 +105,8 @@ export default function EnrollmentForm() {
         />
 
         <FormField
-          label={t("company")}
-          placeholder={t("companyNamePlaceholder")}
+          label={t('company')}
+          placeholder={t('companyNamePlaceholder')}
           required
           name="company"
           value={formik.values.company}
@@ -123,8 +115,8 @@ export default function EnrollmentForm() {
         />
 
         <FormField
-          label={t("website")}
-          placeholder={t("companyWebsitePlaceholder")}
+          label={t('website')}
+          placeholder={t('companyWebsitePlaceholder')}
           required
           name="website"
           value={formik.values.website}
@@ -133,8 +125,8 @@ export default function EnrollmentForm() {
         />
 
         <FormField
-          label={t("address")}
-          placeholder={t("addressPlaceholder")}
+          label={t('address')}
+          placeholder={t('addressPlaceholder')}
           required
           name="address"
           value={formik.values.address}
@@ -143,8 +135,8 @@ export default function EnrollmentForm() {
         />
 
         <FormField
-          label={t("industry")}
-          placeholder={t("industryPlaceholder")}
+          label={t('industry')}
+          placeholder={t('industryPlaceholder')}
           required
           name="industry"
           value={formik.values.industry}
@@ -153,8 +145,8 @@ export default function EnrollmentForm() {
         />
 
         <FormField
-          label={t("commercialRegister")}
-          placeholder={t("commercialRegisterPlaceholder")}
+          label={t('commercialRegister')}
+          placeholder={t('commercialRegisterPlaceholder')}
           required
           name="commercialRegister"
           value={formik.values.commercialRegister}
@@ -167,8 +159,8 @@ export default function EnrollmentForm() {
         />
 
         <FormField
-          label={t("taxId")}
-          placeholder={t("taxIdPlaceholder")}
+          label={t('taxId')}
+          placeholder={t('taxIdPlaceholder')}
           required
           name="taxId"
           value={formik.values.taxId}
@@ -179,40 +171,40 @@ export default function EnrollmentForm() {
         {/* Message */}
         <div className="flex flex-col gap-1 md:col-span-2">
           <Label className="text-sm font-medium">
-            {t("message")} <span className="text-cyan-500">*</span>
+            {t('message')} <span className="text-cyan-500">*</span>
           </Label>
           <Textarea
-            placeholder={t("messagePlaceholder")}
-            className="bg-[#06B6D40F] border-none rounded-lg placeholder:text-gray-500 h-24"
+            placeholder={t('messagePlaceholder')}
+            className="h-24 rounded-lg border-none bg-[#06B6D40F] placeholder:text-gray-500"
             value={formik.values.message}
             onChange={formik.handleChange}
             name="message"
           />
           {formik.touched.message && formik.errors.message && (
-            <p className="text-red-500 text-xs mt-1">{formik.errors.message}</p>
+            <p className="mt-1 text-xs text-red-500">{formik.errors.message}</p>
           )}
         </div>
 
         {/* Submit Button */}
-        <div className="flex justify-end md:col-span-2 mt-6">
+        <div className="mt-6 flex justify-end md:col-span-2">
           <Button
             type="submit"
-            className="bg-[#00B4D8] hover:bg-[#0096C7] text-white px-8 py-2 rounded-full shadow-md transition disabled:opacity-50"
+            className="rounded-full bg-[#00B4D8] px-8 py-2 text-white shadow-md transition hover:bg-[#0096C7] disabled:opacity-50"
             disabled={isEnrollLoading}
           >
             {isEnrollLoading ? (
               <>
                 <Loader2 className="size-5 animate-spin" />
-                <span className="ml-2">{t("submitting")}</span>
+                <span className="ml-2">{t('submitting')}</span>
               </>
             ) : (
-              t("submit")
+              t('submit')
             )}
           </Button>
         </div>
       </form>
     </div>
-  );
+  )
 }
 
 /**
@@ -236,13 +228,13 @@ function FormField({
   onChange,
   error,
 }: {
-  label: string;
-  placeholder: string;
-  required?: boolean;
-  name: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  error?: string;
+  label: string
+  placeholder: string
+  required?: boolean
+  name: string
+  value: string
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  error?: string
 }) {
   return (
     <div className="flex flex-col gap-1">
@@ -251,14 +243,14 @@ function FormField({
       </Label>
       <Input
         placeholder={placeholder}
-        className={`bg-[#06B6D40F] border-none rounded-lg h-11 placeholder:text-gray-500 ${
-          error ? "border border-red-500" : ""
+        className={`h-11 rounded-lg border-none bg-[#06B6D40F] placeholder:text-gray-500 ${
+          error ? 'border border-red-500' : ''
         }`}
         value={value}
         onChange={onChange}
         name={name}
       />
-      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+      {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
     </div>
-  );
+  )
 }

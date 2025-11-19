@@ -1,44 +1,44 @@
-"use client";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChartConfig, ChartContainer } from "@/components/ui/chart";
-import Image from "next/image";
+'use client'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { ChartConfig, ChartContainer } from '@/components/ui/chart'
+import Image from 'next/image'
 import {
   Label,
   PolarGrid,
   PolarRadiusAxis,
   RadialBar,
   RadialBarChart,
-} from "recharts";
+} from 'recharts'
 
-export const description = "A radial chart with text";
+export const description = 'A radial chart with text'
 
 const chartData = [
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-];
+  { browser: 'safari', visitors: 200, fill: 'var(--color-safari)' },
+]
 
 const chartConfig = {
   visitors: {
-    label: "Visitors",
+    label: 'Visitors',
   },
   safari: {
-    label: "Safari",
-    color: "var(--chart-1)",
+    label: 'Safari',
+    color: 'var(--chart-1)',
   },
-} satisfies ChartConfig;
+} satisfies ChartConfig
 export default function IntentDetectionAccuracy({
   t,
 }: {
-  t: (key: string) => string;
+  t: (key: string) => string
 }) {
   return (
     <>
-      <Card className="border-none bg-transparent shadow-none gap-2">
+      <Card className="gap-2 border-none bg-transparent shadow-none">
         <CardHeader className="p-2">
-          <CardTitle className="font-semibold text-xl">
-            {t("intentDetectionAccuracy")}
+          <CardTitle className="text-xl font-semibold">
+            {t('intentDetectionAccuracy')}
           </CardTitle>
         </CardHeader>
-        <CardContent className="dark:bg-[#00143473] bg-[#FFFFFFBF] rounded-2xl p-4">
+        <CardContent className="rounded-2xl bg-[#FFFFFFBF] p-4 dark:bg-[#00143473]">
           <ChartContainer
             config={chartConfig}
             className="mx-auto aspect-square max-h-[250px]"
@@ -61,7 +61,7 @@ export default function IntentDetectionAccuracy({
               <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
                 <Label
                   content={({ viewBox }) => {
-                    if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                    if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
                       return (
                         <text
                           x={viewBox.cx}
@@ -81,10 +81,10 @@ export default function IntentDetectionAccuracy({
                             y={(viewBox.cy || 0) + 24}
                             className="fill-muted-foreground"
                           >
-                            {t("accuracy")}
+                            {t('accuracy')}
                           </tspan>
                         </text>
-                      );
+                      )
                     }
                   }}
                 />
@@ -92,11 +92,11 @@ export default function IntentDetectionAccuracy({
             </RadialBarChart>
           </ChartContainer>
         </CardContent>
-        <div className="z-50 p-4 w-full h-full bg-[#FFFFFFBF] dark:bg-[#001434A6] rounded-2xl shadow-sm flex items-center">
-          <div className="flex justify-around items-center gap-2 flex-col">
-            <h1 className="text-2xl font-semibold">{t("keywordInsights")}</h1>
-            <ul className="flex justify-center items-center gap-2 flex-wrap">
-              <li className="flex justify-center items-center gap-1">
+        <div className="z-50 flex h-full w-full items-center rounded-2xl bg-[#FFFFFFBF] p-4 shadow-sm dark:bg-[#001434A6]">
+          <div className="flex flex-col items-center justify-around gap-2">
+            <h1 className="text-2xl font-semibold">{t('keywordInsights')}</h1>
+            <ul className="flex flex-wrap items-center justify-center gap-2">
+              <li className="flex items-center justify-center gap-1">
                 <Image
                   src="/landingPage/about-star-image.png"
                   alt="stars"
@@ -104,9 +104,9 @@ export default function IntentDetectionAccuracy({
                   width={10}
                   height={10}
                 />
-                {t("appointment")}
+                {t('appointment')}
               </li>
-              <li className="flex justify-center items-center gap-1">
+              <li className="flex items-center justify-center gap-1">
                 <Image
                   src="/landingPage/about-star-image.png"
                   alt="stars"
@@ -114,9 +114,9 @@ export default function IntentDetectionAccuracy({
                   width={10}
                   height={10}
                 />
-                {t("location")}
+                {t('location')}
               </li>
-              <li className="flex justify-center items-center gap-1">
+              <li className="flex items-center justify-center gap-1">
                 <Image
                   src="/landingPage/about-star-image.png"
                   alt="stars"
@@ -124,9 +124,9 @@ export default function IntentDetectionAccuracy({
                   width={10}
                   height={10}
                 />
-                {t("price")}
+                {t('price')}
               </li>
-              <li className="flex justify-center items-center gap-1">
+              <li className="flex items-center justify-center gap-1">
                 <Image
                   src="/landingPage/about-star-image.png"
                   alt="stars"
@@ -134,9 +134,9 @@ export default function IntentDetectionAccuracy({
                   width={10}
                   height={10}
                 />
-                {t("hours")}
+                {t('hours')}
               </li>
-              <li className="flex justify-center items-center gap-1">
+              <li className="flex items-center justify-center gap-1">
                 <Image
                   src="/landingPage/about-star-image.png"
                   alt="stars"
@@ -144,12 +144,12 @@ export default function IntentDetectionAccuracy({
                   width={10}
                   height={10}
                 />
-                {t("services")}
+                {t('services')}
               </li>
             </ul>
           </div>
         </div>
       </Card>
     </>
-  );
+  )
 }

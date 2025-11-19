@@ -1,5 +1,5 @@
-import CallsAndTicketsTablePagination from "@/components/molecules/client-dashboard/CallsAndTicketsTablePagination";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import CallsAndTicketsTablePagination from '@/components/molecules/client-dashboard/CallsAndTicketsTablePagination'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   Table,
   TableBody,
@@ -7,8 +7,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Play, Eye } from "lucide-react";
+} from '@/components/ui/table'
+import { Play, Eye } from 'lucide-react'
 
 /**
  * CallsAndTicketsTable — displays styled table of recent service calls & tickets.
@@ -17,79 +17,79 @@ export default function CallsAndTicketsTable({
   t,
   locale,
 }: {
-  t: any;
-  locale: string;
+  t: any
+  locale: string
 }) {
   const calls = [
     {
-      customer: "Toni Kroos",
-      phone: "03:34",
-      duration: "05:34",
-      scenario: "Appointments Booking",
-      date: "Sample date",
+      customer: 'Toni Kroos',
+      phone: '03:34',
+      duration: '05:34',
+      scenario: 'Appointments Booking',
+      date: 'Sample date',
     },
     {
-      customer: "Toni Kroos",
-      phone: "03:34",
-      duration: "05:34",
-      scenario: "Appointments Booking",
-      date: "Sample date",
+      customer: 'Toni Kroos',
+      phone: '03:34',
+      duration: '05:34',
+      scenario: 'Appointments Booking',
+      date: 'Sample date',
     },
     {
-      customer: "Toni Kroos",
-      phone: "03:34",
-      duration: "05:34",
-      scenario: "Appointments Booking",
-      date: "Sample date",
+      customer: 'Toni Kroos',
+      phone: '03:34',
+      duration: '05:34',
+      scenario: 'Appointments Booking',
+      date: 'Sample date',
     },
     {
-      customer: "Toni Kroos",
-      phone: "03:34",
-      duration: "05:34",
-      scenario: "Appointments Booking",
-      date: "Sample date",
+      customer: 'Toni Kroos',
+      phone: '03:34',
+      duration: '05:34',
+      scenario: 'Appointments Booking',
+      date: 'Sample date',
     },
-  ];
+  ]
 
   return (
-    <Card className="w-full bg-transparent border-0 shadow-none">
+    <Card className="w-full border-0 bg-transparent shadow-none">
       <CardHeader>
-        <CardTitle className="text-xl font-semibold text-foreground">
-          {t("title")}
+        <CardTitle className="text-foreground text-xl font-semibold">
+          {t('title')}
         </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto">
-          <Table className="w-full rounded-xl dark:bg-[#001434A6] bg-[#FFFFFFBF] border-0">
+          <Table className="w-full rounded-xl border-0 bg-[#FFFFFFBF] dark:bg-[#001434A6]">
             <TableHeader>
-              <TableRow className="border-none text-foreground">
+              <TableRow className="text-foreground border-none">
                 <TableHead
-                  className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                  className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
                 >
-                  {t("customer")}
+                  {t('customer')}
                 </TableHead>
                 <TableHead
-                  className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                  className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
                 >
-                  {t("phone")}
+                  {t('phone')}
                 </TableHead>
                 <TableHead
-                  className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                  className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
                 >
-                  {t("duration")}
+                  {t('duration')}
                 </TableHead>
                 <TableHead
-                  className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                  className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
                 >
-                  {t("scenario")}
+                  {t('scenario')}
                 </TableHead>
                 <TableHead
-                  className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                  className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
                 >
-                  {t("date")}
+                  {t('date')}
                 </TableHead>
-                <TableHead className={`text-center`}>{t("status")}</TableHead>
-                <TableHead className={`text-center`}>{t("receipt")}</TableHead>
+                <TableHead className={`text-center`}>{t('status')}</TableHead>
+                <TableHead className={`text-center`}>{t('receipt')}</TableHead>
               </TableRow>
             </TableHeader>
 
@@ -97,7 +97,7 @@ export default function CallsAndTicketsTable({
               {calls.map((call, idx) => (
                 <TableRow
                   key={idx}
-                  className="border-none dark:hover:bg-[#00214f]/40 hover:bg-primary/40 transition-colors"
+                  className="hover:bg-primary/40 border-none transition-colors dark:hover:bg-[#00214f]/40"
                 >
                   <TableCell className="text-foreground font-medium">
                     {call.customer}
@@ -115,15 +115,15 @@ export default function CallsAndTicketsTable({
 
                   {/* Status icon */}
                   <TableCell className="text-center">
-                    <button className="p-2 rounded-full dark:bg-[#00214f] bg-[#06B6D426] transition-colors">
+                    <button className="rounded-full bg-[#06B6D426] p-2 transition-colors dark:bg-[#00214f]">
                       <Play fill="#06B6D4" className="size-4" />
                     </button>
                   </TableCell>
 
                   {/* Receipt icon */}
                   <TableCell className="text-center">
-                    <button className="p-2 rounded-full dark:bg-[#00214f] bg-[#06B6D426] transition-colors">
-                      <Eye className="size-4 text-primary" />
+                    <button className="rounded-full bg-[#06B6D426] p-2 transition-colors dark:bg-[#00214f]">
+                      <Eye className="text-primary size-4" />
                     </button>
                   </TableCell>
                 </TableRow>
@@ -134,5 +134,5 @@ export default function CallsAndTicketsTable({
         <CallsAndTicketsTablePagination locale={locale} t={t} />
       </CardContent>
     </Card>
-  );
+  )
 }

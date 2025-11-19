@@ -1,41 +1,31 @@
-import ConversationScriptDescriptionTab from "@/components/molecules/client-dashboard/ConversationScriptDescriptionTab";
-import MainConversationScriptTab from "@/components/molecules/client-dashboard/MainConversationScriptTab";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ConversationScriptDescriptionTab from '@/components/molecules/client-dashboard/ConversationScriptDescriptionTab'
+import MainConversationScriptTab from '@/components/molecules/client-dashboard/MainConversationScriptTab'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 export default function MainConversationScript({
   t,
   locale,
 }: {
-  t: (key: string) => string;
-  locale: string;
+  t: (key: string) => string
+  locale: string
 }) {
-  console.log(t);
+  console.log(t)
   return (
-    <div className="w-full flex justify-center items-center py-10">
+    <div className="flex w-full items-center justify-center py-10">
       <Tabs defaultValue="conversation" className="w-full">
-        <TabsList className="w-[30%] mx-auto rounded-full bg-[#06B6D44D] dark:bg-[#3B82F614]">
+        <TabsList className="mx-auto w-[30%] rounded-full bg-[#06B6D44D] dark:bg-[#3B82F614]">
           <TabsTrigger
             value="conversation"
-            className="
-              w-full rounded-full 
-              data-[state=active]:bg-[#06B6D4] 
-              dark:data-[state=active]:bg-[#06B6D440]
-              font-normal
-            "
+            className="w-full rounded-full font-normal data-[state=active]:bg-[#06B6D4] dark:data-[state=active]:bg-[#06B6D440]"
           >
-            {t("conversation")}
+            {t('conversation')}
           </TabsTrigger>
 
           <TabsTrigger
             value="descriptions"
-            className="
-              w-full rounded-full 
-              data-[state=active]:bg-[#06B6D4] 
-              dark:data-[state=active]:bg-[#06B6D440]
-              font-normal
-            "
+            className="w-full rounded-full font-normal data-[state=active]:bg-[#06B6D4] dark:data-[state=active]:bg-[#06B6D440]"
           >
-            {t("descriptions")}
+            {t('descriptions')}
           </TabsTrigger>
         </TabsList>
         <TabsContent value="conversation">
@@ -46,5 +36,5 @@ export default function MainConversationScript({
         </TabsContent>
       </Tabs>
     </div>
-  );
+  )
 }

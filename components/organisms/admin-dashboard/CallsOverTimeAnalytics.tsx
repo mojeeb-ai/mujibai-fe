@@ -1,14 +1,14 @@
-"use client";
+'use client'
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
-import { useTranslations } from "next-intl";
+} from '@/components/ui/chart'
+import { useTranslations } from 'next-intl'
 
 /**
  * CallsOverTimeAnalytics Component
@@ -21,35 +21,35 @@ import { useTranslations } from "next-intl";
  * `adminAnalyticsPage.callsOverTimeAnalytics`
  */
 export default function CallsOverTimeAnalytics() {
-  const t = useTranslations("adminAnalyticsPage.callsOverTimeAnalytics");
+  const t = useTranslations('adminAnalyticsPage.callsOverTimeAnalytics')
 
   const chartData = [
-    { month: "january", desktop: 186, mobile: 80 },
-    { month: "february", desktop: 305, mobile: 200 },
-    { month: "march", desktop: 237, mobile: 120 },
-    { month: "april", desktop: 73, mobile: 190 },
-    { month: "may", desktop: 209, mobile: 130 },
-    { month: "june", desktop: 214, mobile: 140 },
-  ];
+    { month: 'january', desktop: 186, mobile: 80 },
+    { month: 'february', desktop: 305, mobile: 200 },
+    { month: 'march', desktop: 237, mobile: 120 },
+    { month: 'april', desktop: 73, mobile: 190 },
+    { month: 'may', desktop: 209, mobile: 130 },
+    { month: 'june', desktop: 214, mobile: 140 },
+  ]
 
   const chartConfig = {
     desktop: {
-      label: t("desktop"),
-      color: "var(--chart-1)",
+      label: t('desktop'),
+      color: 'var(--chart-1)',
     },
     mobile: {
-      label: t("mobile"),
-      color: "var(--chart-2)",
+      label: t('mobile'),
+      color: 'var(--chart-2)',
     },
-  } satisfies ChartConfig;
+  } satisfies ChartConfig
 
   return (
-    <Card className="bg-transparent border-none shadow-none">
+    <Card className="border-none bg-transparent shadow-none">
       <CardHeader className="px-0">
-        <CardTitle>{t("title")}</CardTitle>
+        <CardTitle>{t('title')}</CardTitle>
       </CardHeader>
 
-      <CardContent className="bg-[#FFFFFFBF] dark:bg-[#00143473] py-7 rounded-2xl">
+      <CardContent className="rounded-2xl bg-[#FFFFFFBF] py-7 dark:bg-[#00143473]">
         <ChartContainer config={chartConfig}>
           <AreaChart
             accessibilityLayer
@@ -117,5 +117,5 @@ export default function CallsOverTimeAnalytics() {
         </ChartContainer>
       </CardContent>
     </Card>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button'
 import {
   Table,
   TableBody,
@@ -6,61 +6,61 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { EllipsisVertical } from "lucide-react";
-import { useLocale } from "next-intl";
-import { useTranslations } from "next-intl";
+} from '@/components/ui/table'
+import { EllipsisVertical } from 'lucide-react'
+import { useLocale } from 'next-intl'
+import { useTranslations } from 'next-intl'
 
 export default function PlansTable() {
-  const locale = useLocale();
-  const t = useTranslations("adminPlans.plansTable");
+  const locale = useLocale()
+  const t = useTranslations('adminPlans.plansTable')
   const plans = [
     {
       id: 1,
-      name: "Basic",
-      price: "$10",
+      name: 'Basic',
+      price: '$10',
       includes:
-        "10 conversions, 4000 characters in input code / conversion, Email Support",
+        '10 conversions, 4000 characters in input code / conversion, Email Support',
     },
     {
       id: 2,
-      name: "Standard",
-      price: "$20",
+      name: 'Standard',
+      price: '$20',
       includes:
-        "10 conversions, 4000 characters in input code / conversion, Email Support",
+        '10 conversions, 4000 characters in input code / conversion, Email Support',
     },
     {
       id: 3,
-      name: "Premium",
-      price: "$30",
+      name: 'Premium',
+      price: '$30',
       includes:
-        "10 conversions, 4000 characters in input code / conversion, Email Support",
+        '10 conversions, 4000 characters in input code / conversion, Email Support',
     },
-  ];
+  ]
   return (
-    <Table className="my-10 dark:bg-[#001434A6] bg-[#FFFFFFBF] rounded-2xl">
+    <Table className="my-10 rounded-2xl bg-[#FFFFFFBF] dark:bg-[#001434A6]">
       <TableHeader>
         <TableRow>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("name")}
+            {t('name')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("price")}
+            {t('price')}
           </TableHead>
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("includes")}
+            {t('includes')}
           </TableHead>
 
           <TableHead
-            className={`${locale === "ar" ? "text-right" : "text-left"}`}
+            className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
           >
-            {t("actions")}
+            {t('actions')}
           </TableHead>
         </TableRow>
       </TableHeader>
@@ -69,7 +69,7 @@ export default function PlansTable() {
         {plans.map((plan) => (
           <TableRow
             key={plan.id}
-            className="hover:bg-white/10 transition-colors"
+            className="transition-colors hover:bg-white/10"
           >
             <TableCell>{plan.name}</TableCell>
             <TableCell>{plan.price}</TableCell>
@@ -83,5 +83,5 @@ export default function PlansTable() {
         ))}
       </TableBody>
     </Table>
-  );
+  )
 }

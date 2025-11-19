@@ -1,68 +1,63 @@
-"use client";
+'use client'
 
-import Link from "next/link";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
-import PasswordInput from "@/components/atoms/PasswordInput";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import useAuth from "@/hooks/useAuth";
-import Image from "next/image";
-import logoImage from "../../public/logo.svg";
+import Link from 'next/link'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import { useTranslations } from 'next-intl'
+import { useRouter } from 'next/navigation'
+import { Loader2 } from 'lucide-react'
+import PasswordInput from '@/components/atoms/PasswordInput'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import useAuth from '@/hooks/useAuth'
+import Image from 'next/image'
+import logoImage from '../../public/logo.svg'
 /**
  * Login page component with authentication form
  * @returns {JSX.Element} Login page UI
  */
 export default function LoginPage() {
-  const t = useTranslations("loginPage");
-  const { handleLogin, loginLoading } = useAuth();
-  const router = useRouter();
+  const t = useTranslations('loginPage')
+  const { handleLogin, loginLoading } = useAuth()
+  const router = useRouter()
 
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
     validationSchema: Yup.object({
-      email: Yup.string().email(t("emailInvalid")).required(t("emailRequired")),
+      email: Yup.string().email(t('emailInvalid')).required(t('emailRequired')),
       password: Yup.string()
-        .min(6, t("passwordMin"))
-        .required(t("passwordRequired")),
+        .min(6, t('passwordMin'))
+        .required(t('passwordRequired')),
     }),
     onSubmit: async (values, { resetForm }) => {
-      const response = await handleLogin(values);
+      const response = await handleLogin(values)
       if (response) {
-        resetForm();
-        router.push("/");
+        resetForm()
+        router.push('/')
       }
     },
-  });
+  })
 
-  const isLoading = formik.isSubmitting || loginLoading;
+  const isLoading = formik.isSubmitting || loginLoading
 
   return (
-    <div className="w-screen h-screen relative flex justify-center items-center">
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-          w-[65%] h-[65%] rounded-full 
-          bg-[#06B6D4]/70 blur-[160px] 
-          opacity-60 z-[-1]"
-      />
+    <div className="relative flex h-screen w-full items-center justify-center">
+      <div className="absolute top-1/2 left-1/2 z-[-1] h-[65%] w-[65%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#06B6D4]/70 opacity-60 blur-[160px]" />
 
-      <div className="sm:w-[50%] w-full h-[50%] flex items-center justify-center flex-col gap-5">
+      <div className="flex h-[50%] w-full flex-col items-center justify-center gap-5 sm:w-[50%]">
         <Link
-          href={"/"}
-          className="hover:scale-110 transition-all duration-300"
+          href={'/'}
+          className="transition-all duration-300 hover:scale-110"
         >
           <Image src={logoImage} alt="Logo" width={200} height={50} />
         </Link>
 
-        <div className="sm:w-full md:w-[80%] lg:w-[60%] border-t border-b border-white p-10 rounded-2xl bg-[#FFFFFF80] dark:bg-[#06B6D40F]">
-          <h1 className="text-2xl font-semibold">{t("title")}</h1>
+        <div className="rounded-2xl border-t border-b border-white bg-[#FFFFFF80] p-10 sm:w-full md:w-[80%] lg:w-[60%] dark:bg-[#06B6D40F]">
+          <h1 className="text-2xl font-semibold">{t('title')}</h1>
 
           <form
             onSubmit={formik.handleSubmit}
@@ -70,23 +65,20 @@ export default function LoginPage() {
           >
             {/* Email Field */}
             <div>
-              <Label htmlFor="email">{t("email")}</Label>
+              <Label htmlFor="email">{t('email')}</Label>
               <Input
                 id="email"
                 name="email"
                 type="email"
-                placeholder={t("emailPlaceholder")}
+                placeholder={t('emailPlaceholder')}
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 disabled={isLoading}
-                className="w-full mt-3 focus:outline-none focus:ring-2 border-none focus:ring-[#06B6D4]
-                  bg-[#06B6D40F] dark:bg-[#3B82F633] 
-                  placeholder:text-[#000000BF] dark:placeholder:text-[#FFFFFFBF]
-                  disabled:opacity-50 disabled:cursor-not-allowed"
+                className="mt-3 w-full border-none bg-[#06B6D40F] placeholder:text-[#000000BF] focus:ring-2 focus:ring-[#06B6D4] focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-[#3B82F633] dark:placeholder:text-[#FFFFFFBF]"
               />
               {formik.touched.email && formik.errors.email && (
-                <p className="text-red-500 text-sm mt-1">
+                <p className="mt-1 text-sm text-red-500">
                   {formik.errors.email}
                 </p>
               )}
@@ -94,33 +86,33 @@ export default function LoginPage() {
 
             {/* Password Field */}
             <div>
-              <Label htmlFor="password">{t("password")}</Label>
+              <Label htmlFor="password">{t('password')}</Label>
               <PasswordInput
                 id="password"
                 name="password"
-                placeholder={t("passwordPlaceholder")}
+                placeholder={t('passwordPlaceholder')}
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 disabled={isLoading}
-                className="disabled:opacity-50 disabled:cursor-not-allowed"
+                className="disabled:cursor-not-allowed disabled:opacity-50"
               />
               {formik.touched.password && formik.errors.password && (
-                <p className="text-red-500 text-sm mt-1">
+                <p className="mt-1 text-sm text-red-500">
                   {formik.errors.password}
                 </p>
               )}
             </div>
 
             {/* Forgot Password Link */}
-            <div className="w-full flex justify-end items-center">
+            <div className="flex w-full items-center justify-end">
               <Link
                 href="/forget-password"
-                className={`text-primary capitalize font-semibold hover:underline ${
-                  isLoading ? "pointer-events-none opacity-50" : ""
+                className={`text-primary font-semibold capitalize hover:underline ${
+                  isLoading ? 'pointer-events-none opacity-50' : ''
                 }`}
               >
-                {t("forgotPassword")}
+                {t('forgotPassword')}
               </Link>
             </div>
 
@@ -128,22 +120,20 @@ export default function LoginPage() {
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full rounded-full text-white capitalize py-5 text-md mt-2
-                disabled:opacity-50 disabled:cursor-not-allowed
-                transition-opacity duration-200"
+              className="text-md mt-2 w-full rounded-full py-5 text-white capitalize transition-opacity duration-200 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isLoading ? (
                 <span className="flex items-center justify-center gap-2">
                   <Loader2 className="size-4 animate-spin" />
-                  {t("loading")}
+                  {t('loading')}
                 </span>
               ) : (
-                t("loginButton")
+                t('loginButton')
               )}
             </Button>
           </form>
         </div>
       </div>
     </div>
-  );
+  )
 }

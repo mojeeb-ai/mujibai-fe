@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   Table,
   TableBody,
@@ -6,30 +6,30 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { useLocale, useTranslations } from "next-intl";
+} from '@/components/ui/table'
+import { useLocale, useTranslations } from 'next-intl'
 
 export default function Top5ActiveClients() {
-  const t = useTranslations("adminAnalyticsPage.top5ActiveClients");
-  const locale = useLocale();
+  const t = useTranslations('adminAnalyticsPage.top5ActiveClients')
+  const locale = useLocale()
   return (
-    <Card className="bg-transparent border-none shadow-none">
+    <Card className="border-none bg-transparent shadow-none">
       <CardHeader className="px-0">
-        <CardTitle>{t("title")}</CardTitle>
+        <CardTitle>{t('title')}</CardTitle>
       </CardHeader>
-      <CardContent className="bg-[#FFFFFFBF] dark:bg-[#00143473] py-7 rounded-2xl">
+      <CardContent className="rounded-2xl bg-[#FFFFFFBF] py-7 dark:bg-[#00143473]">
         <Table>
           <TableHeader>
             <TableRow>
               <TableHead
-                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
               >
-                {t("clientName")}
+                {t('clientName')}
               </TableHead>
               <TableHead
-                className={`${locale === "ar" ? "text-right" : "text-left"}`}
+                className={`${locale === 'ar' ? 'text-right' : 'text-left'}`}
               >
-                {t("calls")}
+                {t('calls')}
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -58,5 +58,5 @@ export default function Top5ActiveClients() {
         </Table>
       </CardContent>
     </Card>
-  );
+  )
 }

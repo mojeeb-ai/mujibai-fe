@@ -1,41 +1,41 @@
-import LanguageSwitcher from "@/components/atoms/LanguageSwitcher";
-import { ThemeSwitcher } from "@/components/atoms/ThemeSwitcher";
-import { Button } from "@/components/ui/button";
-import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Bell } from "lucide-react";
+import LanguageSwitcher from '@/components/atoms/LanguageSwitcher'
+import { ThemeSwitcher } from '@/components/atoms/ThemeSwitcher'
+import { Button } from '@/components/ui/button'
+import { SidebarTrigger } from '@/components/ui/sidebar'
+import { Bell } from 'lucide-react'
 
 export default function DashboardHeader({
   title,
   subtitle,
 }: {
-  title: string;
-  subtitle?: string;
+  title: string
+  subtitle?: string
 }) {
   return (
-    <div className="w-full flex justify-between items-center flex-wrap gap-2 py-4 px-5 z-50 bg-[#FFFFFFBF] dark:bg-[#001434A6] rounded-2xl shadow-sm">
+    <div className="z-50 flex w-full flex-wrap items-center justify-between gap-2 rounded-2xl bg-[#FFFFFFBF] px-5 py-4 shadow-sm dark:bg-[#001434A6]">
       <div className="flex items-center gap-2">
         <SidebarTrigger />
-        <div className="flex items-start flex-col">
-          <h1 className="font-bold text-xl text-gray-800 dark:text-gray-100">
+        <div className="flex flex-col items-start">
+          <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">
             {title}
           </h1>
-          {subtitle && <p className="text-sm text-foreground">{subtitle}</p>}
+          {subtitle && <p className="text-foreground text-sm">{subtitle}</p>}
         </div>
       </div>
       <div className="flex items-center gap-2">
         <Button
           variant="ghost"
           size="icon"
-          className="hover:bg-white/10 dark:hover:bg-black/10 rounded-full"
+          className="rounded-full hover:bg-white/10 dark:hover:bg-black/10"
         >
           <div className="relative">
             <Bell className="size-5" />
-            <span className="absolute top-0 right-0 w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+            <span className="absolute top-0 right-0 h-1.5 w-1.5 rounded-full bg-red-500"></span>
           </div>
         </Button>
         <LanguageSwitcher />
         <ThemeSwitcher />
       </div>
     </div>
-  );
+  )
 }
