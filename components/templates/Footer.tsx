@@ -4,161 +4,262 @@ import { Facebook, Instagram, Mail, MapPin, Phone, Twitter } from 'lucide-react'
 import Logo from '../atoms/Logo'
 import Link from 'next/link'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
+
 const Footer = ({ theme }: { theme: string }) => {
+  const quickLinks = [
+    { href: '#about', label: 'About Us' },
+    { href: '#features', label: 'Features' },
+    { href: '#why-us', label: 'Why Us' },
+    { href: '#contact', label: 'Contact US' },
+    { href: '#industries', label: 'Industries We Serve' },
+    { href: '#pricing', label: 'Pricing' },
+  ]
+
+  const socialIcons = [
+    { Icon: Facebook, label: 'Facebook' },
+    { Icon: Instagram, label: 'Instagram' },
+    { Icon: Twitter, label: 'Twitter' },
+  ]
+
+  const contactItems = [
+    { Icon: Phone, text: '+91 72 7602 0908' },
+    { Icon: Mail, text: 'info@lorem.com' },
+    {
+      Icon: MapPin,
+      text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    },
+  ]
+
   return (
     <footer className="bg-footer-background from-primary/40 dark:from-primary/40 via-primary/30 dark:via-primary/10 relative mt-[-4px] w-full bg-gradient-to-tl to-transparent/20">
       <div className="relative w-full">
         <div className="relative mx-auto w-full px-10">
           <div className="pt-[39px] pb-[35px] md:pt-[78px] md:pb-[70px]">
             <div className="mb-8 flex flex-col items-start justify-between gap-8 lg:mb-16 lg:flex-row lg:gap-0">
-              <div className="flex w-full flex-col gap-6 sm:w-[30%]">
+              {/* Left Section - Logo & Social */}
+              <motion.div
+                className="flex w-full flex-col gap-6 sm:w-[30%]"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
+                transition={{ duration: 0.7, ease: 'easeOut' }}
+              >
                 <div className="flex flex-col gap-3">
-                  <div className="flex items-center gap-[6px]">
+                  <motion.div
+                    className="flex items-center gap-[6px]"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                  >
                     <Logo />
-                  </div>
-                  <p className="text-text-light text-left text-sm leading-[20px] font-normal md:text-lg md:leading-[27px]">
+                  </motion.div>
+                  <motion.p
+                    className="text-text-light text-left text-sm leading-[20px] font-normal md:text-lg md:leading-[27px]"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                  >
                     Provide a professional patient experience by automatically
                     responding to booking appointments.
-                  </p>
+                  </motion.p>
                 </div>
 
                 {/* Social Media Section */}
-                <div className="flex flex-col gap-4">
+                <motion.div
+                  className="flex flex-col gap-4"
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                >
                   <h3 className="text-text-light text-left text-lg leading-[22px] font-semibold md:text-xl md:leading-[25px]">
                     Follow Us
                   </h3>
                   <div className="flex items-center gap-[10px]">
                     <ul className="flex items-center justify-center gap-1">
-                      <li className="cursor-pointer rounded-full bg-[#3B82F6]/20 p-2 transition-colors hover:bg-[#3B82F6]/40 dark:bg-white/20 dark:hover:bg-white/40">
-                        <Facebook className="size-5 text-[#3B82F6] dark:text-white" />
-                      </li>
-                      <li className="cursor-pointer rounded-full bg-[#3B82F6]/20 p-2 transition-colors hover:bg-[#3B82F6]/40 dark:bg-white/20 dark:hover:bg-white/40">
-                        <Instagram className="size-5 text-[#3B82F6] dark:text-white" />
-                      </li>
-                      <li className="cursor-pointer rounded-full bg-[#3B82F6]/20 p-2 transition-colors hover:bg-[#3B82F6]/40 dark:bg-white/20 dark:hover:bg-white/40">
-                        <Twitter className="size-5 text-[#3B82F6] dark:text-white" />
-                      </li>
+                      {socialIcons.map(({ Icon, label }, index) => (
+                        <motion.li
+                          key={label}
+                          className="cursor-pointer rounded-full bg-[#3B82F6]/20 p-2 transition-colors hover:bg-[#3B82F6]/40 dark:bg-white/20 dark:hover:bg-white/40"
+                          initial={{ opacity: 0, scale: 0 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            duration: 0.4,
+                            delay: 0.5 + index * 0.1,
+                            type: 'spring',
+                            stiffness: 260,
+                            damping: 20,
+                          }}
+                          whileHover={{ scale: 1.15, rotate: 5 }}
+                          whileTap={{ scale: 0.9 }}
+                        >
+                          <Icon className="size-5 text-[#3B82F6] dark:text-white" />
+                        </motion.li>
+                      ))}
                     </ul>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
 
               {/* Center Section - Quick Links */}
-              <div className="flex w-full flex-col gap-[14px] lg:w-[20%] lg:self-center">
-                <h3 className="text-text-light text-left text-lg leading-[22px] font-semibold md:text-xl md:leading-[25px]">
+              <motion.div
+                className="flex w-full flex-col gap-[14px] lg:w-[20%] lg:self-center"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
+                transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
+              >
+                <motion.h3
+                  className="text-text-light text-left text-lg leading-[22px] font-semibold md:text-xl md:leading-[25px]"
+                  initial={{ opacity: 0, y: -10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
                   Quick Links
-                </h3>
+                </motion.h3>
                 <ul className="flex flex-col gap-[6px]">
-                  <li>
-                    <Link
-                      href="#about"
-                      className="text-text-light-muted hover:text-text-light text-left text-sm leading-normal font-medium transition-colors md:text-base"
+                  {quickLinks.map((link, index) => (
+                    <motion.li
+                      key={link.href}
+                      initial={{ opacity: 0, x: -15 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.4 + index * 0.05 }}
                     >
-                      About Us
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="#features"
-                      className="text-text-light-muted hover:text-text-light text-left text-sm leading-normal font-medium transition-colors md:text-base"
-                    >
-                      Features
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="#why-us"
-                      className="text-text-light-muted hover:text-text-light text-left text-sm leading-normal font-medium transition-colors md:text-base"
-                    >
-                      Why Us
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="#contact"
-                      className="text-text-light-muted hover:text-text-light text-left text-sm leading-normal font-medium transition-colors md:text-base"
-                    >
-                      Contact US
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="#industries"
-                      className="text-text-light-muted hover:text-text-light text-left text-sm leading-normal font-medium transition-colors md:text-base"
-                    >
-                      Industries We Serve
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="#pricing"
-                      className="text-text-light-muted hover:text-text-light text-left text-sm leading-normal font-medium transition-colors md:text-base"
-                    >
-                      Pricing
-                    </Link>
-                  </li>
+                      <motion.div
+                        whileHover={{ x: 4 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Link
+                          href={link.href}
+                          className="text-text-light-muted hover:text-text-light text-left text-sm leading-normal font-medium transition-colors md:text-base"
+                        >
+                          {link.label}
+                        </Link>
+                      </motion.div>
+                    </motion.li>
+                  ))}
                 </ul>
-              </div>
+              </motion.div>
 
-              <div className="flex w-full flex-col items-start gap-4 sm:w-[30%] lg:flex-row lg:items-center">
+              {/* Right Section - Contact */}
+              <motion.div
+                className="flex w-full flex-col items-start gap-4 sm:w-[30%] lg:flex-row lg:items-center"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
+                transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 }}
+              >
                 <div className="flex flex-col gap-3">
-                  <h3 className="text-xl font-bold">Contact</h3>
+                  <motion.h3
+                    className="text-xl font-bold"
+                    initial={{ opacity: 0, y: -10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                  >
+                    Contact
+                  </motion.h3>
 
                   <div className="flex flex-col gap-3">
-                    <div className="flex items-center gap-3">
-                      <div className="cursor-pointer rounded-full bg-[#3B82F6]/20 p-2 transition-colors hover:bg-[#3B82F6]/40 dark:bg-white/20 dark:hover:bg-white/40">
-                        <Phone className="size-5 text-[#3B82F6] dark:text-white" />
-                      </div>
-                      <span className="text-text-light-muted text-left text-sm leading-tight font-normal md:text-sm">
-                        +91 72 7602 0908
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      <div className="cursor-pointer rounded-full bg-[#3B82F6]/20 p-2 transition-colors hover:bg-[#3B82F6]/40 dark:bg-white/20 dark:hover:bg-white/40">
-                        <Mail className="size-5 text-[#3B82F6] dark:text-white" />
-                      </div>
-                      <span className="text-text-light-muted text-left text-sm leading-normal font-normal md:text-base">
-                        info@lorem.com
-                      </span>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <div className="cursor-pointer rounded-full bg-[#3B82F6]/20 p-2 transition-colors hover:bg-[#3B82F6]/40 dark:bg-white/20 dark:hover:bg-white/40">
-                        <MapPin className="size-5 text-[#3B82F6] dark:text-white" />
-                      </div>
-                      <p className="w-[50%]">
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry.
-                      </p>
-                    </div>
+                    {contactItems.map((item, index) => (
+                      <motion.div
+                        key={index}
+                        className={`flex ${index === 2 ? 'items-start' : 'items-center'} gap-3`}
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
+                      >
+                        <motion.div
+                          className="cursor-pointer rounded-full bg-[#3B82F6]/20 p-2 transition-colors hover:bg-[#3B82F6]/40 dark:bg-white/20 dark:hover:bg-white/40"
+                          whileHover={{ scale: 1.15, rotate: 10 }}
+                          whileTap={{ scale: 0.9 }}
+                          transition={{
+                            type: 'spring',
+                            stiffness: 400,
+                            damping: 17,
+                          }}
+                        >
+                          <item.Icon className="size-5 text-[#3B82F6] dark:text-white" />
+                        </motion.div>
+                        {index === 2 ? (
+                          <p className="w-[50%]">{item.text}</p>
+                        ) : (
+                          <span className="text-text-light-muted text-left text-sm leading-tight font-normal md:text-sm">
+                            {item.text}
+                          </span>
+                        )}
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             {/* Bottom Section - Copyright */}
-            <div className="border-text-light border-opacity-20 flex flex-col items-center justify-between gap-4 border-t pt-4 sm:flex-row">
-              <p className="text-text-light-muted text-left text-xs leading-tight font-medium md:text-xs">
+            <motion.div
+              className="border-text-light border-opacity-20 flex flex-col items-center justify-between gap-4 border-t pt-4 sm:flex-row"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <motion.p
+                className="text-text-light-muted text-left text-xs leading-tight font-medium md:text-xs"
+                initial={{ opacity: 0, x: -15 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
                 © Copyright Mujib 2025. All Right Reserved.
-              </p>
+              </motion.p>
 
-              <div className="flex items-center gap-8">
-                <span className="text-text-light-muted hover:text-text-light cursor-pointer text-left text-xs leading-tight font-medium transition-colors md:text-xs">
+              <motion.div
+                className="flex items-center gap-8"
+                initial={{ opacity: 0, x: 15 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+              >
+                <motion.span
+                  className="text-text-light-muted hover:text-text-light cursor-pointer text-left text-xs leading-tight font-medium transition-colors md:text-xs"
+                  whileHover={{ x: 3 }}
+                >
                   Terms of use
-                </span>
-                <a
+                </motion.span>
+                <motion.a
                   href="#privacy"
                   className="text-text-light-muted hover:text-text-light text-left text-xs leading-tight font-medium transition-colors md:text-xs"
+                  whileHover={{ x: 3 }}
                 >
                   Privacy policy
-                </a>
-              </div>
-            </div>
+                </motion.a>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>
-      <div className="absolute top-[10%] right-10 h-[200px] w-[200px]">
+
+      {/* Floating Flag Image */}
+      <motion.div
+        className="absolute top-[10%] right-10 h-[200px] w-[200px]"
+        initial={{ opacity: 0, scale: 0.5, y: -30 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: 'easeOut', delay: 0.5 }}
+        animate={{
+          y: [0, -12, 0],
+        }}
+        style={{
+          transition: 'all 4s ease-in-out infinite',
+        }}
+      >
         <Image
           src={
             theme === 'dark'
@@ -172,7 +273,7 @@ const Footer = ({ theme }: { theme: string }) => {
           className="h-[200px] w-[200px] object-contain"
           loading="lazy"
         />
-      </div>
+      </motion.div>
     </footer>
   )
 }

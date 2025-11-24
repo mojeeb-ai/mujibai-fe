@@ -3,6 +3,8 @@ import { getMessages, getLocale } from 'next-intl/server'
 import { Providers } from '@/providers/Providers'
 import '@/styles/globals.css'
 import { ThemeProvider } from '@/components/atoms/ThemeProvider'
+import { Tajawal, Poppins } from 'next/font/google'
+import { Toaster } from '@/components/ui/sonner'
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale()
@@ -83,8 +85,6 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   }
 }
-import { Tajawal, Poppins } from 'next/font/google'
-import { Toaster } from '@/components/ui/sonner'
 
 const tajawal = Tajawal({
   subsets: ['arabic'],

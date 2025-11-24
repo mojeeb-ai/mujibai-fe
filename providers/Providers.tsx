@@ -1,23 +1,27 @@
-"use client";
+'use client'
 
-import { NextIntlClientProvider } from "next-intl";
-import { ErrorMessageProvider } from "@/hooks/useErrorMessage";
-import { Provider } from "react-redux";
-import store from "@/store/store";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { NextIntlClientProvider } from 'next-intl'
+import { ErrorMessageProvider } from '@/hooks/useErrorMessage'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
+const queryClient = new QueryClient()
+
 export function Providers({
   children,
   locale,
   messages,
 }: {
-  children: React.ReactNode;
-  locale: string;
-  messages: Record<string, string>;
+  children: React.ReactNode
+  locale: string
+  messages: Record<string, string>
 }) {
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
         <ErrorMessageProvider>{children}</ErrorMessageProvider>
-      </Provider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
     </NextIntlClientProvider>
-  );
+  )
 }

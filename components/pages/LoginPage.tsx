@@ -5,7 +5,7 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
-import { Loader2 } from 'lucide-react'
+import { AlertCircleIcon, CheckCircle2Icon, Loader2 } from 'lucide-react'
 import PasswordInput from '@/components/atoms/PasswordInput'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -13,13 +13,15 @@ import { Label } from '@/components/ui/label'
 import useAuth from '@/hooks/useAuth'
 import Image from 'next/image'
 import logoImage from '../../public/logo.svg'
+import { Alert, AlertDescription, AlertTitle } from '../ui/alert'
 /**
  * Login page component with authentication form
- * @returns {JSX.Element} Login page UI
+ * Login page UI
  */
 export default function LoginPage() {
   const t = useTranslations('loginPage')
-  const { handleLogin, loginLoading } = useAuth()
+  const { alert, handleLogin, loginLoading } = useAuth()
+
   const router = useRouter()
 
   const formik = useFormik({
@@ -57,6 +59,20 @@ export default function LoginPage() {
         </Link>
 
         <div className="rounded-2xl border-t border-b border-white bg-[#FFFFFF80] p-10 sm:w-full md:w-[80%] lg:w-[60%] dark:bg-[#06B6D40F]">
+          {alert.type && (
+            <Alert
+              variant={alert.type === 'error' ? 'destructive' : 'default'}
+              className={`${alert.type === 'error' ? 'border-red-200 bg-red-50/20' : 'border-green-200 bg-green-50/20'}`}
+            >
+              {alert.type === 'success' ? (
+                <CheckCircle2Icon />
+              ) : (
+                <AlertCircleIcon />
+              )}
+              <AlertTitle>{alert.title}</AlertTitle>
+              <AlertDescription>{alert.description}</AlertDescription>
+            </Alert>
+          )}
           <h1 className="text-2xl font-semibold">{t('title')}</h1>
 
           <form
