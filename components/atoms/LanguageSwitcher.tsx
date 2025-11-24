@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
-import { AxiosAPI } from '@/axios/axiosInstance'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -12,6 +11,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
+import { api } from '@/utils/axios'
 
 export default function LanguageSwitcher() {
   const router = useRouter()
@@ -24,7 +24,7 @@ export default function LanguageSwitcher() {
       }
       router.refresh()
     })
-    AxiosAPI.defaults.headers['Accept-Language'] = locale
+    api.defaults.headers['Accept-Language'] = locale
   }
 
   const currentLang =
