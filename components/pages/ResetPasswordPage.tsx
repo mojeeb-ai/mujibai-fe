@@ -11,6 +11,8 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import logoImage from '../../public/logo.svg'
+import { Alert, AlertDescription, AlertTitle } from '../ui/alert'
+import { AlertCircleIcon, CheckCircle2Icon } from 'lucide-react'
 
 export default function ResetPasswordPage({
   userId,
@@ -23,7 +25,7 @@ export default function ResetPasswordPage({
 
   const router = useRouter()
 
-  const { handleResetPassword } = useAuth()
+  const { handleResetPassword, alert } = useAuth()
 
   const formik = useFormik({
     initialValues: {
@@ -67,6 +69,20 @@ export default function ResetPasswordPage({
 
         {/* Password Reset Card */}
         <div className="rounded-2xl border-t border-b border-white bg-[#FFFFFF80] p-10 sm:w-[100%] md:w-[80%] lg:w-[60%] dark:bg-[#06B6D40F]">
+          {alert.type && (
+            <Alert
+              variant={alert.type === 'error' ? 'destructive' : 'default'}
+              className={`${alert.type === 'error' ? 'border-red-200 bg-red-50/20' : 'border-green-200 bg-green-50/20'}`}
+            >
+              {alert.type === 'success' ? (
+                <CheckCircle2Icon />
+              ) : (
+                <AlertCircleIcon />
+              )}
+              <AlertTitle>{alert.title}</AlertTitle>
+              <AlertDescription>{alert.description}</AlertDescription>
+            </Alert>
+          )}
           <h1 className="text-2xl font-semibold">{t('title')}</h1>
 
           <form
