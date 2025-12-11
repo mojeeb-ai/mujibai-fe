@@ -1,14 +1,15 @@
-'use client'
+'use client';
 
-import { Button } from '@/components/ui/button'
+import { Filter } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import { Filter } from 'lucide-react'
+} from '@/components/ui/select';
 
 /**
  * CallsAndTicketsFiltering
@@ -18,8 +19,8 @@ export default function CallsAndTicketsFiltering({
   filterPlaceholderOne,
   filterPlaceholderTwo,
 }: {
-  filterPlaceholderOne: string
-  filterPlaceholderTwo: string
+  filterPlaceholderOne: string;
+  filterPlaceholderTwo: string;
 }) {
   return (
     <div className="flex w-full items-center justify-end gap-3 px-2 py-2">
@@ -51,5 +52,5 @@ export default function CallsAndTicketsFiltering({
         <Filter className="h-5 w-5 text-white" />
       </Button>
     </div>
-  )
+  );
 }

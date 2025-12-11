@@ -1,4 +1,4 @@
-import AnalyticsStatisticsCard from '@/components/atoms/AnalyticsStatisticsCard'
+import AnalyticsStatisticsCard from '@/components/atoms/AnalyticsStatisticsCard';
 
 export default function AnalyticsStatistics() {
   return (
@@ -7,5 +7,5 @@ export default function AnalyticsStatistics() {
       <AnalyticsStatisticsCard />
       <AnalyticsStatisticsCard />
     </div>
-  )
+  );
 }

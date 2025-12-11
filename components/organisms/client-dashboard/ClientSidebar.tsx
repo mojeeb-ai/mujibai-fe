@@ -1,45 +1,49 @@
-'use client'
+'use client';
+import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+import { User } from '@/types/types';
 import {
-  LayoutDashboard,
-  PhoneCall,
-  Mic,
   BarChart2,
-  Lightbulb,
-  Key,
-  Settings,
   EllipsisVertical,
-} from 'lucide-react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from '@/components/ui/sidebar'
-import { Button } from '@/components/ui/button'
+  Key,
+  LayoutDashboard,
+  Lightbulb,
+  Mic,
+  PhoneCall,
+  Settings,
+} from 'lucide-react';
+
+import Logo from '@/components/atoms/Logo';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import Logo from '@/components/atoms/Logo'
-import { useTranslations } from 'next-intl'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { User } from '@/types/types'
-import useAuth from '@/hooks/useAuth'
+} from '@/components/ui/dropdown-menu';
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from '@/components/ui/sidebar';
+
+import useAuth from '@/hooks/useAuth';
+
 export default function ClientSidebar({
   dir,
   user,
 }: {
-  dir: 'left' | 'right'
-  user: User
+  dir: 'left' | 'right';
+  user: User;
 }) {
-  const t = useTranslations('sidebar')
-  const pathname = usePathname()
+  const t = useTranslations('sidebar');
+  const pathname = usePathname();
 
   const menuItems = [
     {
@@ -65,9 +69,9 @@ export default function ClientSidebar({
     },
     { title: t('api-keys'), icon: Key, href: '/dashboard/api-keys' },
     { title: t('settings'), icon: Settings, href: '/dashboard/settings' },
-  ]
+  ];
 
-  const { handleLogout } = useAuth()
+  const { handleLogout } = useAuth();
 
   return (
     <Sidebar
@@ -82,8 +86,8 @@ export default function ClientSidebar({
       {/* Menu Section */}
       <SidebarContent>
         <SidebarMenu>
-          {menuItems.map((item) => {
-            const isActive = pathname === item.href
+          {menuItems.map(item => {
+            const isActive = pathname === item.href;
 
             return (
               <SidebarMenuItem key={item.title}>
@@ -107,7 +111,7 @@ export default function ClientSidebar({
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-            )
+            );
           })}
         </SidebarMenu>
       </SidebarContent>
@@ -149,5 +153,5 @@ export default function ClientSidebar({
         </DropdownMenu>
       </div>
     </Sidebar>
-  )
+  );
 }

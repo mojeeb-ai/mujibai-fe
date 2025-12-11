@@ -1,13 +1,14 @@
-'use client'
-import PasswordInput from '@/components/atoms/PasswordInput'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Button } from '@/components/ui/button'
-import { useTranslations } from 'next-intl'
+'use client';
+import { useTranslations } from 'next-intl';
+
+import PasswordInput from '@/components/atoms/PasswordInput';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 export default function AccountSettings() {
-  const t = useTranslations('settings.accountSettings')
+  const t = useTranslations('settings.accountSettings');
   return (
     <div className="w-full">
       <Card className="border-none bg-transparent shadow-none">
@@ -147,5 +148,5 @@ export default function AccountSettings() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

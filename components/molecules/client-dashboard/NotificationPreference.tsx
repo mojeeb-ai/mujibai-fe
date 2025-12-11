@@ -1,25 +1,27 @@
-'use client'
-import NotificationController from '@/components/atoms/NotificationController'
+'use client';
+import { useState } from 'react';
+
+import { useTranslations } from 'next-intl';
+
+import NotificationController from '@/components/atoms/NotificationController';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
-import { useState } from 'react'
-import { useTranslations } from 'next-intl'
+} from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
 
 export default function NotificationPreference() {
-  const t = useTranslations('settings.notificationPreference')
-  const [selected, setSelected] = useState('Daily')
+  const t = useTranslations('settings.notificationPreference');
+  const [selected, setSelected] = useState('Daily');
   const options = [
     t('newInvoice.daily'),
     t('newInvoice.weekly'),
     t('newInvoice.monthly'),
     t('newInvoice.never'),
-  ]
+  ];
 
   return (
     <div>
@@ -34,7 +36,7 @@ export default function NotificationPreference() {
           <NotificationController
             title={t('emailsNotifications.dailyPerformanceReportsTitle')}
             description={t(
-              'emailsNotifications.dailyPerformanceReportsSubTitle',
+              'emailsNotifications.dailyPerformanceReportsSubTitle'
             )}
           />
           <NotificationController
@@ -112,7 +114,7 @@ export default function NotificationPreference() {
               </Label>
 
               <div className="grid grid-cols-2 gap-4">
-                {options.map((option) => (
+                {options.map(option => (
                   <label
                     key={option}
                     className={`flex h-20 cursor-pointer items-center gap-4 rounded-2xl px-5 transition-all duration-200 ${
@@ -138,5 +140,5 @@ export default function NotificationPreference() {
         </Card>
       </div>
     </div>
-  )
+  );
 }

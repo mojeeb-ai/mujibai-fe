@@ -1,6 +1,7 @@
-import logoImage from '@/public/logo.svg'
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from 'next/image';
+import Link from 'next/link';
+
+import logoImage from '@/public/logo.svg';
 
 export default function Logo() {
   return (
@@ -15,5 +16,5 @@ export default function Logo() {
         />
       </div>
     </Link>
-  )
+  );
 }

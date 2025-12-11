@@ -1,10 +1,11 @@
-import EnrollsSearchAndFiltering from '@/components/organisms/admin-dashboard/EnrollsSearchAndFiltering'
-import EnrollsTable from '@/components/organisms/admin-dashboard/EnrollsTable'
-import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader'
-import { useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl';
+
+import EnrollsSearchAndFiltering from '@/components/organisms/admin-dashboard/EnrollsSearchAndFiltering';
+import EnrollsTable from '@/components/organisms/admin-dashboard/EnrollsTable';
+import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader';
 
 export default function EnrollmentFormPage() {
-  const t = useTranslations('adminEnrollmentForms')
+  const t = useTranslations('adminEnrollmentForms');
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <DashboardHeader title={t('title')} subtitle={t('subTitle')} />
@@ -14,5 +15,5 @@ export default function EnrollmentFormPage() {
         <EnrollsTable />
       </div>
     </div>
-  )
+  );
 }

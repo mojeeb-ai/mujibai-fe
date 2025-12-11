@@ -1,7 +1,9 @@
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Plus, Search } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl';
+
+import { Plus, Search } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 /**
  * PlansSearchAndFiltering component
@@ -9,7 +11,7 @@ import { useTranslations } from 'next-intl'
  * Provides search input and action buttons for filtering and adding plans.
  */
 export default function PlansSearchAndFiltering() {
-  const t = useTranslations('adminPlans')
+  const t = useTranslations('adminPlans');
 
   return (
     <div className="grid w-full grid-cols-1 items-center justify-between md:grid-cols-6 lg:grid-cols-6">
@@ -32,5 +34,5 @@ export default function PlansSearchAndFiltering() {
         </Button>
       </div>
     </div>
-  )
+  );
 }

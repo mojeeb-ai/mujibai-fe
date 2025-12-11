@@ -1,9 +1,13 @@
-'use client'
+'use client';
 
-import * as React from 'react'
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Badge } from '@/components/ui/badge'
+import * as React from 'react';
+
+import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
+
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Table,
   TableBody,
@@ -11,9 +15,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { useTranslations } from 'next-intl'
-import { useLocale } from 'next-intl'
+} from '@/components/ui/table';
 
 /**
  * ClientsTable Component
@@ -23,19 +25,19 @@ import { useLocale } from 'next-intl'
  * Uses `next-intl` for multilingual support (Arabic / English).
  */
 export default function ClientsTable() {
-  const t = useTranslations('adminClients.clientsTable')
-  const locale = useLocale()
+  const t = useTranslations('adminClients.clientsTable');
+  const locale = useLocale();
 
   type Client = {
-    id: number
-    name: string
-    company: string
-    phone: string
-    email: string
-    status: 'Active' | 'Inactive'
-    users: number
-    startDate: string
-  }
+    id: number;
+    name: string;
+    company: string;
+    phone: string;
+    email: string;
+    status: 'Active' | 'Inactive';
+    users: number;
+    startDate: string;
+  };
 
   // 🧑‍💼 Mock client data for demonstration
   const clients: Client[] = Array.from({ length: 10 }).map((_, i) => ({
@@ -47,36 +49,36 @@ export default function ClientsTable() {
     status: i % 2 === 0 ? 'Active' : 'Inactive',
     users: i + 2,
     startDate: `2022-01-${String(i + 1).padStart(2, '0')}`,
-  }))
+  }));
 
-  const [selected, setSelected] = React.useState<number[]>([])
-  const allChecked = selected.length === clients.length
+  const [selected, setSelected] = React.useState<number[]>([]);
+  const allChecked = selected.length === clients.length;
 
   /** Toggle all checkboxes at once */
   const toggleAll = () => {
-    setSelected(allChecked ? [] : clients.map((c) => c.id))
-  }
+    setSelected(allChecked ? [] : clients.map(c => c.id));
+  };
 
   /** Toggle individual client selection */
   const toggleOne = (id: number) => {
-    setSelected((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
-    )
-  }
+    setSelected(prev =>
+      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+    );
+  };
 
   /** Render colored badge based on client status */
   const renderStatusBadge = (status: Client['status']) => {
     const styles =
       status === 'Active'
         ? 'bg-green-500/20 text-green-600 dark:text-green-400'
-        : 'bg-red-500/20 text-red-600 dark:text-red-400'
+        : 'bg-red-500/20 text-red-600 dark:text-red-400';
 
     return (
       <Badge variant="secondary" className={styles}>
         {t(status.toLowerCase())}
       </Badge>
-    )
-  }
+    );
+  };
 
   return (
     <Table className="my-10 rounded-2xl bg-[#FFFFFFBF] dark:bg-[#001434A6]">
@@ -129,7 +131,7 @@ export default function ClientsTable() {
       </TableHeader>
 
       <TableBody>
-        {clients.map((client) => (
+        {clients.map(client => (
           <TableRow
             key={client.id}
             className="transition-colors hover:bg-white/10"
@@ -156,5 +158,5 @@ export default function ClientsTable() {
         ))}
       </TableBody>
     </Table>
-  )
+  );
 }

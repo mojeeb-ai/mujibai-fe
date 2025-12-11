@@ -1,27 +1,32 @@
-'use client'
+'use client';
 
-import * as React from 'react'
+import * as React from 'react';
+
+import { useTranslations } from 'next-intl';
+
+import { Item } from '@/types/types';
 import {
-  closestCenter,
   DndContext,
+  type DragEndEvent,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
+  type UniqueIdentifier,
+  closestCenter,
   useSensor,
   useSensors,
-  type DragEndEvent,
-  type UniqueIdentifier,
-} from '@dnd-kit/core'
-import { restrictToVerticalAxis } from '@dnd-kit/modifiers'
+} from '@dnd-kit/core';
+import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import {
-  arrayMove,
   SortableContext,
+  arrayMove,
   verticalListSortingStrategy,
-} from '@dnd-kit/sortable'
-
+} from '@dnd-kit/sortable';
 import {
   ColumnDef,
   ColumnFiltersState,
+  SortingState,
+  VisibilityState,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -29,43 +34,44 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  SortingState,
   useReactTable,
-  VisibilityState,
-} from '@tanstack/react-table'
-
+} from '@tanstack/react-table';
 import {
   ChevronDown,
-  Plus,
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
-  Loader,
-  LayoutDashboard,
-  EllipsisVertical,
   CircleCheckBig,
-} from 'lucide-react'
+  EllipsisVertical,
+  LayoutDashboard,
+  Loader,
+  Plus,
+} from 'lucide-react';
+import { toast } from 'sonner';
 
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from '@/components/ui/select'
+import DragHandle from '@/components/molecules/admin-dashboard/DragHandle';
+import DraggableRow from '@/components/molecules/admin-dashboard/DraggableRow';
+import TableCellViewer from '@/components/molecules/admin-dashboard/TableCellViewer';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
   DropdownMenuCheckboxItem,
+  DropdownMenuContent,
   DropdownMenuSeparator,
-} from '@/components/ui/dropdown-menu'
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import {
   Table,
   TableBody,
@@ -73,15 +79,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-
-import DraggableRow from '@/components/molecules/admin-dashboard/DraggableRow'
-import DragHandle from '@/components/molecules/admin-dashboard/DragHandle'
-import TableCellViewer from '@/components/molecules/admin-dashboard/TableCellViewer'
-import { Item } from '@/types/types'
-import { toast } from 'sonner'
-import { useTranslations } from 'next-intl'
+} from '@/components/ui/table';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 /**
  * Build table columns.
@@ -92,7 +91,7 @@ import { useTranslations } from 'next-intl'
  */
 const buildColumns = (
   CheckboxComponent: any,
-  t: any,
+  t: any
 ): ColumnDef<Item, any>[] => [
   // Drag handle
   {
@@ -198,13 +197,13 @@ const buildColumns = (
     header: () => <div className="w-full text-right">{t('target')}</div>,
     cell: ({ row }) => (
       <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          toast.promise(new Promise((r) => setTimeout(r, 800)), {
+        onSubmit={e => {
+          e.preventDefault();
+          toast.promise(new Promise(r => setTimeout(r, 800)), {
             loading: t('saving', { name: row.original.header }),
             success: t('done'),
             error: t('error'),
-          })
+          });
         }}
       >
         <Label htmlFor={`${row.original.id}-target`} className="sr-only">
@@ -225,13 +224,13 @@ const buildColumns = (
     header: () => <div className="w-full text-right">{t('limit')}</div>,
     cell: ({ row }) => (
       <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          toast.promise(new Promise((r) => setTimeout(r, 800)), {
+        onSubmit={e => {
+          e.preventDefault();
+          toast.promise(new Promise(r => setTimeout(r, 800)), {
             loading: t('saving', { name: row.original.header }),
             success: t('done'),
             error: t('error'),
-          })
+          });
         }}
       >
         <Label htmlFor={`${row.original.id}-limit`} className="sr-only">
@@ -261,8 +260,8 @@ const buildColumns = (
     header: t('reviewer'),
     cell: ({ row }) => {
       const isAssigned =
-        row.original.reviewer && row.original.reviewer !== t('assignReviewer')
-      if (isAssigned) return <div>{row.original.reviewer}</div>
+        row.original.reviewer && row.original.reviewer !== t('assignReviewer');
+      if (isAssigned) return <div>{row.original.reviewer}</div>;
 
       return (
         <>
@@ -285,7 +284,7 @@ const buildColumns = (
             </SelectContent>
           </Select>
         </>
-      )
+      );
     },
   },
 
@@ -345,37 +344,37 @@ const buildColumns = (
       </div>
     ),
   },
-]
+];
 
 export function AdminOverviewTable({ data: initialData }: { data: Item[] }) {
-  const t = useTranslations('adminDashboardOverview.adminOverviewTable')
+  const t = useTranslations('adminDashboardOverview.adminOverviewTable');
 
-  const [data, setData] = React.useState<Item[]>(() => initialData || [])
-  const [rowSelection, setRowSelection] = React.useState({})
+  const [data, setData] = React.useState<Item[]>(() => initialData || []);
+  const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({})
+    React.useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    [],
-  )
-  const [sorting, setSorting] = React.useState<SortingState>([])
+    []
+  );
+  const [sorting, setSorting] = React.useState<SortingState>([]);
   const [pagination, setPagination] = React.useState({
     pageIndex: 0,
     pageSize: 10,
-  })
+  });
 
-  const sortableId = React.useId()
+  const sortableId = React.useId();
   const sensors = useSensors(
     useSensor(MouseSensor, {}),
     useSensor(TouchSensor, {}),
-    useSensor(KeyboardSensor, {}),
-  )
+    useSensor(KeyboardSensor, {})
+  );
 
   const dataIds = React.useMemo<UniqueIdentifier[]>(
-    () => data.map((d) => d.id),
-    [data],
-  )
+    () => data.map(d => d.id),
+    [data]
+  );
 
-  const columns = React.useMemo(() => buildColumns(Checkbox, t), [t])
+  const columns = React.useMemo(() => buildColumns(Checkbox, t), [t]);
 
   const table = useReactTable({
     data,
@@ -387,7 +386,7 @@ export function AdminOverviewTable({ data: initialData }: { data: Item[] }) {
       columnFilters,
       pagination,
     },
-    getRowId: (row) => row.id.toString(),
+    getRowId: row => row.id.toString(),
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
@@ -400,22 +399,22 @@ export function AdminOverviewTable({ data: initialData }: { data: Item[] }) {
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
-  })
+  });
 
   const handleDragEnd = React.useCallback(
     (event: DragEndEvent) => {
-      const { active, over } = event
+      const { active, over } = event;
       if (active && over && active.id !== over.id) {
-        setData((prev) => {
-          const oldIndex = dataIds.indexOf(active.id as any)
-          const newIndex = dataIds.indexOf(over.id as any)
-          if (oldIndex === -1 || newIndex === -1) return prev
-          return arrayMove(prev, oldIndex, newIndex)
-        })
+        setData(prev => {
+          const oldIndex = dataIds.indexOf(active.id as any);
+          const newIndex = dataIds.indexOf(over.id as any);
+          if (oldIndex === -1 || newIndex === -1) return prev;
+          return arrayMove(prev, oldIndex, newIndex);
+        });
       }
     },
-    [dataIds],
-  )
+    [dataIds]
+  );
 
   return (
     <Tabs
@@ -475,16 +474,16 @@ export function AdminOverviewTable({ data: initialData }: { data: Item[] }) {
               {table
                 .getAllColumns()
                 .filter(
-                  (column) =>
+                  column =>
                     typeof column.accessorFn !== 'undefined' &&
-                    column.getCanHide(),
+                    column.getCanHide()
                 )
-                .map((column) => (
+                .map(column => (
                   <DropdownMenuCheckboxItem
                     key={column.id}
                     className="capitalize"
                     checked={column.getIsVisible()}
-                    onCheckedChange={(v) => column.toggleVisibility(!!v)}
+                    onCheckedChange={v => column.toggleVisibility(!!v)}
                   >
                     {column.id}
                   </DropdownMenuCheckboxItem>
@@ -514,15 +513,15 @@ export function AdminOverviewTable({ data: initialData }: { data: Item[] }) {
           >
             <Table className="dark:bg-[#00143473]">
               <TableHeader className="sticky top-0 z-10">
-                {table.getHeaderGroups().map((hg) => (
+                {table.getHeaderGroups().map(hg => (
                   <TableRow key={hg.id}>
-                    {hg.headers.map((header) => (
+                    {hg.headers.map(header => (
                       <TableHead key={header.id} colSpan={header.colSpan}>
                         {header.isPlaceholder
                           ? null
                           : flexRender(
                               header.column.columnDef.header,
-                              header.getContext(),
+                              header.getContext()
                             )}
                       </TableHead>
                     ))}
@@ -536,7 +535,7 @@ export function AdminOverviewTable({ data: initialData }: { data: Item[] }) {
                     items={dataIds}
                     strategy={verticalListSortingStrategy}
                   >
-                    {table.getRowModel().rows.map((row) => (
+                    {table.getRowModel().rows.map(row => (
                       <DraggableRow key={row.id} row={row} />
                     ))}
                   </SortableContext>
@@ -569,7 +568,7 @@ export function AdminOverviewTable({ data: initialData }: { data: Item[] }) {
               </Label>
               <Select
                 value={`${table.getState().pagination.pageSize}`}
-                onValueChange={(value) => table.setPageSize(Number(value))}
+                onValueChange={value => table.setPageSize(Number(value))}
               >
                 <SelectTrigger size="sm" className="w-20" id="rows-per-page">
                   <SelectValue
@@ -577,7 +576,7 @@ export function AdminOverviewTable({ data: initialData }: { data: Item[] }) {
                   />
                 </SelectTrigger>
                 <SelectContent side="top">
-                  {[10, 20, 30, 40, 50].map((p) => (
+                  {[10, 20, 30, 40, 50].map(p => (
                     <SelectItem key={p} value={`${p}`}>
                       {p}
                     </SelectItem>
@@ -658,7 +657,7 @@ export function AdminOverviewTable({ data: initialData }: { data: Item[] }) {
         <div className="aspect-video w-full flex-1 rounded-lg border border-dashed" />
       </TabsContent>
     </Tabs>
-  )
+  );
 }
 
-export default AdminOverviewTable
+export default AdminOverviewTable;

@@ -1,6 +1,7 @@
-import PlansSearchAndFiltering from '@/components/molecules/admin-dashboard/PlansSearchAndFiltering'
-import PlansTable from '@/components/molecules/admin-dashboard/PlansTable'
-import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader'
+import PlansSearchAndFiltering from '@/components/molecules/admin-dashboard/PlansSearchAndFiltering';
+import PlansTable from '@/components/molecules/admin-dashboard/PlansTable';
+import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader';
+
 export default function PlansPage() {
   return (
     <div className="flex h-full w-full flex-col gap-4">
@@ -11,5 +12,5 @@ export default function PlansPage() {
         <PlansTable />
       </div>
     </div>
-  )
+  );
 }

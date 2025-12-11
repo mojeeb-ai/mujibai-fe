@@ -1,11 +1,12 @@
-'use client'
+'use client';
 
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useFormik } from 'formik';
+import { AnimatePresence, motion } from 'framer-motion';
+import * as Yup from 'yup';
+
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 /**
  * ContactUsSection Component
@@ -25,10 +26,10 @@ export default function ContactUsSection() {
       message: Yup.string().trim().required('Message is required'),
       subject: Yup.string().required('Please select an option'),
     }),
-    onSubmit: (values) => {
-      console.log('Form submitted:', values)
+    onSubmit: values => {
+      console.log('Form submitted:', values);
     },
-  })
+  });
 
   return (
     <section
@@ -106,7 +107,7 @@ export default function ContactUsSection() {
           >
             <RadioOptions
               value={formik.values.subject}
-              onChange={(val) => formik.setFieldValue('subject', val)}
+              onChange={val => formik.setFieldValue('subject', val)}
             />
             <AnimatePresence>
               {formik.touched.subject && formik.errors.subject && (
@@ -199,7 +200,7 @@ export default function ContactUsSection() {
         </form>
       </motion.div>
     </section>
-  )
+  );
 }
 
 /**
@@ -216,19 +217,19 @@ function Field({
   onChange,
   onBlur,
 }: {
-  label: string
-  name: string
-  type?: string
-  isTextarea?: boolean
-  value: string
-  error?: string | undefined
+  label: string;
+  name: string;
+  type?: string;
+  isTextarea?: boolean;
+  value: string;
+  error?: string | undefined;
   onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => void
-  onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }) {
   const baseClasses =
-    'w-full text-sm md:text-lg font-normal leading-relaxed text-text-placeholder bg-[#6ee9fe26] border border-gray-500 rounded-md placeholder:text-text-placeholder focus:outline-none focus:ring-0 px-3 py-3 transition-all duration-300 focus:border-cyan-400 focus:bg-[#6ee9fe33] focus:shadow-lg focus:shadow-cyan-500/20'
+    'w-full text-sm md:text-lg font-normal leading-relaxed text-text-placeholder bg-[#6ee9fe26] border border-gray-500 rounded-md placeholder:text-text-placeholder focus:outline-none focus:ring-0 px-3 py-3 transition-all duration-300 focus:border-cyan-400 focus:bg-[#6ee9fe33] focus:shadow-lg focus:shadow-cyan-500/20';
 
   return (
     <div className="flex w-full flex-col gap-1">
@@ -275,7 +276,7 @@ function Field({
         )}
       </AnimatePresence>
     </div>
-  )
+  );
 }
 
 /**
@@ -286,8 +287,8 @@ function RadioOptions({
   value,
   onChange,
 }: {
-  value: string
-  onChange: (val: string) => void
+  value: string;
+  onChange: (val: string) => void;
 }) {
   return (
     <div className="flex w-full items-center justify-center gap-10">
@@ -325,5 +326,5 @@ function RadioOptions({
         <span className="text-text-light text-sm md:text-lg">Get a Quote</span>
       </motion.label>
     </div>
-  )
+  );
 }

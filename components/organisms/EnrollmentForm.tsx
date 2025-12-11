@@ -1,16 +1,19 @@
-'use client'
+'use client';
 
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Textarea } from '@/components/ui/textarea'
-import { useTranslations } from 'next-intl'
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
-import { EnrollmentFormValues } from '@/types/types'
-import useEnroll from '@/hooks/useEnroll'
-import { Loader2 } from 'lucide-react'
-import { toast } from 'sonner'
+import { useTranslations } from 'next-intl';
+
+import { EnrollmentFormValues } from '@/types/types';
+import { useFormik } from 'formik';
+import { Loader2 } from 'lucide-react';
+import { toast } from 'sonner';
+import * as Yup from 'yup';
+
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+
+import useEnroll from '@/hooks/useEnroll';
 
 /**
  * @component EnrollmentForm
@@ -19,9 +22,9 @@ import { toast } from 'sonner'
  * Supports multilingual labels via `next-intl`.
  */
 export default function EnrollmentForm() {
-  const t = useTranslations('enrollPage.enrollForm')
+  const t = useTranslations('enrollPage.enrollForm');
 
-  const { handleEnroll, isEnrollLoading } = useEnroll()
+  const { handleEnroll, isEnrollLoading } = useEnroll();
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -46,21 +49,21 @@ export default function EnrollmentForm() {
       address: Yup.string().required('Address is required'),
       industry: Yup.string().required('Industry is required'),
       commercialRegister: Yup.string().required(
-        'Commercial register is required',
+        'Commercial register is required'
       ),
       taxId: Yup.string().required('Tax ID is required'),
       message: Yup.string().required('Message is required').min(10).max(500),
     }),
     onSubmit: async (values: EnrollmentFormValues, { resetForm }) => {
-      const res = await handleEnroll(values)
-      console.log(values)
+      const res = await handleEnroll(values);
+      console.log(values);
 
       if (res) {
-        toast.success('Enrollment successful')
-        resetForm()
+        toast.success('Enrollment successful');
+        resetForm();
       }
     },
-  })
+  });
 
   return (
     <div className="w-full rounded-2xl bg-[#FFFFFFCC] p-8 shadow-[0_0_25px_rgba(0,0,0,0.05)] backdrop-blur-md transition-all duration-200 dark:bg-[#06B6D40F]">
@@ -204,7 +207,7 @@ export default function EnrollmentForm() {
         </div>
       </form>
     </div>
-  )
+  );
 }
 
 /**
@@ -228,13 +231,13 @@ function FormField({
   onChange,
   error,
 }: {
-  label: string
-  placeholder: string
-  required?: boolean
-  name: string
-  value: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  error?: string
+  label: string;
+  placeholder: string;
+  required?: boolean;
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: string;
 }) {
   return (
     <div className="flex flex-col gap-1">
@@ -252,5 +255,5 @@ function FormField({
       />
       {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
     </div>
-  )
+  );
 }

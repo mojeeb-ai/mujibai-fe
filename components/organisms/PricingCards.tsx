@@ -1,5 +1,6 @@
-import { Plan } from '@/types/types'
-import PricingCard from '../atoms/PricingCard'
+import { Plan } from '@/types/types';
+
+import PricingCard from '../atoms/PricingCard';
 
 /**
  * PricingCards Component
@@ -8,11 +9,11 @@ import PricingCard from '../atoms/PricingCard'
 function PricingCards({ plans }: { plans: Plan[] }) {
   return (
     <div className="flex w-full flex-col items-center justify-center gap-8 lg:flex-row">
-      {plans.map((plan) => (
+      {plans.map(plan => (
         <PricingCard plan={plan} key={plan.id.toString()} />
       ))}
     </div>
-  )
+  );
 }
 
-export default PricingCards
+export default PricingCards;

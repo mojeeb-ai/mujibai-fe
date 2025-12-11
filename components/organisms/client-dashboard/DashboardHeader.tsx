@@ -1,15 +1,16 @@
-import LanguageSwitcher from '@/components/atoms/LanguageSwitcher'
-import { ThemeSwitcher } from '@/components/atoms/ThemeSwitcher'
-import { Button } from '@/components/ui/button'
-import { SidebarTrigger } from '@/components/ui/sidebar'
-import { Bell } from 'lucide-react'
+import { Bell } from 'lucide-react';
+
+import LanguageSwitcher from '@/components/atoms/LanguageSwitcher';
+import { ThemeSwitcher } from '@/components/atoms/ThemeSwitcher';
+import { Button } from '@/components/ui/button';
+import { SidebarTrigger } from '@/components/ui/sidebar';
 
 export default function DashboardHeader({
   title,
   subtitle,
 }: {
-  title: string
-  subtitle?: string
+  title: string;
+  subtitle?: string;
 }) {
   return (
     <div className="z-50 flex w-full flex-wrap items-center justify-between gap-2 rounded-2xl bg-[#FFFFFFBF] px-5 py-4 shadow-sm dark:bg-[#001434A6]">
@@ -37,5 +38,5 @@ export default function DashboardHeader({
         <ThemeSwitcher />
       </div>
     </div>
-  )
+  );
 }

@@ -1,27 +1,29 @@
-'use client'
+'use client';
+
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import {
-  LayoutDashboard,
-  PhoneCall,
-  Mic,
   BarChart2,
-  Lightbulb,
-  Key,
-  Settings,
   FileText,
-} from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
+  Key,
+  LayoutDashboard,
+  Lightbulb,
+  Mic,
+  PhoneCall,
+  Settings,
+} from 'lucide-react';
+
+import Logo from '@/components/atoms/Logo';
 import {
   Sidebar,
   SidebarContent,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@/components/ui/sidebar'
-import Logo from '@/components/atoms/Logo'
-import { useTranslations } from 'next-intl'
-import { usePathname } from 'next/navigation'
+} from '@/components/ui/sidebar';
 
 /**
  * AdminSidebar Component
@@ -34,8 +36,8 @@ import { usePathname } from 'next/navigation'
  * @returns {JSX.Element} Sidebar navigation component
  */
 export default function AdminSidebar({ dir }: { dir: 'left' | 'right' }) {
-  const t = useTranslations('adminSidebar')
-  const pathname = usePathname()
+  const t = useTranslations('adminSidebar');
+  const pathname = usePathname();
   const menuItems = [
     {
       title: t('dashboard'),
@@ -62,7 +64,7 @@ export default function AdminSidebar({ dir }: { dir: 'left' | 'right' }) {
       href: '/admin-dashboard/enrollment-form',
     },
     { title: t('settings'), icon: Settings, href: '/admin-dashboard/settings' },
-  ]
+  ];
 
   return (
     <Sidebar
@@ -79,8 +81,8 @@ export default function AdminSidebar({ dir }: { dir: 'left' | 'right' }) {
       {/* Menu Section */}
       <SidebarContent>
         <SidebarMenu>
-          {menuItems.map((item) => {
-            const isActive = pathname === item.href
+          {menuItems.map(item => {
+            const isActive = pathname === item.href;
 
             return (
               <SidebarMenuItem key={item.title}>
@@ -104,7 +106,7 @@ export default function AdminSidebar({ dir }: { dir: 'left' | 'right' }) {
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-            )
+            );
           })}
         </SidebarMenu>
       </SidebarContent>
@@ -128,5 +130,5 @@ export default function AdminSidebar({ dir }: { dir: 'left' | 'right' }) {
         <div className="ml-auto text-gray-500">⋮</div>
       </div>
     </Sidebar>
-  )
+  );
 }

@@ -6,14 +6,14 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@/components/ui/pagination'
+} from '@/components/ui/pagination';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
+} from '@/components/ui/select';
 
 /**
  * Pagination bar for Recent Clients table
@@ -22,7 +22,7 @@ import {
 export default function CallsAndTicketsTablePagination({
   t,
 }: {
-  t: (key: string) => string
+  t: (key: string) => string;
 }) {
   return (
     <div className="flex w-full items-center justify-between bg-transparent py-2">
@@ -82,5 +82,5 @@ export default function CallsAndTicketsTablePagination({
         </PaginationContent>
       </Pagination>
     </div>
-  )
+  );
 }

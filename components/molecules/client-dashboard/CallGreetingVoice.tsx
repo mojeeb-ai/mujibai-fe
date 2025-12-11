@@ -1,19 +1,20 @@
-import { Button } from '@/components/ui/button'
+import { Play } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import { Play } from 'lucide-react'
+} from '@/components/ui/select';
 
 export default function CallGreetingVoice({
   t,
   locale,
 }: {
-  t: (key: string) => string
-  locale: string
+  t: (key: string) => string;
+  locale: string;
 }) {
   return (
     <article>
@@ -57,5 +58,5 @@ export default function CallGreetingVoice({
         </Button>
       </div>
     </article>
-  )
+  );
 }

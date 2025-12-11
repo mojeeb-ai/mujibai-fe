@@ -1,15 +1,18 @@
-'use client'
+'use client';
 
-import Navbar from '../molecules/landing/Navbar'
-import ActionsButtons from './ActionsButtons'
-import { Menu, X } from 'lucide-react'
-import { Button } from '../ui/button'
-import { useState } from 'react'
-import MobileView from '../molecules/landing/MobileView'
-import Logo from '../atoms/Logo'
-import { User } from '@/types/types'
+import { useState } from 'react';
+
+import { User } from '@/types/types';
+import { Menu, X } from 'lucide-react';
+
+import Logo from '../atoms/Logo';
+import MobileView from '../molecules/landing/MobileView';
+import Navbar from '../molecules/landing/Navbar';
+import { Button } from '../ui/button';
+import ActionsButtons from './ActionsButtons';
+
 export default function Header({ user }: { user: User | null }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <header className="flex items-center justify-around py-5">
       <Logo />
@@ -27,5 +30,5 @@ export default function Header({ user }: { user: User | null }) {
         open={isMenuOpen}
       />
     </header>
-  )
+  );
 }

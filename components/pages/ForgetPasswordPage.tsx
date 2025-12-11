@@ -1,19 +1,23 @@
-'use client'
+'use client';
 
-import Link from 'next/link'
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
-import { useTranslations } from 'next-intl'
-import { Button } from '../ui/button'
-import { Input } from '../ui/input'
-import { Label } from '../ui/label'
-import useAuth from '@/hooks/useAuth'
-import { useRouter } from 'next/navigation'
-import Cookies from 'js-cookie'
-import Image from 'next/image'
-import logoImage from '../../public/logo.svg'
-import { Alert, AlertDescription, AlertTitle } from '../ui/alert'
-import { AlertCircleIcon, CheckCircle2Icon } from 'lucide-react'
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+import { useFormik } from 'formik';
+import Cookies from 'js-cookie';
+import { AlertCircleIcon, CheckCircle2Icon } from 'lucide-react';
+import * as Yup from 'yup';
+
+import useAuth from '@/hooks/useAuth';
+
+import logoImage from '../../public/logo.svg';
+import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import { Label } from '../ui/label';
+
 /**
  * ForgetPasswordPage
  *
@@ -22,10 +26,10 @@ import { AlertCircleIcon, CheckCircle2Icon } from 'lucide-react'
  * Automatically translates text based on the current locale using next-intl.
  */
 export default function ForgetPasswordPage() {
-  const t = useTranslations('forgetPasswordPage')
-  const { alert, handleForgotPassword } = useAuth()
+  const t = useTranslations('forgetPasswordPage');
+  const { alert, handleForgotPassword } = useAuth();
 
-  const router = useRouter()
+  const router = useRouter();
 
   const formik = useFormik({
     initialValues: {
@@ -36,20 +40,20 @@ export default function ForgetPasswordPage() {
     }),
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       try {
-        const response = await handleForgotPassword(values.email)
+        const response = await handleForgotPassword(values.email);
         if (response) {
-          resetForm()
-          setSubmitting(false)
-          Cookies.set('resetEmail', values.email, { expires: 1 / 24 })
-          router.push('/password-reset-requested')
+          resetForm();
+          setSubmitting(false);
+          Cookies.set('resetEmail', values.email, { expires: 1 / 24 });
+          router.push('/password-reset-requested');
         }
       } catch (error) {
-        console.error('Password reset error:', error)
+        console.error('Password reset error:', error);
       } finally {
-        setSubmitting(false)
+        setSubmitting(false);
       }
     },
-  })
+  });
 
   return (
     <div className="relative flex h-screen w-full items-center justify-center">
@@ -142,5 +146,5 @@ export default function ForgetPasswordPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

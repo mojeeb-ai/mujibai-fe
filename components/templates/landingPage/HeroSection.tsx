@@ -1,10 +1,12 @@
-'use client'
-import Header from '../../organisms/Header'
-import { Button } from '../../ui/button'
-import SessionControls from '../../organisms/SessionControls'
-import Link from 'next/link'
-import { User } from '@/types/types'
-import { motion } from 'framer-motion'
+'use client';
+import Link from 'next/link';
+
+import { User } from '@/types/types';
+import { motion } from 'framer-motion';
+
+import Header from '../../organisms/Header';
+import SessionControls from '../../organisms/SessionControls';
+import { Button } from '../../ui/button';
 
 export default function HeroSection({
   startSession,
@@ -14,13 +16,13 @@ export default function HeroSection({
   isSessionActive,
   user,
 }: {
-  startSession: () => void
-  stopSession: () => void
+  startSession: () => void;
+  stopSession: () => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  sendClientEvent: (message: any) => void
-  events: unknown[]
-  isSessionActive: boolean
-  user: User | null
+  sendClientEvent: (message: any) => void;
+  events: unknown[];
+  isSessionActive: boolean;
+  user: User | null;
 }) {
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
@@ -104,5 +106,5 @@ export default function HeroSection({
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,28 +1,33 @@
-'use client'
+'use client';
 
-import Link from 'next/link'
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
-import { useTranslations } from 'next-intl'
-import { useRouter } from 'next/navigation'
-import { AlertCircleIcon, CheckCircle2Icon, Loader2 } from 'lucide-react'
-import PasswordInput from '@/components/atoms/PasswordInput'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import useAuth from '@/hooks/useAuth'
-import Image from 'next/image'
-import logoImage from '../../public/logo.svg'
-import { Alert, AlertDescription, AlertTitle } from '../ui/alert'
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+import { useFormik } from 'formik';
+import { AlertCircleIcon, CheckCircle2Icon, Loader2 } from 'lucide-react';
+import * as Yup from 'yup';
+
+import PasswordInput from '@/components/atoms/PasswordInput';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+
+import useAuth from '@/hooks/useAuth';
+
+import logoImage from '../../public/logo.svg';
+import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
+
 /**
  * Login page component with authentication form
  * Login page UI
  */
 export default function LoginPage() {
-  const t = useTranslations('loginPage')
-  const { alert, handleLogin, loginLoading } = useAuth()
+  const t = useTranslations('loginPage');
+  const { alert, handleLogin, loginLoading } = useAuth();
 
-  const router = useRouter()
+  const router = useRouter();
 
   const formik = useFormik({
     initialValues: {
@@ -36,15 +41,15 @@ export default function LoginPage() {
         .required(t('passwordRequired')),
     }),
     onSubmit: async (values, { resetForm }) => {
-      const response = await handleLogin(values)
+      const response = await handleLogin(values);
       if (response) {
-        resetForm()
-        router.push('/')
+        resetForm();
+        router.push('/');
       }
     },
-  })
+  });
 
-  const isLoading = formik.isSubmitting || loginLoading
+  const isLoading = formik.isSubmitting || loginLoading;
 
   return (
     <div className="relative flex h-screen w-full items-center justify-center">
@@ -151,5 +156,5 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

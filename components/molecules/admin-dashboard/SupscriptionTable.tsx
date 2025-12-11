@@ -1,5 +1,8 @@
-import { Badge } from '@/components/ui/badge'
-import { Progress } from '@/components/ui/progress'
+import { useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
+
+import { Badge } from '@/components/ui/badge';
+import { Progress } from '@/components/ui/progress';
 import {
   Table,
   TableBody,
@@ -7,13 +10,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { useLocale } from 'next-intl'
-import { useTranslations } from 'next-intl'
+} from '@/components/ui/table';
 
 export default function SupscriptionsTable() {
-  const locale = useLocale()
-  const t = useTranslations('adminSubscription')
+  const locale = useLocale();
+  const t = useTranslations('adminSubscription');
   const subscriptions = [
     {
       id: 1,
@@ -36,7 +37,7 @@ export default function SupscriptionsTable() {
       plan: 'Premium',
       clientUsage: 50,
     },
-  ]
+  ];
   return (
     <Table className="my-10 rounded-2xl bg-[#FFFFFFBF] dark:bg-[#001434A6]">
       <TableHeader>
@@ -65,7 +66,7 @@ export default function SupscriptionsTable() {
       </TableHeader>
 
       <TableBody>
-        {subscriptions.map((subscription) => (
+        {subscriptions.map(subscription => (
           <TableRow
             key={subscription.id}
             className="transition-colors hover:bg-white/10"
@@ -87,5 +88,5 @@ export default function SupscriptionsTable() {
         ))}
       </TableBody>
     </Table>
-  )
+  );
 }

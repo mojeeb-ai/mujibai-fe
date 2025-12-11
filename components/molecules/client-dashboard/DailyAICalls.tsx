@@ -1,14 +1,15 @@
-'use client'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+'use client';
+import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
+
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from '@/components/ui/chart'
-import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
+} from '@/components/ui/chart';
 
-export const description = 'A stacked area chart'
+export const description = 'A stacked area chart';
 
 const chartData = [
   { month: 'January', desktop: 186, mobile: 80 },
@@ -17,7 +18,7 @@ const chartData = [
   { month: 'April', desktop: 73, mobile: 190 },
   { month: 'May', desktop: 209, mobile: 130 },
   { month: 'June', desktop: 214, mobile: 140 },
-]
+];
 
 const chartConfig = {
   desktop: {
@@ -28,7 +29,7 @@ const chartConfig = {
     label: 'Mobile',
     color: 'var(--chart-2)',
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 export default function DailyAICalls({ t }: { t: (key: string) => string }) {
   return (
     <Card className="col-span-2 gap-3 border-none bg-transparent shadow-none">
@@ -53,7 +54,7 @@ export default function DailyAICalls({ t }: { t: (key: string) => string }) {
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
+              tickFormatter={value => value.slice(0, 3)}
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <defs>
@@ -102,5 +103,5 @@ export default function DailyAICalls({ t }: { t: (key: string) => string }) {
         </ChartContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

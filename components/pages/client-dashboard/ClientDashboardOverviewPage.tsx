@@ -1,17 +1,20 @@
-'use client'
-import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader'
-import DataUsageCard from '@/components/organisms/client-dashboard/DataUsageCard'
-import RecentClientsTable from '@/components/organisms/client-dashboard/RecentClientsTable'
-import React from 'react'
-import { useTranslations } from 'next-intl'
-import { Client } from '@/types/types'
+'use client';
+import React from 'react';
+
+import { useTranslations } from 'next-intl';
+
+import { Client } from '@/types/types';
+
+import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader';
+import DataUsageCard from '@/components/organisms/client-dashboard/DataUsageCard';
+import RecentClientsTable from '@/components/organisms/client-dashboard/RecentClientsTable';
 
 export default function ClientDashboardOverviewPage({
   client,
 }: {
-  client: Client
+  client: Client;
 }) {
-  const t = useTranslations('dashboardOverview')
+  const t = useTranslations('dashboardOverview');
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <DashboardHeader title={t('welcome') + ' ' + client?.name} />
@@ -35,5 +38,5 @@ export default function ClientDashboardOverviewPage({
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,31 +1,34 @@
-'use client'
+'use client';
 
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
-import PasswordInput from '../atoms/PasswordInput'
-import { Button } from '../ui/button'
-import { Label } from '../ui/label'
-import { useTranslations } from 'next-intl'
-import useAuth from '@/hooks/useAuth'
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import Image from 'next/image'
-import logoImage from '../../public/logo.svg'
-import { Alert, AlertDescription, AlertTitle } from '../ui/alert'
-import { AlertCircleIcon, CheckCircle2Icon } from 'lucide-react'
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+import { useFormik } from 'formik';
+import { AlertCircleIcon, CheckCircle2Icon } from 'lucide-react';
+import * as Yup from 'yup';
+
+import useAuth from '@/hooks/useAuth';
+
+import logoImage from '../../public/logo.svg';
+import PasswordInput from '../atoms/PasswordInput';
+import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
+import { Button } from '../ui/button';
+import { Label } from '../ui/label';
 
 export default function ResetPasswordPage({
   userId,
   token,
 }: {
-  userId: string
-  token: string
+  userId: string;
+  token: string;
 }) {
-  const t = useTranslations('resetPasswordPage')
+  const t = useTranslations('resetPasswordPage');
 
-  const router = useRouter()
+  const router = useRouter();
 
-  const { handleResetPassword, alert } = useAuth()
+  const { handleResetPassword, alert } = useAuth();
 
   const formik = useFormik({
     initialValues: {
@@ -45,14 +48,14 @@ export default function ResetPasswordPage({
         userId,
         token,
         newPassword: values.newPassword,
-      })
+      });
 
       if (res) {
-        resetForm()
-        router.push('/')
+        resetForm();
+        router.push('/');
       }
     },
-  })
+  });
 
   return (
     <div className="relative flex h-screen w-full items-center justify-center">
@@ -137,5 +140,5 @@ export default function ResetPasswordPage({
         </div>
       </div>
     </div>
-  )
+  );
 }

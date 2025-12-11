@@ -1,6 +1,9 @@
-'use client'
+'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useLocale, useTranslations } from 'next-intl';
+
+import RecentClientsTablePagination from '@/components/molecules/client-dashboard/RecentClientsTablePagination';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Table,
   TableBody,
@@ -8,9 +11,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import RecentClientsTablePagination from '@/components/molecules/client-dashboard/RecentClientsTablePagination'
-import { useLocale, useTranslations } from 'next-intl'
+} from '@/components/ui/table';
 
 /**
  * RecentClientsTable component
@@ -78,10 +79,10 @@ export default function RecentClientsTable({ title }: { title: string }) {
       duration: '20',
       date: '26 Jan 2025',
     },
-  ]
+  ];
 
-  const t = useTranslations('dashboardOverview')
-  const locale = useLocale()
+  const t = useTranslations('dashboardOverview');
+  const locale = useLocale();
   return (
     <Card className="w-full border-0 bg-transparent shadow-none">
       <CardHeader>
@@ -110,7 +111,7 @@ export default function RecentClientsTable({ title }: { title: string }) {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {clients.map((client) => (
+              {clients.map(client => (
                 <TableRow key={client.id}>
                   <TableCell>{client.name}</TableCell>
                   <TableCell>{client.date}</TableCell>
@@ -126,5 +127,5 @@ export default function RecentClientsTable({ title }: { title: string }) {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

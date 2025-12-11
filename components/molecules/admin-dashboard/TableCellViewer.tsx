@@ -1,44 +1,48 @@
-'use client'
+'use client';
 
-import * as React from 'react'
-import {
-  Drawer,
-  DrawerTrigger,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerClose,
-} from '@/components/ui/drawer'
-import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from '@/components/ui/select'
-import { Separator } from '@/components/ui/separator'
+import * as React from 'react';
+
+import { Item } from '@/types/types';
+import { TrendingUp } from 'lucide-react';
+import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
+
+import { Button } from '@/components/ui/button';
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from '@/components/ui/chart'
-import { AreaChart, Area, CartesianGrid, XAxis } from 'recharts'
-import { TrendingUp } from 'lucide-react'
-import { useIsMobile } from '@/hooks/use-mobile'
-import { Item } from '@/types/types'
-import { chartConfig, chartData } from '@/utils/chart-config'
+} from '@/components/ui/chart';
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/ui/drawer';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Separator } from '@/components/ui/separator';
+
+import { useIsMobile } from '@/hooks/use-mobile';
+
+import { chartConfig, chartData } from '@/utils/chart-config';
 
 /**
  * Viewer drawer for a single table row item.
  * Keeps its own small form state and shows chart on desktop.
  */
 export default function TableCellViewer({ item }: { item: Item }) {
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
 
   return (
     <Drawer direction={isMobile ? 'bottom' : 'right'}>
@@ -67,7 +71,7 @@ export default function TableCellViewer({ item }: { item: Item }) {
                     tickLine={false}
                     axisLine={false}
                     tickMargin={8}
-                    tickFormatter={(v) => String(v).slice(0, 3)}
+                    tickFormatter={v => String(v).slice(0, 3)}
                     hide
                   />
                   <ChartTooltip
@@ -196,5 +200,5 @@ export default function TableCellViewer({ item }: { item: Item }) {
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
-  )
+  );
 }

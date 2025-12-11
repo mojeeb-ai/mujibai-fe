@@ -1,22 +1,25 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { useLocale } from 'next-intl'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Eye, EyeOff } from 'lucide-react'
+import { useState } from 'react';
+
+import { useLocale } from 'next-intl';
+
+import { Eye, EyeOff } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 interface PasswordInputProps {
-  id: string
-  name: string
-  placeholder: string
-  value: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void
-  error?: string
-  touched?: boolean
-  disabled?: boolean
-  className?: string
+  id: string;
+  name: string;
+  placeholder: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  error?: string;
+  touched?: boolean;
+  disabled?: boolean;
+  className?: string;
 }
 
 /**
@@ -35,13 +38,13 @@ export default function PasswordInput({
   disabled,
   className,
 }: PasswordInputProps) {
-  const [showPassword, setShowPassword] = useState(false)
-  const locale = useLocale()
-  const isRTL = locale === 'ar'
+  const [showPassword, setShowPassword] = useState(false);
+  const locale = useLocale();
+  const isRTL = locale === 'ar';
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === ' ') e.preventDefault()
-  }
+    if (e.key === ' ') e.preventDefault();
+  };
 
   return (
     <div className="relative flex w-full flex-col">
@@ -65,7 +68,7 @@ export default function PasswordInput({
         type="button"
         variant="ghost"
         size="icon"
-        onClick={() => setShowPassword((prev) => !prev)}
+        onClick={() => setShowPassword(prev => !prev)}
         className={`hover:text-primary absolute hover:bg-transparent dark:hover:bg-transparent ${
           isRTL ? 'left-2' : 'right-2'
         } text-primary top-[50%] h-9 w-9 -translate-y-[30%]`}
@@ -81,5 +84,5 @@ export default function PasswordInput({
       {/* Error Message */}
       {touched && error && <p className="mt-2 text-sm text-red-500">{error}</p>}
     </div>
-  )
+  );
 }

@@ -1,14 +1,16 @@
-'use client'
-import HeroSection from '../templates/landingPage/HeroSection'
-import FeaturesSection from '../templates/landingPage/FeaturesSection'
-import TargetedSectorsSection from '../templates/landingPage/TargetedSectorsSection'
-import WhyChooseUs from '../templates/landingPage/WhyChooseUs'
-import PricingSection from '../templates/landingPage/PricingSection'
-import AboutUsSection from '../templates/landingPage/AboutUsSection'
-import ContactUsSection from '../templates/landingPage/ContactUsSection'
-import Footer from '../templates/Footer'
-import useLandingPage from '@/hooks/useLandingPage'
-import { User } from '@/types/types'
+'use client';
+import { User } from '@/types/types';
+
+import useLandingPage from '@/hooks/useLandingPage';
+
+import Footer from '../templates/Footer';
+import AboutUsSection from '../templates/landingPage/AboutUsSection';
+import ContactUsSection from '../templates/landingPage/ContactUsSection';
+import FeaturesSection from '../templates/landingPage/FeaturesSection';
+import HeroSection from '../templates/landingPage/HeroSection';
+import PricingSection from '../templates/landingPage/PricingSection';
+import TargetedSectorsSection from '../templates/landingPage/TargetedSectorsSection';
+import WhyChooseUs from '../templates/landingPage/WhyChooseUs';
 
 export default function LandingPage({ user }: { user: User | null }) {
   const {
@@ -18,7 +20,7 @@ export default function LandingPage({ user }: { user: User | null }) {
     isSessionActive,
     events,
     currentTheme,
-  } = useLandingPage()
+  } = useLandingPage();
   return (
     <main className="h-screen w-full overflow-x-hidden">
       <HeroSection
@@ -37,5 +39,5 @@ export default function LandingPage({ user }: { user: User | null }) {
       <ContactUsSection />
       <Footer theme={currentTheme || 'dark'} />
     </main>
-  )
+  );
 }

@@ -1,41 +1,45 @@
-'use client'
+'use client';
 
-import { useRouter } from 'next/navigation'
-import { useTransition } from 'react'
+import { useTransition } from 'react';
+
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
+import { ChevronDown } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-} from '@/components/ui/dropdown-menu'
-import { Button } from '@/components/ui/button'
-import { ChevronDown } from 'lucide-react'
-import Image from 'next/image'
-import { api } from '@/utils/axios'
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+
+import { api } from '@/utils/axios';
 
 export default function LanguageSwitcher() {
-  const router = useRouter()
-  const [, startTransition] = useTransition()
+  const router = useRouter();
+  const [, startTransition] = useTransition();
 
   function switchTo(locale: string) {
     startTransition(() => {
       if (typeof window !== 'undefined') {
-        document.cookie = `LANG=${locale}; path=/; max-age=31536000; SameSite=Lax`
+        document.cookie = `LANG=${locale}; path=/; max-age=31536000; SameSite=Lax`;
       }
-      router.refresh()
-    })
-    api.defaults.headers['Accept-Language'] = locale
+      router.refresh();
+    });
+    api.defaults.headers['Accept-Language'] = locale;
   }
 
   const currentLang =
     typeof document !== 'undefined'
       ? document.cookie.match(/LANG=(\w+)/)?.[1] || 'en'
-      : 'en'
+      : 'en';
 
   const currentFlag =
     currentLang === 'ar'
       ? 'https://flagcdn.com/w20/sa.png'
-      : 'https://flagcdn.com/w20/gb.png'
+      : 'https://flagcdn.com/w20/gb.png';
 
   return (
     <div className="flex w-full justify-center sm:w-auto">
@@ -100,5 +104,5 @@ export default function LanguageSwitcher() {
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
-  )
+  );
 }

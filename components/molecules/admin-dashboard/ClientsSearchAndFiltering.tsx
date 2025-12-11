@@ -1,9 +1,11 @@
-'use client'
+'use client';
 
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Filter, Plus, Search } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl';
+
+import { Filter, Plus, Search } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 /**
  * ClientsSearchAndFiltering component
@@ -12,7 +14,7 @@ import { useTranslations } from 'next-intl'
  * Uses `next-intl` for multilingual interface support (Arabic / English).
  */
 export default function ClientsSearchAndFiltering() {
-  const t = useTranslations('adminClients.ClientsSearchAndFiltering')
+  const t = useTranslations('adminClients.ClientsSearchAndFiltering');
 
   return (
     <div className="grid w-full grid-cols-1 items-center justify-between md:grid-cols-6 lg:grid-cols-6">
@@ -44,5 +46,5 @@ export default function ClientsSearchAndFiltering() {
         </Button>
       </div>
     </div>
-  )
+  );
 }

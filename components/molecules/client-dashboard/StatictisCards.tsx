@@ -1,5 +1,6 @@
-import StatictisCard from '@/components/atoms/StatictisCard'
-import React from 'react'
+import React from 'react';
+
+import StatictisCard from '@/components/atoms/StatictisCard';
 
 export default function StatictisCards({ t }: { t: (key: string) => string }) {
   const statictisCardsData = [
@@ -28,7 +29,7 @@ export default function StatictisCards({ t }: { t: (key: string) => string }) {
       number: '104',
       title: t('customerSatisfaction'),
     },
-  ]
+  ];
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5">
       {statictisCardsData?.map((item, index) => (
@@ -40,5 +41,5 @@ export default function StatictisCards({ t }: { t: (key: string) => string }) {
         />
       ))}
     </div>
-  )
+  );
 }

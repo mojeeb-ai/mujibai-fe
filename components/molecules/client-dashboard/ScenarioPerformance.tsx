@@ -1,4 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
 import {
   Table,
   TableBody,
@@ -6,13 +7,14 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { Progress } from '@/components/ui/progress'
-import CallsAndTicketsTablePagination from './CallsAndTicketsTablePagination'
+} from '@/components/ui/table';
+
+import CallsAndTicketsTablePagination from './CallsAndTicketsTablePagination';
+
 export default function ScenarioPerformance({
   t,
 }: {
-  t: (key: string) => string
+  t: (key: string) => string;
 }) {
   return (
     <Card className="col-span-2 gap-3 border-none bg-transparent shadow-none">
@@ -52,5 +54,5 @@ export default function ScenarioPerformance({
         <CallsAndTicketsTablePagination t={t} />
       </CardContent>
     </Card>
-  )
+  );
 }

@@ -1,13 +1,14 @@
-"use client";
+'use client';
 
-import ErrorContentBox from "@/components/ErrorContentBox";
 import React, {
+  type ReactNode,
   createContext,
+  useCallback,
   useContext,
   useState,
-  useCallback,
-  type ReactNode,
-} from "react";
+} from 'react';
+
+import ErrorContentBox from '@/components/ErrorContentBox';
 
 type ErrorMessageContextType = {
   error: Error | null;
@@ -22,7 +23,7 @@ const ErrorMessageContext = createContext<ErrorMessageContextType | undefined>(
 export const useErrorMessage = (): ErrorMessageContextType => {
   const context = useContext(ErrorMessageContext);
   if (!context) {
-    throw new Error("useErrorMessage must be used within ErrorMessageProvider");
+    throw new Error('useErrorMessage must be used within ErrorMessageProvider');
   }
   return context;
 };
@@ -40,11 +41,7 @@ export const ErrorMessageProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <ErrorMessageContext.Provider value={{ error, setError, clearError }}>
-      {error ? (
-          <ErrorContentBox error={error} />
-      ) : (
-        children
-      )}
+      {error ? <ErrorContentBox error={error} /> : children}
     </ErrorMessageContext.Provider>
   );
 };

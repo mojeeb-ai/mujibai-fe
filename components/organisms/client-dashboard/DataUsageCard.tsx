@@ -1,7 +1,9 @@
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Cloud } from 'lucide-react'
-import Link from 'next/link'
+import Link from 'next/link';
+
+import { Cloud } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 /**
  * DataUsageCard — visualizes current data usage with a clean, compact layout.
@@ -15,15 +17,15 @@ export default function DataUsageCard({
   more,
   dataTitle,
 }: {
-  used: number
-  total: number
-  title: string
-  upgradePlan: string
-  of: string
-  more: string
-  dataTitle: string
+  used: number;
+  total: number;
+  title: string;
+  upgradePlan: string;
+  of: string;
+  more: string;
+  dataTitle: string;
 }) {
-  const remaining = total - used
+  const remaining = total - used;
   return (
     <Card className="w-full border-0 bg-transparent shadow-none">
       <CardHeader className="text-center">
@@ -59,5 +61,5 @@ export default function DataUsageCard({
         </Button>
       </CardContent>
     </Card>
-  )
+  );
 }

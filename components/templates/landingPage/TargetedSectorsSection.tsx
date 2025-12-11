@@ -1,7 +1,8 @@
-'use client'
+'use client';
 
-import Image from 'next/image'
-import { motion } from 'framer-motion'
+import Image from 'next/image';
+
+import { motion } from 'framer-motion';
 
 export default function SectorsSection({ theme }: { theme: string }) {
   const sectors = [
@@ -45,7 +46,7 @@ export default function SectorsSection({ theme }: { theme: string }) {
         'Provide a professional patient experience by automatically responding to booking appointments.',
       isLarge: false,
     },
-  ]
+  ];
 
   return (
     <section className="bg-background-dark relative w-full bg-white dark:bg-[#001434]">
@@ -235,5 +236,5 @@ export default function SectorsSection({ theme }: { theme: string }) {
         </div>
       </div>
     </section>
-  )
+  );
 }

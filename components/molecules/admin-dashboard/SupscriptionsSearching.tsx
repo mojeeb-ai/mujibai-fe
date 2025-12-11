@@ -1,6 +1,8 @@
-import { Input } from '@/components/ui/input'
-import { Search } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl';
+
+import { Search } from 'lucide-react';
+
+import { Input } from '@/components/ui/input';
 
 /**
  * SupscriptionsSearching component
@@ -8,7 +10,7 @@ import { useTranslations } from 'next-intl'
  * Provides search input and action buttons for filtering and adding plans.
  */
 export default function SupscriptionsSearching() {
-  const t = useTranslations('adminSubscription')
+  const t = useTranslations('adminSubscription');
 
   return (
     <div className="grid w-full grid-cols-1 items-center justify-between md:grid-cols-6 lg:grid-cols-6">
@@ -23,5 +25,5 @@ export default function SupscriptionsSearching() {
         </div>
       </div>
     </div>
-  )
+  );
 }

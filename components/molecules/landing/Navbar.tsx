@@ -1,18 +1,18 @@
-import { useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl';
 
 export default function Navbar() {
   const handleSmoothScroll = (sectionId: string) => {
     if (typeof window !== 'undefined') {
-      const element = document.getElementById(sectionId)
+      const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({
           behavior: 'smooth',
           block: 'start',
-        })
+        });
       }
     }
-  }
-  const t = useTranslations('landingPage')
+  };
+  const t = useTranslations('landingPage');
   return (
     <nav>
       <ul className="hidden flex-col items-center justify-center gap-10 sm:flex sm:flex-row">
@@ -77,5 +77,5 @@ export default function Navbar() {
         </li>
       </ul>
     </nav>
-  )
+  );
 }

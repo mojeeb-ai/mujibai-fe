@@ -1,6 +1,7 @@
-"use client";
-import { useEffect, useRef, useCallback, useMemo } from "react";
-import { io, Socket } from "socket.io-client";
+'use client';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
+
+import { Socket, io } from 'socket.io-client';
 
 interface UseRealTimeReturn {
   emit: (event: string, data?: unknown) => void;
@@ -20,7 +21,7 @@ export default function useRealTime(): UseRealTimeReturn {
   const SOCKET_CONFIG = useMemo(
     () => ({
       url:
-        process.env.NEXT_PUBLIC_NODE_ENV === "development"
+        process.env.NEXT_PUBLIC_NODE_ENV === 'development'
           ? process.env.NEXT_PUBLIC_BACKEND_DEVELOPMENT
           : process.env.NEXT_PUBLIC_BACKEND_PRODUCTION,
       options: {
@@ -52,14 +53,14 @@ export default function useRealTime(): UseRealTimeReturn {
       connectedRef.current = false;
     };
 
-    socket.on("connect", handleConnect);
-    socket.on("disconnect", handleDisconnect);
-    socket.on("connect_error", handleConnectError);
+    socket.on('connect', handleConnect);
+    socket.on('disconnect', handleDisconnect);
+    socket.on('connect_error', handleConnectError);
 
     return () => {
-      socket.off("connect", handleConnect);
-      socket.off("disconnect", handleDisconnect);
-      socket.off("connect_error", handleConnectError);
+      socket.off('connect', handleConnect);
+      socket.off('disconnect', handleDisconnect);
+      socket.off('connect_error', handleConnectError);
 
       socket.disconnect();
       connectedRef.current = false;

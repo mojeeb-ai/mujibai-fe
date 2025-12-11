@@ -1,15 +1,15 @@
-import ConversationScriptDescriptionTab from '@/components/molecules/client-dashboard/ConversationScriptDescriptionTab'
-import MainConversationScriptTab from '@/components/molecules/client-dashboard/MainConversationScriptTab'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import ConversationScriptDescriptionTab from '@/components/molecules/client-dashboard/ConversationScriptDescriptionTab';
+import MainConversationScriptTab from '@/components/molecules/client-dashboard/MainConversationScriptTab';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function MainConversationScript({
   t,
   locale,
 }: {
-  t: (key: string) => string
-  locale: string
+  t: (key: string) => string;
+  locale: string;
 }) {
-  console.log(t)
+  console.log(t);
   return (
     <div className="flex w-full items-center justify-center py-10">
       <Tabs defaultValue="conversation" className="w-full">
@@ -36,5 +36,5 @@ export default function MainConversationScript({
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }

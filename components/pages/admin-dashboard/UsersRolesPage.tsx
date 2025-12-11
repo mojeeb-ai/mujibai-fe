@@ -1,10 +1,11 @@
-import UserRolesSearchAndFiltering from '@/components/organisms/admin-dashboard/UserRolesSearchAndFiltering'
-import UserRolesTable from '@/components/organisms/admin-dashboard/UserRolesTable'
-import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader'
-import { useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl';
+
+import UserRolesSearchAndFiltering from '@/components/organisms/admin-dashboard/UserRolesSearchAndFiltering';
+import UserRolesTable from '@/components/organisms/admin-dashboard/UserRolesTable';
+import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader';
 
 export default function UsersRolesPage() {
-  const t = useTranslations('adminUserRoles')
+  const t = useTranslations('adminUserRoles');
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <DashboardHeader title={t('welcome') + ' ' + 'Abdulrahman Alharbi'} />
@@ -14,5 +15,5 @@ export default function UsersRolesPage() {
         <UserRolesTable />
       </div>
     </div>
-  )
+  );
 }

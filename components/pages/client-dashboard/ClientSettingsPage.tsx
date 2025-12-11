@@ -1,13 +1,14 @@
-import AccountSettings from '@/components/molecules/client-dashboard/AccountSettings'
-import IntegrationSettings from '@/components/molecules/client-dashboard/IntegrationSettings'
-import NotificationPreference from '@/components/molecules/client-dashboard/NotificationPreference'
-import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { useLocale, useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl';
+
+import AccountSettings from '@/components/molecules/client-dashboard/AccountSettings';
+import IntegrationSettings from '@/components/molecules/client-dashboard/IntegrationSettings';
+import NotificationPreference from '@/components/molecules/client-dashboard/NotificationPreference';
+import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function ClientSettingsPage() {
-  const t = useTranslations('settings')
-  const locale = useLocale()
+  const t = useTranslations('settings');
+  const locale = useLocale();
   const TAB_ITEMS = [
     { value: 'accountSettings', label: t('accountSettings.title') },
     { value: 'integrationSettings', label: t('integrationSettings.title') },
@@ -15,7 +16,7 @@ export default function ClientSettingsPage() {
       value: 'notificationPreference',
       label: t('notificationPreference.title'),
     },
-  ]
+  ];
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <DashboardHeader title={t('title')} />
@@ -29,7 +30,7 @@ export default function ClientSettingsPage() {
           <TabsList
             className={`mx-3 mt-4 flex h-12 flex-wrap justify-between gap-2 rounded-full bg-[#3B82F614] p-1 dark:bg-[#3B82F614]`}
           >
-            {TAB_ITEMS.map((tab) => (
+            {TAB_ITEMS.map(tab => (
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
@@ -54,5 +55,5 @@ export default function ClientSettingsPage() {
         </Tabs>
       </div>
     </div>
-  )
+  );
 }

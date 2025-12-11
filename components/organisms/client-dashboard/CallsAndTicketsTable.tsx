@@ -1,5 +1,7 @@
-import CallsAndTicketsTablePagination from '@/components/molecules/client-dashboard/CallsAndTicketsTablePagination'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Eye, Play } from 'lucide-react';
+
+import CallsAndTicketsTablePagination from '@/components/molecules/client-dashboard/CallsAndTicketsTablePagination';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Table,
   TableBody,
@@ -7,8 +9,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { Play, Eye } from 'lucide-react'
+} from '@/components/ui/table';
 
 /**
  * CallsAndTicketsTable — displays styled table of recent service calls & tickets.
@@ -17,8 +18,8 @@ export default function CallsAndTicketsTable({
   t,
   locale,
 }: {
-  t: any
-  locale: string
+  t: any;
+  locale: string;
 }) {
   const calls = [
     {
@@ -49,7 +50,7 @@ export default function CallsAndTicketsTable({
       scenario: 'Appointments Booking',
       date: 'Sample date',
     },
-  ]
+  ];
 
   return (
     <Card className="w-full border-0 bg-transparent shadow-none">
@@ -134,5 +135,5 @@ export default function CallsAndTicketsTable({
         <CallsAndTicketsTablePagination locale={locale} t={t} />
       </CardContent>
     </Card>
-  )
+  );
 }

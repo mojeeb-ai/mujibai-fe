@@ -1,14 +1,15 @@
-import Image from 'next/image'
-import React from 'react'
+import React from 'react';
+
+import Image from 'next/image';
 
 export default function StatictisCard({
   icon,
   number,
   title,
 }: {
-  icon: string
-  number: string
-  title: string
+  icon: string;
+  number: string;
+  title: string;
 }) {
   return (
     <div className="flex min-h-[129px] min-w-[182px] flex-col gap-[12px] rounded-xl bg-[#FFFFFFBF] p-[16px] dark:bg-[#FFFFFF0F]">
@@ -16,5 +17,5 @@ export default function StatictisCard({
       <h2 className="text-3xl font-semibold">{number}</h2>
       <p className="text-gray-400">{title}</p>
     </div>
-  )
+  );
 }

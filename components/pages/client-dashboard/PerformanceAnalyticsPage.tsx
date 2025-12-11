@@ -1,12 +1,13 @@
-'use client'
-import StatictisCards from '@/components/molecules/client-dashboard/StatictisCards'
-import DailyAICallsAnalytics from '@/components/organisms/client-dashboard/DailyAICallsAnalytics'
-import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader'
-import ScenarioPerformanceAnalytics from '@/components/organisms/client-dashboard/ScenarioPerformanceAnalytics'
-import { useTranslations } from 'next-intl'
+'use client';
+import { useTranslations } from 'next-intl';
+
+import StatictisCards from '@/components/molecules/client-dashboard/StatictisCards';
+import DailyAICallsAnalytics from '@/components/organisms/client-dashboard/DailyAICallsAnalytics';
+import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader';
+import ScenarioPerformanceAnalytics from '@/components/organisms/client-dashboard/ScenarioPerformanceAnalytics';
 
 export default function PerformanceAnalyticsPage() {
-  const t = useTranslations('performanceAnalytics')
+  const t = useTranslations('performanceAnalytics');
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <DashboardHeader title={t('title')} />
@@ -17,5 +18,5 @@ export default function PerformanceAnalyticsPage() {
         <ScenarioPerformanceAnalytics t={t} />
       </div>
     </div>
-  )
+  );
 }

@@ -1,7 +1,11 @@
-import CallsAndTicketsTablePagination from '@/components/molecules/client-dashboard/CallsAndTicketsTablePagination'
-import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader'
-import { Button } from '@/components/ui/button'
-import { Progress } from '@/components/ui/progress'
+import { useLocale, useTranslations } from 'next-intl';
+
+import { Download, Plus } from 'lucide-react';
+
+import CallsAndTicketsTablePagination from '@/components/molecules/client-dashboard/CallsAndTicketsTablePagination';
+import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
 import {
   Table,
   TableBody,
@@ -9,13 +13,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { Download, Plus } from 'lucide-react'
-import { useLocale, useTranslations } from 'next-intl'
+} from '@/components/ui/table';
 
 export default function AiOutboundPage() {
-  const t = useTranslations('aiOutbound')
-  const locale = useLocale()
+  const t = useTranslations('aiOutbound');
+  const locale = useLocale();
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <DashboardHeader title={t('title')} subtitle={t('subTitle')} />
@@ -87,5 +89,5 @@ export default function AiOutboundPage() {
         <CallsAndTicketsTablePagination t={t} />
       </div>
     </div>
-  )
+  );
 }

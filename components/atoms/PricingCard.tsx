@@ -1,8 +1,9 @@
-'use client'
+'use client';
 
-import { Plan } from '@/types/types'
-import { Button } from '../ui/button'
-import { CheckCircle, X } from 'lucide-react'
+import { Plan } from '@/types/types';
+import { CheckCircle, X } from 'lucide-react';
+
+import { Button } from '../ui/button';
 
 /**
  * PricingCard Component
@@ -66,5 +67,5 @@ export default function PricingCard({ plan }: { plan: Plan }) {
         <div className="absolute inset-0 -z-10 rounded-2xl bg-cyan-500/20 blur-[100px]"></div>
       )}
     </div>
-  )
+  );
 }

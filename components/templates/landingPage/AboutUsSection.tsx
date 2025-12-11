@@ -1,14 +1,15 @@
-'use client'
+'use client';
 
-import Image from 'next/image'
-import { motion } from 'framer-motion'
+import Image from 'next/image';
+
+import { motion } from 'framer-motion';
 
 export default function AboutUsSection() {
   const features = [
     'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-  ]
+  ];
 
   return (
     <section
@@ -193,5 +194,5 @@ export default function AboutUsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

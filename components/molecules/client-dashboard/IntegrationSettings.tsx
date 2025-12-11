@@ -1,8 +1,9 @@
-import IntegrationCard from '@/components/atoms/IntegrationCard'
-import { useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl';
+
+import IntegrationCard from '@/components/atoms/IntegrationCard';
 
 export default function IntegrationSettings() {
-  const t = useTranslations('settings.integrationSettings')
+  const t = useTranslations('settings.integrationSettings');
   return (
     <div>
       <div className="my-5 px-5">
@@ -33,5 +34,5 @@ export default function IntegrationSettings() {
         />
       </div>
     </div>
-  )
+  );
 }

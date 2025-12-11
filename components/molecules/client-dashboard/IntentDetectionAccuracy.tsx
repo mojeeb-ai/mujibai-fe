@@ -1,20 +1,22 @@
-'use client'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { ChartConfig, ChartContainer } from '@/components/ui/chart'
-import Image from 'next/image'
+'use client';
+import Image from 'next/image';
+
 import {
   Label,
   PolarGrid,
   PolarRadiusAxis,
   RadialBar,
   RadialBarChart,
-} from 'recharts'
+} from 'recharts';
 
-export const description = 'A radial chart with text'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ChartConfig, ChartContainer } from '@/components/ui/chart';
+
+export const description = 'A radial chart with text';
 
 const chartData = [
   { browser: 'safari', visitors: 200, fill: 'var(--color-safari)' },
-]
+];
 
 const chartConfig = {
   visitors: {
@@ -24,11 +26,11 @@ const chartConfig = {
     label: 'Safari',
     color: 'var(--chart-1)',
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 export default function IntentDetectionAccuracy({
   t,
 }: {
-  t: (key: string) => string
+  t: (key: string) => string;
 }) {
   return (
     <>
@@ -84,7 +86,7 @@ export default function IntentDetectionAccuracy({
                             {t('accuracy')}
                           </tspan>
                         </text>
-                      )
+                      );
                     }
                   }}
                 />
@@ -151,5 +153,5 @@ export default function IntentDetectionAccuracy({
         </div>
       </Card>
     </>
-  )
+  );
 }

@@ -1,15 +1,17 @@
-import { useState } from 'react'
-import { CloudLightning, CloudOff } from 'react-feather'
-import { Button } from '@/components/ui/button'
+import { useState } from 'react';
+
+import { CloudLightning, CloudOff } from 'react-feather';
+
+import { Button } from '@/components/ui/button';
 
 function SessionStopped({ startSession }) {
-  const [isActivating, setIsActivating] = useState(false)
+  const [isActivating, setIsActivating] = useState(false);
 
   function handleStartSession() {
-    if (isActivating) return
+    if (isActivating) return;
 
-    setIsActivating(true)
-    startSession()
+    setIsActivating(true);
+    startSession();
   }
 
   return (
@@ -20,7 +22,7 @@ function SessionStopped({ startSession }) {
     >
       {isActivating ? 'Listen now...' : 'Listen now'}
     </Button>
-  )
+  );
 }
 
 function SessionActive({ stopSession }) {
@@ -32,7 +34,7 @@ function SessionActive({ stopSession }) {
     >
       Stop Listen
     </Button>
-  )
+  );
 }
 
 export default function SessionControls({
@@ -54,5 +56,5 @@ export default function SessionControls({
         <SessionStopped startSession={startSession} />
       )}
     </>
-  )
+  );
 }

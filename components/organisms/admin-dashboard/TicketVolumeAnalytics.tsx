@@ -1,17 +1,18 @@
-'use client'
+'use client';
 
-import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts'
+import { useTranslations } from 'next-intl';
 
+import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
+
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from '@/components/ui/chart'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { useTranslations } from 'next-intl'
+} from '@/components/ui/chart';
 
-export const description = 'A bar chart'
+export const description = 'A bar chart';
 
 const chartData = [
   { month: 'January', desktop: 186 },
@@ -20,17 +21,17 @@ const chartData = [
   { month: 'April', desktop: 73 },
   { month: 'May', desktop: 209 },
   { month: 'June', desktop: 214 },
-]
+];
 
 const chartConfig = {
   desktop: {
     label: 'Desktop',
     color: 'var(--chart-1)',
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 export default function TicketVolumeAnalytics() {
-  const t = useTranslations('adminAnalyticsPage.ticketVolumeAnalytics')
+  const t = useTranslations('adminAnalyticsPage.ticketVolumeAnalytics');
   return (
     <Card className="border-none bg-transparent shadow-none">
       <CardHeader className="px-0">
@@ -45,7 +46,7 @@ export default function TicketVolumeAnalytics() {
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
+              tickFormatter={value => value.slice(0, 3)}
             />
             <ChartTooltip
               cursor={false}
@@ -56,5 +57,5 @@ export default function TicketVolumeAnalytics() {
         </ChartContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

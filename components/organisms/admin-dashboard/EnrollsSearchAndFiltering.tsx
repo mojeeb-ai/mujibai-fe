@@ -1,6 +1,7 @@
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Filter, Search } from 'lucide-react'
+import { Filter, Search } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 /**
  * EnrollsSearchAndFiltering component
@@ -10,7 +11,7 @@ import { Filter, Search } from 'lucide-react'
 export default function EnrollsSearchAndFiltering({
   t,
 }: {
-  t: (key: string) => string
+  t: (key: string) => string;
 }) {
   return (
     <div className="grid w-full grid-cols-1 items-center justify-between md:grid-cols-6 lg:grid-cols-6">
@@ -37,5 +38,5 @@ export default function EnrollsSearchAndFiltering({
         </Button>
       </div>
     </div>
-  )
+  );
 }

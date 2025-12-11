@@ -1,14 +1,18 @@
-'use client'
+'use client';
 
-import * as React from 'react'
-import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
+import * as React from 'react';
+
+import { useTranslations } from 'next-intl';
+
+import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
+
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
+} from '@/components/ui/card';
 import {
   ChartConfig,
   ChartContainer,
@@ -16,15 +20,14 @@ import {
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-} from '@/components/ui/chart'
+} from '@/components/ui/chart';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
-import { useTranslations } from 'next-intl'
+} from '@/components/ui/select';
 
 /**
  * TotalVisitorsAnalytics
@@ -36,15 +39,15 @@ import { useTranslations } from 'next-intl'
  * @returns {JSX.Element} The total visitors analytics chart component.
  */
 export function TotalVisitorsAnalytics() {
-  const t = useTranslations('adminDashboardOverview.totalVisitorsAnalytics')
+  const t = useTranslations('adminDashboardOverview.totalVisitorsAnalytics');
 
   const chartConfig = {
     visitors: { label: t('visitors') },
     desktop: { label: t('desktop'), color: 'var(--chart-1)' },
     mobile: { label: t('mobile'), color: 'var(--chart-2)' },
-  } satisfies ChartConfig
+  } satisfies ChartConfig;
 
-  const [timeRange, setTimeRange] = React.useState('90d')
+  const [timeRange, setTimeRange] = React.useState('90d');
 
   const chartData = [
     { date: '2024-04-01', desktop: 222, mobile: 150 },
@@ -138,18 +141,18 @@ export function TotalVisitorsAnalytics() {
     { date: '2024-06-28', desktop: 149, mobile: 200 },
     { date: '2024-06-29', desktop: 103, mobile: 160 },
     { date: '2024-06-30', desktop: 446, mobile: 400 },
-  ]
+  ];
 
-  const filteredData = chartData.filter((item) => {
-    const date = new Date(item.date)
-    const referenceDate = new Date('2024-06-30')
-    let daysToSubtract = 90
-    if (timeRange === '30d') daysToSubtract = 30
-    else if (timeRange === '7d') daysToSubtract = 7
-    const startDate = new Date(referenceDate)
-    startDate.setDate(startDate.getDate() - daysToSubtract)
-    return date >= startDate
-  })
+  const filteredData = chartData.filter(item => {
+    const date = new Date(item.date);
+    const referenceDate = new Date('2024-06-30');
+    let daysToSubtract = 90;
+    if (timeRange === '30d') daysToSubtract = 30;
+    else if (timeRange === '7d') daysToSubtract = 7;
+    const startDate = new Date(referenceDate);
+    startDate.setDate(startDate.getDate() - daysToSubtract);
+    return date >= startDate;
+  });
 
   return (
     <Card className="bg-[#FFFFFFBF] pt-0 dark:bg-[#001434A6]">
@@ -221,19 +224,19 @@ export function TotalVisitorsAnalytics() {
               axisLine={false}
               tickMargin={8}
               minTickGap={32}
-              tickFormatter={(value) => {
-                const date = new Date(value)
+              tickFormatter={value => {
+                const date = new Date(value);
                 return date.toLocaleDateString('en-US', {
                   month: 'short',
                   day: 'numeric',
-                })
+                });
               }}
             />
             <ChartTooltip
               cursor={false}
               content={
                 <ChartTooltipContent
-                  labelFormatter={(value) =>
+                  labelFormatter={value =>
                     new Date(value).toLocaleDateString('en-US', {
                       month: 'short',
                       day: 'numeric',
@@ -262,5 +265,5 @@ export function TotalVisitorsAnalytics() {
         </ChartContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

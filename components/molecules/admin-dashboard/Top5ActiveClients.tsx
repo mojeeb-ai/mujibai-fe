@@ -1,4 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { useLocale, useTranslations } from 'next-intl';
+
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Table,
   TableBody,
@@ -6,12 +8,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { useLocale, useTranslations } from 'next-intl'
+} from '@/components/ui/table';
 
 export default function Top5ActiveClients() {
-  const t = useTranslations('adminAnalyticsPage.top5ActiveClients')
-  const locale = useLocale()
+  const t = useTranslations('adminAnalyticsPage.top5ActiveClients');
+  const locale = useLocale();
   return (
     <Card className="border-none bg-transparent shadow-none">
       <CardHeader className="px-0">
@@ -58,5 +59,5 @@ export default function Top5ActiveClients() {
         </Table>
       </CardContent>
     </Card>
-  )
+  );
 }

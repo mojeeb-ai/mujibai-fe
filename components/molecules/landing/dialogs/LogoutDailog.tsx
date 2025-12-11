@@ -1,4 +1,8 @@
-import { Button } from '@/components/ui/button'
+import React from 'react';
+
+import { useTranslations } from 'next-intl';
+
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogClose,
@@ -7,9 +11,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
-import { useTranslations } from 'next-intl'
-import React from 'react'
+} from '@/components/ui/dialog';
 
 export default function LogoutDailog({
   open,
@@ -17,12 +19,12 @@ export default function LogoutDailog({
   onConfirm,
   loading,
 }: {
-  open: boolean
-  onClose: () => void
-  onConfirm: () => void
-  loading: boolean
+  open: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+  loading: boolean;
 }) {
-  const t = useTranslations('landingPage.logoutDialog')
+  const t = useTranslations('landingPage.logoutDialog');
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent showCloseButton={false}>
@@ -48,5 +50,5 @@ export default function LogoutDailog({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

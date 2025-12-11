@@ -1,4 +1,9 @@
-import { Button } from '@/components/ui/button'
+import { useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
+
+import { EllipsisVertical } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
 import {
   Table,
   TableBody,
@@ -6,14 +11,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { EllipsisVertical } from 'lucide-react'
-import { useLocale } from 'next-intl'
-import { useTranslations } from 'next-intl'
+} from '@/components/ui/table';
 
 export default function PlansTable() {
-  const locale = useLocale()
-  const t = useTranslations('adminPlans.plansTable')
+  const locale = useLocale();
+  const t = useTranslations('adminPlans.plansTable');
   const plans = [
     {
       id: 1,
@@ -36,7 +38,7 @@ export default function PlansTable() {
       includes:
         '10 conversions, 4000 characters in input code / conversion, Email Support',
     },
-  ]
+  ];
   return (
     <Table className="my-10 rounded-2xl bg-[#FFFFFFBF] dark:bg-[#001434A6]">
       <TableHeader>
@@ -66,7 +68,7 @@ export default function PlansTable() {
       </TableHeader>
 
       <TableBody>
-        {plans.map((plan) => (
+        {plans.map(plan => (
           <TableRow
             key={plan.id}
             className="transition-colors hover:bg-white/10"
@@ -83,5 +85,5 @@ export default function PlansTable() {
         ))}
       </TableBody>
     </Table>
-  )
+  );
 }

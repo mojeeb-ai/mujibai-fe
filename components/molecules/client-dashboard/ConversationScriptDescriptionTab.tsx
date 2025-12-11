@@ -1,12 +1,12 @@
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function ConversationScriptDescriptionTab({
   t,
   locale,
 }: {
-  t: (key: string) => string
-  locale: string
+  t: (key: string) => string;
+  locale: string;
 }) {
   return (
     <div>
@@ -39,5 +39,5 @@ export default function ConversationScriptDescriptionTab({
         </Button>
       </div>
     </div>
-  )
+  );
 }

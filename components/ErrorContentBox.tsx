@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 type ErrorProps = {
   error: {
-    message: string
-    errors?: Record<string, string[]>
-  }
-}
+    message: string;
+    errors?: Record<string, string[]>;
+  };
+};
 
 const ErrorContentBox = ({ error }: ErrorProps) => {
   return (
@@ -21,12 +21,12 @@ const ErrorContentBox = ({ error }: ErrorProps) => {
               <li key={`${field}-${idx}`}>
                 <strong className="capitalize">{field}</strong>: {msg}
               </li>
-            )),
+            ))
           )}
         </ul>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default ErrorContentBox
+export default ErrorContentBox;

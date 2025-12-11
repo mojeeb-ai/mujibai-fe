@@ -1,28 +1,31 @@
-'use client'
-import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader'
+'use client';
+import { useTranslations } from 'next-intl';
+import { useTheme } from 'next-themes';
+
+import { Moon, Settings, Sun } from 'lucide-react';
+
+import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
-import { Switch } from '@/components/ui/switch'
-import { cn } from '@/lib/utils'
-import { Moon, Settings, Sun } from 'lucide-react'
-import { useTranslations } from 'next-intl'
-import { useTheme } from 'next-themes'
+} from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
+
+import { cn } from '@/lib/utils';
 
 export default function SettingsPage() {
-  const { theme, setTheme } = useTheme()
-  const t = useTranslations('adminSettings')
+  const { theme, setTheme } = useTheme();
+  const t = useTranslations('adminSettings');
 
   const options = [
     { label: t('theme.options.light'), value: 'light', Icon: Sun },
     { label: t('theme.options.dark'), value: 'dark', Icon: Moon },
     { label: t('theme.options.system'), value: 'system', Icon: Settings },
-  ]
+  ];
 
   return (
     <div className="flex h-full w-full flex-col gap-4">
@@ -48,7 +51,7 @@ export default function SettingsPage() {
                     'hover:ring-primary/40 hover:ring-2',
                     theme === value
                       ? 'border-primary ring-primary/60 ring-2'
-                      : 'border-transparent',
+                      : 'border-transparent'
                   )}
                 >
                   <div className="my-5 rounded-full bg-[#3B82F640] p-2 dark:bg-[#00143440]">
@@ -93,5 +96,5 @@ export default function SettingsPage() {
         </Card>
       </div>
     </div>
-  )
+  );
 }

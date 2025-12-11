@@ -1,5 +1,6 @@
-import Image from 'next/image'
-import React from 'react'
+import React from 'react';
+
+import Image from 'next/image';
 
 export default function AnalyticsStatisticsCard() {
   return (
@@ -19,5 +20,5 @@ export default function AnalyticsStatisticsCard() {
         />
       </div>
     </div>
-  )
+  );
 }

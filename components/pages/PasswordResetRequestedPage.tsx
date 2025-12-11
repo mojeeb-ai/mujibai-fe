@@ -1,24 +1,27 @@
-'use client'
-import Image from 'next/image'
-import { Button } from '../ui/button'
-import { useTranslations } from 'next-intl'
-import useAuth from '@/hooks/useAuth'
-import Cookies from 'js-cookie'
-import { Loader2 } from 'lucide-react'
-import logoImage from '../../public/logo.svg'
-import Link from 'next/link'
+'use client';
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import Link from 'next/link';
+
+import Cookies from 'js-cookie';
+import { Loader2 } from 'lucide-react';
+
+import useAuth from '@/hooks/useAuth';
+
+import logoImage from '../../public/logo.svg';
+import { Button } from '../ui/button';
 
 export default function PasswordResetRequested() {
-  const { handleForgotPassword, loading } = useAuth()
+  const { handleForgotPassword, loading } = useAuth();
 
-  const resetEmail = Cookies.get('resetEmail')
-  const t = useTranslations('passwordResetRequested')
+  const resetEmail = Cookies.get('resetEmail');
+  const t = useTranslations('passwordResetRequested');
   const handleSendAgain = async () => {
-    const res = await handleForgotPassword(resetEmail || '')
+    const res = await handleForgotPassword(resetEmail || '');
     if (res) {
-      Cookies.remove('resetEmail')
+      Cookies.remove('resetEmail');
     }
-  }
+  };
   return (
     <div className="relative flex h-screen w-full items-center justify-center">
       <div className="absolute top-1/2 left-1/2 z-[-1] h-[65%] w-[65%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#06B6D4]/70 opacity-60 blur-[160px]"></div>
@@ -61,5 +64,5 @@ export default function PasswordResetRequested() {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,6 +1,7 @@
-'use client'
-import { Button } from '@/components/ui/button'
-import { motion } from 'framer-motion'
+'use client';
+import { motion } from 'framer-motion';
+
+import { Button } from '@/components/ui/button';
 
 export default function WhyChooseUsSection() {
   const reasons = [
@@ -22,7 +23,7 @@ export default function WhyChooseUsSection() {
       description:
         'Provide a professional patient experience bProvide a professional patient experience by automatically responding to booking appointments and medical reminders, reducing pressure on administrative staff. Lorem Ipsum is simply dummy text of the printing and typesetting.',
     },
-  ]
+  ];
 
   return (
     <section
@@ -152,5 +153,5 @@ export default function WhyChooseUsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

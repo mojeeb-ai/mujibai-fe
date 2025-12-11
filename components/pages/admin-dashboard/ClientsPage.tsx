@@ -1,10 +1,11 @@
-import ClientsSearchAndFiltering from '@/components/molecules/admin-dashboard/ClientsSearchAndFiltering'
-import ClientsTable from '@/components/molecules/admin-dashboard/ClientsTable'
-import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader'
-import { useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl';
+
+import ClientsSearchAndFiltering from '@/components/molecules/admin-dashboard/ClientsSearchAndFiltering';
+import ClientsTable from '@/components/molecules/admin-dashboard/ClientsTable';
+import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader';
 
 export default function ClientsPage() {
-  const t = useTranslations('adminClients')
+  const t = useTranslations('adminClients');
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <DashboardHeader title={t('welcome') + ' ' + 'Abdulrahman Alharbi'} />
@@ -14,5 +15,5 @@ export default function ClientsPage() {
         <ClientsTable />
       </div>
     </div>
-  )
+  );
 }

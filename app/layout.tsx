@@ -1,13 +1,16 @@
-import type { Metadata } from 'next'
-import { getMessages, getLocale } from 'next-intl/server'
-import { Providers } from '@/providers/Providers'
-import '@/styles/globals.css'
-import { ThemeProvider } from '@/components/atoms/ThemeProvider'
-import { Tajawal, Poppins } from 'next/font/google'
-import { Toaster } from '@/components/ui/sonner'
+import type { Metadata } from 'next';
+import { getLocale, getMessages } from 'next-intl/server';
+import { Poppins, Tajawal } from 'next/font/google';
+
+import { Providers } from '@/providers/Providers';
+
+import { ThemeProvider } from '@/components/atoms/ThemeProvider';
+import { Toaster } from '@/components/ui/sonner';
+
+import '@/styles/globals.css';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const locale = await getLocale()
+  const locale = await getLocale();
 
   if (locale === 'ar') {
     return {
@@ -44,7 +47,7 @@ export async function generateMetadata(): Promise<Metadata> {
         creator: '@mujibai',
       },
       metadataBase: new URL('https://www.mujibai.net'),
-    }
+    };
   }
 
   return {
@@ -83,28 +86,28 @@ export async function generateMetadata(): Promise<Metadata> {
     icons: {
       icon: '/favicon.ico',
     },
-  }
+  };
 }
 
 const tajawal = Tajawal({
   subsets: ['arabic'],
   variable: '--font-tajawal',
   weight: ['400', '500', '700', '800'],
-})
+});
 
 const poppins = Poppins({
   subsets: ['latin'],
   variable: '--font-poppins',
   weight: ['400', '500', '600', '700'],
-})
+});
 
 export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const locale = await getLocale()
-  const messages = await getMessages()
+  const locale = await getLocale();
+  const messages = await getMessages();
 
   return (
     <html
@@ -136,5 +139,5 @@ export default async function RootLayout({
         </Providers>
       </body>
     </html>
-  )
+  );
 }

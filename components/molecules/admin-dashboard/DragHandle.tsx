@@ -1,14 +1,16 @@
-'use client'
+'use client';
 
-import * as React from 'react'
-import { useSortable } from '@dnd-kit/sortable'
-import { Button } from '@/components/ui/button'
-import { GripVertical } from 'lucide-react'
+import * as React from 'react';
 
-type Props = { id: number | string }
+import { useSortable } from '@dnd-kit/sortable';
+import { GripVertical } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
+
+type Props = { id: number | string };
 
 export default function DragHandle({ id }: Props) {
-  const { attributes, listeners } = useSortable({ id })
+  const { attributes, listeners } = useSortable({ id });
 
   return (
     <Button
@@ -22,5 +24,5 @@ export default function DragHandle({ id }: Props) {
       <GripVertical className="text-muted-foreground size-3" />
       <span className="sr-only">Drag to reorder</span>
     </Button>
-  )
+  );
 }

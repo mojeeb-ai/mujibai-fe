@@ -1,5 +1,9 @@
-import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader'
-import { Button } from '@/components/ui/button'
+import Link from 'next/link';
+
+import { Edit, Plus, Trash2 } from 'lucide-react';
+
+import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader';
+import { Button } from '@/components/ui/button';
 import {
   Table,
   TableBody,
@@ -7,9 +11,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { Edit, Plus, Trash2 } from 'lucide-react'
-import Link from 'next/link'
+} from '@/components/ui/table';
 
 export default function ApiKeysPage() {
   return (
@@ -75,5 +77,5 @@ export default function ApiKeysPage() {
         </Table>
       </div>
     </div>
-  )
+  );
 }

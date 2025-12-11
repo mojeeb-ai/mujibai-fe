@@ -1,116 +1,121 @@
 // hooks/useAuth.ts
-'use client'
-import { api } from '@/utils/axios'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { AxiosError } from 'axios'
-import { useState } from 'react'
+'use client';
+import { useState } from 'react';
+
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+
+import { api } from '@/utils/axios';
 
 /** Auth API response type */
 interface AuthResponse {
   data: {
-    user: unknown
-  }
-  message?: string
+    user: unknown;
+  };
+  message?: string;
 }
 
 /** Login credentials */
 interface LoginCredentials {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 
 /** Reset password credentials */
 interface ResetPasswordCredentials {
-  userId: string
-  token: string
-  newPassword: string
+  userId: string;
+  token: string;
+  newPassword: string;
 }
 
 /** Forgot password payload */
 interface ForgotPasswordPayload {
-  email: string
+  email: string;
 }
 
 /** API error response */
 interface ApiErrorResponse {
-  message?: string
+  message?: string;
 }
 
 /** Alert state */
 interface AlertState {
-  type: 'success' | 'error' | null
-  title: string
-  description: string
+  type: 'success' | 'error' | null;
+  title: string;
+  description: string;
 }
 
 /** Check current auth status */
 const checkAuth = async (): Promise<AuthResponse> => {
-  const { data } = await api.get<AuthResponse>('/auth/check-auth')
-  return data
-}
+  const { data } = await api.get<AuthResponse>('/auth/check-auth');
+  return data;
+};
 
 /** Login user */
 const loginUser = async (
-  credentials: LoginCredentials,
+  credentials: LoginCredentials
 ): Promise<AuthResponse> => {
-  const { data } = await api.post<AuthResponse>('/auth/login', credentials)
-  return data
-}
+  const { data } = await api.post<AuthResponse>('/auth/login', credentials);
+  return data;
+};
 
 /** Logout user */
 const logoutUser = async (): Promise<AuthResponse> => {
-  const { data } = await api.post<AuthResponse>('/auth/logout')
-  return data
-}
+  const { data } = await api.post<AuthResponse>('/auth/logout');
+  return data;
+};
 
 /** Send forgot password email */
 const forgotPasswordRequest = async (
-  payload: ForgotPasswordPayload,
+  payload: ForgotPasswordPayload
 ): Promise<AuthResponse> => {
   const { data } = await api.post<AuthResponse>(
     '/auth/forget-password',
-    payload,
-  )
-  return data
-}
+    payload
+  );
+  return data;
+};
 
 /** Reset password with token */
 const resetPasswordRequest = async (
-  credentials: ResetPasswordCredentials,
+  credentials: ResetPasswordCredentials
 ): Promise<AuthResponse> => {
   const { data } = await api.post<AuthResponse>(
     '/auth/reset-password',
-    credentials,
-  )
-  return data
-}
+    credentials
+  );
+  return data;
+};
 
 /** Extract error message from axios error */
 const getErrorMessage = (error: unknown, defaultMessage: string): string => {
   if (error instanceof AxiosError) {
-    const axiosError = error as AxiosError<ApiErrorResponse>
-    return axiosError.response?.data?.message || defaultMessage
+    const axiosError = error as AxiosError<ApiErrorResponse>;
+    return axiosError.response?.data?.message || defaultMessage;
   }
-  return defaultMessage
-}
+  return defaultMessage;
+};
 
 /** Auth hook with all auth operations */
 export default function useAuth() {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const [alert, setAlert] = useState<AlertState>({
     type: null,
     title: '',
     description: '',
-  })
+  });
 
   const showAlert = (
     type: 'success' | 'error',
     title: string,
-    description: string,
+    description: string
   ) => {
-    setAlert({ type, title, description })
-    setTimeout(() => setAlert({ type: null, title: '', description: '' }), 5000)
-  }
+    setAlert({ type, title, description });
+    setTimeout(
+      () => setAlert({ type: null, title: '', description: '' }),
+      5000
+    );
+  };
 
   const { data: authData, isLoading: userLoading } = useQuery({
     queryKey: ['auth'],
@@ -119,46 +124,46 @@ export default function useAuth() {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
-  })
+  });
 
   const loginMutation = useMutation({
     mutationFn: loginUser,
-    onSuccess: (data) => {
-      queryClient.setQueryData(['auth'], data)
+    onSuccess: data => {
+      queryClient.setQueryData(['auth'], data);
       showAlert(
         'success',
         'Login Successful',
-        'Welcome back! You have been successfully logged in.',
-      )
+        'Welcome back! You have been successfully logged in.'
+      );
     },
-    onError: (error) => {
+    onError: error => {
       const errorMessage = getErrorMessage(
         error,
-        'Login failed - please try again',
-      )
-      showAlert('error', 'Login Failed', errorMessage)
+        'Login failed - please try again'
+      );
+      showAlert('error', 'Login Failed', errorMessage);
     },
-  })
+  });
 
   const logoutMutation = useMutation({
     mutationFn: logoutUser,
     onSuccess: () => {
-      queryClient.clear()
+      queryClient.clear();
       showAlert(
         'success',
         'Logout Successful',
-        'You have been successfully logged out.',
-      )
-      setTimeout(() => window.location.reload(), 1500)
+        'You have been successfully logged out.'
+      );
+      setTimeout(() => window.location.reload(), 1500);
     },
-    onError: (error) => {
+    onError: error => {
       const errorMessage = getErrorMessage(
         error,
-        'Logout failed - please try again',
-      )
-      showAlert('error', 'Logout Failed', errorMessage)
+        'Logout failed - please try again'
+      );
+      showAlert('error', 'Logout Failed', errorMessage);
     },
-  })
+  });
 
   const forgotPasswordMutation = useMutation({
     mutationFn: forgotPasswordRequest,
@@ -166,17 +171,17 @@ export default function useAuth() {
       showAlert(
         'success',
         'Email Sent',
-        'Password reset instructions have been sent to your email address.',
-      )
+        'Password reset instructions have been sent to your email address.'
+      );
     },
-    onError: (error) => {
+    onError: error => {
       const errorMessage = getErrorMessage(
         error,
-        'Failed to send password reset email',
-      )
-      showAlert('error', 'Request Failed', errorMessage)
+        'Failed to send password reset email'
+      );
+      showAlert('error', 'Request Failed', errorMessage);
     },
-  })
+  });
 
   const resetPasswordMutation = useMutation({
     mutationFn: resetPasswordRequest,
@@ -184,53 +189,53 @@ export default function useAuth() {
       showAlert(
         'success',
         'Password Reset Successful',
-        'Your password has been successfully reset. You can now login with your new password.',
-      )
+        'Your password has been successfully reset. You can now login with your new password.'
+      );
     },
-    onError: (error) => {
+    onError: error => {
       const errorMessage = getErrorMessage(
         error,
-        'Password reset failed - please try again',
-      )
-      showAlert('error', 'Password Reset Failed', errorMessage)
+        'Password reset failed - please try again'
+      );
+      showAlert('error', 'Password Reset Failed', errorMessage);
     },
-  })
+  });
 
   const handleLogin = async (credentials: LoginCredentials) => {
     try {
-      const data = await loginMutation.mutateAsync(credentials)
-      return data
+      const data = await loginMutation.mutateAsync(credentials);
+      return data;
     } catch {
-      return null
+      return null;
     }
-  }
+  };
 
   const handleLogout = async () => {
     try {
-      const data = await logoutMutation.mutateAsync()
-      return data
+      const data = await logoutMutation.mutateAsync();
+      return data;
     } catch {
-      return null
+      return null;
     }
-  }
+  };
 
   const handleForgotPassword = async (email: string) => {
     try {
-      const data = await forgotPasswordMutation.mutateAsync({ email })
-      return data
+      const data = await forgotPasswordMutation.mutateAsync({ email });
+      return data;
     } catch {
-      return null
+      return null;
     }
-  }
+  };
 
   const handleResetPassword = async (credentials: ResetPasswordCredentials) => {
     try {
-      const data = await resetPasswordMutation.mutateAsync(credentials)
-      return data
+      const data = await resetPasswordMutation.mutateAsync(credentials);
+      return data;
     } catch {
-      return null
+      return null;
     }
-  }
+  };
 
   return {
     user: authData?.data,
@@ -248,5 +253,5 @@ export default function useAuth() {
     handleLogout,
     handleForgotPassword,
     handleResetPassword,
-  }
+  };
 }

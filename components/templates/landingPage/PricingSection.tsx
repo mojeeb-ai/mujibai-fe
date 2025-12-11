@@ -1,17 +1,19 @@
-'use client'
+'use client';
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import PricingCards from '@/components/organisms/PricingCards'
-import { Plan } from '@/types/types'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
+import { useState } from 'react';
+
+import { Plan } from '@/types/types';
+import { AnimatePresence, motion } from 'framer-motion';
+
+import PricingCards from '@/components/organisms/PricingCards';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 /**
  * PricingSection Component
  * Displays pricing plans using ShadCN Tabs for billing period selection.
  */
 export default function PricingSection() {
-  const [activeTab, setActiveTab] = useState('monthly')
+  const [activeTab, setActiveTab] = useState('monthly');
 
   /**
    * Pricing plan definitions for both billing periods.
@@ -100,7 +102,7 @@ export default function PricingSection() {
         isPopular: false,
       },
     ],
-  }
+  };
 
   return (
     <>
@@ -249,5 +251,5 @@ export default function PricingSection() {
         </div>
       </section>
     </>
-  )
+  );
 }

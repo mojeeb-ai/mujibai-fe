@@ -1,6 +1,7 @@
-import { Button } from '@/components/ui/button'
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from 'next/image';
+import Link from 'next/link';
+
+import { Button } from '@/components/ui/button';
 
 export default function NotFound() {
   return (
@@ -22,5 +23,5 @@ export default function NotFound() {
         </Button>
       </div>
     </div>
-  )
+  );
 }

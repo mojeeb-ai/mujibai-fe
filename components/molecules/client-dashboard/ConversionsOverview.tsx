@@ -1,12 +1,13 @@
-'use client'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { ChartConfig } from '@/components/ui/chart'
-import { ChartContainer } from '@/components/ui/chart'
-import { ChartTooltip } from '@/components/ui/chart'
-import { ChartTooltipContent } from '@/components/ui/chart'
-import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis } from 'recharts'
+'use client';
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 
-export const description = 'A bar chart'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ChartConfig } from '@/components/ui/chart';
+import { ChartContainer } from '@/components/ui/chart';
+import { ChartTooltip } from '@/components/ui/chart';
+import { ChartTooltipContent } from '@/components/ui/chart';
+
+export const description = 'A bar chart';
 
 const chartData = [
   { month: 'January', desktop: 186 },
@@ -15,18 +16,18 @@ const chartData = [
   { month: 'April', desktop: 73 },
   { month: 'May', desktop: 209 },
   { month: 'June', desktop: 214 },
-]
+];
 
 const chartConfig = {
   desktop: {
     label: 'Desktop',
     color: 'var(--chart-1)',
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 export default function ConversionsOverview({
   t,
 }: {
-  t: (key: string) => string
+  t: (key: string) => string;
 }) {
   return (
     <Card className="gap-3 border-none bg-transparent shadow-none">
@@ -54,7 +55,7 @@ export default function ConversionsOverview({
                 tickLine={false}
                 tickMargin={10}
                 axisLine={false}
-                tickFormatter={(value) => value.slice(0, 3)}
+                tickFormatter={value => value.slice(0, 3)}
               />
               <ChartTooltip
                 cursor={false}
@@ -80,7 +81,7 @@ export default function ConversionsOverview({
                 tickLine={false}
                 axisLine={false}
                 tickMargin={8}
-                tickFormatter={(value) => value.slice(0, 3)}
+                tickFormatter={value => value.slice(0, 3)}
               />
               <ChartTooltip
                 cursor={false}
@@ -98,5 +99,5 @@ export default function ConversionsOverview({
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

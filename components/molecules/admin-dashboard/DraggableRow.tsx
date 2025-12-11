@@ -1,20 +1,22 @@
-'use client'
+'use client';
 
-import * as React from 'react'
-import { useSortable } from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities'
-import { TableRow, TableCell } from '@/components/ui/table'
-import { Item } from '@/types/types'
-import { Row } from '@tanstack/react-table'
+import * as React from 'react';
+
+import { Item } from '@/types/types';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+import { Row } from '@tanstack/react-table';
+
+import { TableCell, TableRow } from '@/components/ui/table';
 
 type Props = {
-  row: Row<Item>
-}
+  row: Row<Item>;
+};
 
 export default function DraggableRow({ row }: Props) {
   const { transform, transition, setNodeRef, isDragging } = useSortable({
     id: row.original.id,
-  })
+  });
 
   return (
     <TableRow
@@ -27,7 +29,7 @@ export default function DraggableRow({ row }: Props) {
         transition: transition,
       }}
     >
-      {row.getVisibleCells().map((cell) => (
+      {row.getVisibleCells().map(cell => (
         <TableCell key={cell.id}>
           {cell.column.columnDef.cell
             ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -36,5 +38,5 @@ export default function DraggableRow({ row }: Props) {
         </TableCell>
       ))}
     </TableRow>
-  )
+  );
 }

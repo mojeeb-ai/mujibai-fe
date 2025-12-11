@@ -1,3 +1,5 @@
+import * as yup from 'yup';
+
 export interface Plan {
   id: number;
   name: string;
@@ -13,8 +15,6 @@ export interface User {
   email: string;
   role: string;
 }
-
-import * as yup from "yup";
 
 export const schema = yup.object({
   id: yup.number().required(),

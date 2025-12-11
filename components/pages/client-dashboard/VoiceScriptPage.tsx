@@ -1,12 +1,13 @@
-import CallGreetingVoice from '@/components/molecules/client-dashboard/CallGreetingVoice'
-import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader'
-import MainConversationScript from '@/components/organisms/client-dashboard/MainConversationScript'
-import Image from 'next/image'
-import { useLocale, useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl';
+import Image from 'next/image';
+
+import CallGreetingVoice from '@/components/molecules/client-dashboard/CallGreetingVoice';
+import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader';
+import MainConversationScript from '@/components/organisms/client-dashboard/MainConversationScript';
 
 export default function VoiceScriptPage() {
-  const t = useTranslations('VoiceScripts')
-  const locale = useLocale()
+  const t = useTranslations('VoiceScripts');
+  const locale = useLocale();
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <DashboardHeader title={t('title')} subtitle={t('subTitle')} />
@@ -29,5 +30,5 @@ export default function VoiceScriptPage() {
         <MainConversationScript t={t} locale={locale} />
       </div>
     </div>
-  )
+  );
 }

@@ -1,14 +1,17 @@
-import React from 'react'
-import Logo from '../atoms/Logo'
-import { CheckCircle } from 'lucide-react'
-import EnrollmentForm from '../organisms/EnrollmentForm'
-import { useTranslations } from 'next-intl'
+import React from 'react';
+
+import { useTranslations } from 'next-intl';
+
+import { CheckCircle } from 'lucide-react';
+
+import Logo from '../atoms/Logo';
+import EnrollmentForm from '../organisms/EnrollmentForm';
 
 /**
  * EnrollPage — Company enrollment form with instructions section.
  */
 export default function EnrollPage() {
-  const t = useTranslations('enrollPage')
+  const t = useTranslations('enrollPage');
   const instructions = [
     t('instructions.inst1'),
     t('instructions.inst2'),
@@ -20,7 +23,7 @@ export default function EnrollPage() {
     t('instructions.inst8'),
     t('instructions.inst9'),
     t('instructions.inst10'),
-  ]
+  ];
   return (
     <div className="relative flex min-h-screen w-full flex-col items-center overflow-x-hidden py-12">
       {/* Background Glow */}
@@ -59,5 +62,5 @@ export default function EnrollPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

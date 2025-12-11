@@ -1,7 +1,11 @@
-'use client'
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Badge } from '@/components/ui/badge'
+'use client';
+import { useState } from 'react';
+
+import { useLocale, useTranslations } from 'next-intl';
+
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Table,
   TableBody,
@@ -9,21 +13,19 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import { useState } from 'react'
-import { useLocale, useTranslations } from 'next-intl'
+} from '@/components/ui/table';
 
 type Client = {
-  role: string
-  id: number
-  name: string
-  company: string
-  phone: string
-  email: string
-  status: 'Active' | 'Inactive'
-  users: number
-  startDate: string
-}
+  role: string;
+  id: number;
+  name: string;
+  company: string;
+  phone: string;
+  email: string;
+  status: 'Active' | 'Inactive';
+  users: number;
+  startDate: string;
+};
 
 const clients: Client[] = Array.from({ length: 10 }).map((_, i) => ({
   id: i + 1,
@@ -35,30 +37,30 @@ const clients: Client[] = Array.from({ length: 10 }).map((_, i) => ({
   status: i % 2 === 0 ? 'Active' : 'Inactive',
   users: i,
   startDate: `2022-01-${String(i + 1).padStart(2, '0')}`,
-}))
+}));
 
 export default function UserRolesTable() {
-  const t = useTranslations('adminUserRoles')
-  const locale = useLocale()
-  const [selected, setSelected] = useState<number[]>([])
+  const t = useTranslations('adminUserRoles');
+  const locale = useLocale();
+  const [selected, setSelected] = useState<number[]>([]);
 
-  const allChecked = selected.length === clients.length
+  const allChecked = selected.length === clients.length;
 
   const toggleAll = () => {
-    setSelected(allChecked ? [] : clients.map((c) => c.id))
-  }
+    setSelected(allChecked ? [] : clients.map(c => c.id));
+  };
 
   const toggleOne = (id: number) => {
-    setSelected((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
-    )
-  }
+    setSelected(prev =>
+      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+    );
+  };
 
   const renderStatusBadge = (status: Client['status']) => {
     const styles =
       status === 'Active'
         ? 'bg-green-500/20 text-green-600 dark:text-green-400'
-        : 'bg-red-500/20 text-red-600 dark:text-red-400'
+        : 'bg-red-500/20 text-red-600 dark:text-red-400';
 
     return (
       <Badge variant="secondary" className={styles}>
@@ -66,8 +68,8 @@ export default function UserRolesTable() {
           ? t('userRolesTable.active')
           : t('userRolesTable.inactive')}
       </Badge>
-    )
-  }
+    );
+  };
 
   return (
     <Table className="my-10 rounded-2xl bg-[#FFFFFFBF] dark:bg-[#001434A6]">
@@ -115,7 +117,7 @@ export default function UserRolesTable() {
       </TableHeader>
 
       <TableBody>
-        {clients.map((client) => (
+        {clients.map(client => (
           <TableRow
             key={client.id}
             className="transition-colors hover:bg-white/10"
@@ -141,5 +143,5 @@ export default function UserRolesTable() {
         ))}
       </TableBody>
     </Table>
-  )
+  );
 }

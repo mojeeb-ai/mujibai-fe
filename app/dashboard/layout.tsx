@@ -1,13 +1,15 @@
-import ClientSidebar from "@/components/organisms/client-dashboard/ClientSidebar";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import axios from "axios";
-import { getLocale } from "next-intl/server";
-import { cookies } from "next/headers";
+import { getLocale } from 'next-intl/server';
+import { cookies } from 'next/headers';
+
+import axios from 'axios';
+
+import ClientSidebar from '@/components/organisms/client-dashboard/ClientSidebar';
+import { SidebarProvider } from '@/components/ui/sidebar';
 
 async function getUserFromServer() {
   try {
     const baseUrl =
-      process.env.NEXT_PUBLIC_NODE_ENV === "development"
+      process.env.NEXT_PUBLIC_NODE_ENV === 'development'
         ? process.env.NEXT_PUBLIC_BACKEND_DEVELOPMENT
         : process.env.NEXT_PUBLIC_BACKEND_PRODUCTION;
 
@@ -21,7 +23,7 @@ async function getUserFromServer() {
 
     return res.data?.data;
   } catch (error) {
-    console.log("error", error);
+    console.log('error', error);
     return null;
   }
 }
@@ -35,15 +37,10 @@ export default async function Layout({
   const user = await getUserFromServer();
 
   return (
-    <main className="relative w-full h-screen p-2 overflow-x-hidden">
-      <div
-        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-            w-[85%] h-[85%] rounded 
-            bg-[#06B6D4]/70 blur-[120px] 
-              opacity-80 z-0"
-      ></div>
+    <main className="relative h-screen w-full overflow-x-hidden p-2">
+      <div className="fixed top-1/2 left-1/2 z-0 h-[85%] w-[85%] -translate-x-1/2 -translate-y-1/2 rounded bg-[#06B6D4]/70 opacity-80 blur-[120px]"></div>
       <SidebarProvider>
-        <ClientSidebar dir={locale === "ar" ? "right" : "left"} user={user} />
+        <ClientSidebar dir={locale === 'ar' ? 'right' : 'left'} user={user} />
         {children}
       </SidebarProvider>
     </main>

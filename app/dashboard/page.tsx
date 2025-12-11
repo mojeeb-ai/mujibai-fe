@@ -1,11 +1,13 @@
-import ClientDashboardOverviewPage from "@/components/pages/client-dashboard/ClientDashboardOverviewPage";
-import axios from "axios";
-import { cookies } from "next/headers";
+import { cookies } from 'next/headers';
+
+import axios from 'axios';
+
+import ClientDashboardOverviewPage from '@/components/pages/client-dashboard/ClientDashboardOverviewPage';
 
 async function getUserFromServer() {
   try {
     const baseUrl =
-      process.env.NEXT_PUBLIC_NODE_ENV === "development"
+      process.env.NEXT_PUBLIC_NODE_ENV === 'development'
         ? process.env.NEXT_PUBLIC_BACKEND_DEVELOPMENT
         : process.env.NEXT_PUBLIC_BACKEND_PRODUCTION;
 
@@ -30,7 +32,7 @@ async function getUserFromServer() {
 
     return client.data?.data;
   } catch (error) {
-    console.log("error", error);
+    console.log('error', error);
     return null;
   }
 }

@@ -1,10 +1,19 @@
-'use client'
+'use client';
 
-import { Facebook, Instagram, Mail, MapPin, Phone, Twitter } from 'lucide-react'
-import Logo from '../atoms/Logo'
-import Link from 'next/link'
-import Image from 'next/image'
-import { motion } from 'framer-motion'
+import Image from 'next/image';
+import Link from 'next/link';
+
+import { motion } from 'framer-motion';
+import {
+  Facebook,
+  Instagram,
+  Mail,
+  MapPin,
+  Phone,
+  Twitter,
+} from 'lucide-react';
+
+import Logo from '../atoms/Logo';
 
 const Footer = ({ theme }: { theme: string }) => {
   const quickLinks = [
@@ -14,13 +23,13 @@ const Footer = ({ theme }: { theme: string }) => {
     { href: '#contact', label: 'Contact US' },
     { href: '#industries', label: 'Industries We Serve' },
     { href: '#pricing', label: 'Pricing' },
-  ]
+  ];
 
   const socialIcons = [
     { Icon: Facebook, label: 'Facebook' },
     { Icon: Instagram, label: 'Instagram' },
     { Icon: Twitter, label: 'Twitter' },
-  ]
+  ];
 
   const contactItems = [
     { Icon: Phone, text: '+91 72 7602 0908' },
@@ -29,7 +38,7 @@ const Footer = ({ theme }: { theme: string }) => {
       Icon: MapPin,
       text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     },
-  ]
+  ];
 
   return (
     <footer className="bg-footer-background from-primary/40 dark:from-primary/40 via-primary/30 dark:via-primary/10 relative mt-[-4px] w-full bg-gradient-to-tl to-transparent/20">
@@ -275,7 +284,7 @@ const Footer = ({ theme }: { theme: string }) => {
         />
       </motion.div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

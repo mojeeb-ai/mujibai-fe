@@ -1,5 +1,6 @@
-import { useTheme } from "next-themes";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
+
+import { useTheme } from 'next-themes';
 
 /** Hook for handling realtime Arabic-only chat logic */
 export default function useLandingPage() {
@@ -16,7 +17,7 @@ export default function useLandingPage() {
   async function startSession() {
     try {
       const res = await fetch(
-        process.env.NEXT_PUBLIC_NODE_ENV === "development"
+        process.env.NEXT_PUBLIC_NODE_ENV === 'development'
           ? `${process.env.NEXT_PUBLIC_BACKEND_DEVELOPMENT}/api/v1/core/token`
           : `${process.env.NEXT_PUBLIC_BACKEND_PRODUCTION}/api/v1/core/token`
       );
@@ -26,37 +27,37 @@ export default function useLandingPage() {
       const pc = new RTCPeerConnection();
       peerConnection.current = pc;
 
-      audioElement.current = document.createElement("audio");
+      audioElement.current = document.createElement('audio');
       audioElement.current.autoplay = true;
-      pc.ontrack = (e) => {
+      pc.ontrack = e => {
         audioElement.current!.srcObject = e.streams[0];
       };
 
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       pc.addTrack(stream.getTracks()[0]);
 
-      const dc = pc.createDataChannel("oai-events");
+      const dc = pc.createDataChannel('oai-events');
       setDataChannel(dc);
 
       const offer = await pc.createOffer();
       await pc.setLocalDescription(offer);
 
       const response = await fetch(
-        "https://api.openai.com/v1/realtime?model=gpt-4o-realtime-preview",
+        'https://api.openai.com/v1/realtime?model=gpt-4o-realtime-preview',
         {
-          method: "POST",
+          method: 'POST',
           body: offer.sdp,
           headers: {
             Authorization: `Bearer ${EPHEMERAL_KEY}`,
-            "Content-Type": "application/sdp",
+            'Content-Type': 'application/sdp',
           },
         }
       );
 
       const answerSDP = await response.text();
-      await pc.setRemoteDescription({ type: "answer", sdp: answerSDP });
+      await pc.setRemoteDescription({ type: 'answer', sdp: answerSDP });
     } catch (error) {
-      console.error("Session start error:", error);
+      console.error('Session start error:', error);
     }
   }
 
@@ -64,7 +65,7 @@ export default function useLandingPage() {
   function stopSession() {
     if (dataChannel) dataChannel.close();
     if (peerConnection.current) {
-      peerConnection.current.getSenders().forEach((s) => s.track?.stop());
+      peerConnection.current.getSenders().forEach(s => s.track?.stop());
       peerConnection.current.close();
     }
     setIsSessionActive(false);
@@ -75,7 +76,7 @@ export default function useLandingPage() {
   /** Send event to data channel */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function sendClientEvent(message: any) {
-    if (!dataChannel) return console.error("No data channel!");
+    if (!dataChannel) return console.error('No data channel!');
     message.event_id = message.event_id || crypto.randomUUID();
     const msgStr = JSON.stringify(message);
     const chunkSize = 1200;
@@ -84,7 +85,7 @@ export default function useLandingPage() {
       dataChannel.send(chunk);
     }
     message.timestamp = new Date().toLocaleTimeString();
-    setEvents((prev) => [message, ...prev]);
+    setEvents(prev => [message, ...prev]);
   }
 
   /** Detects if text is Arabic */
@@ -96,38 +97,38 @@ export default function useLandingPage() {
   function sendTextMessage(text: string) {
     if (!isArabic(text)) {
       const warning = {
-        type: "system.message",
-        role: "system",
-        content: [{ type: "text", text: "يرجى التحدث باللغة العربية فقط" }],
+        type: 'system.message',
+        role: 'system',
+        content: [{ type: 'text', text: 'يرجى التحدث باللغة العربية فقط' }],
         timestamp: new Date().toLocaleTimeString(),
       };
-      setEvents((prev) => [warning, ...prev]);
+      setEvents(prev => [warning, ...prev]);
       return;
     }
 
     const event = {
-      type: "conversation.item.create",
+      type: 'conversation.item.create',
       item: {
-        type: "message",
-        role: "user",
-        content: [{ type: "input_text", text }],
+        type: 'message',
+        role: 'user',
+        content: [{ type: 'input_text', text }],
       },
     };
 
     sendClientEvent(event);
-    sendClientEvent({ type: "response.create" });
+    sendClientEvent({ type: 'response.create' });
   }
 
   /** Handle data channel messages */
   useEffect(() => {
     if (!dataChannel) return;
 
-    dataChannel.addEventListener("open", () => {
+    dataChannel.addEventListener('open', () => {
       setIsSessionActive(true);
       setEvents([]);
 
       const sessionUpdate = {
-        type: "session.update",
+        type: 'session.update',
         session: {
           instructions: `
 تحدث باللهجة الخليجية فقط. اجعل إجاباتك قصيرة، ودودة، وطبيعية كأنك تتحدث في مكالمة. 
@@ -145,24 +146,24 @@ export default function useLandingPage() {
 
 لو سأل عن شيء غير معروف، رد بلُطف: "ممم مو متأكد، بس ممكن أشيّك لك لو تبي."
 `,
-          modalities: ["text", "audio"],
-          voice: "alloy",
-          turn_detection: { type: "server_vad" },
+          modalities: ['text', 'audio'],
+          voice: 'alloy',
+          turn_detection: { type: 'server_vad' },
           temperature: 0.7,
-          input_audio_transcription: { model: "whisper-1" },
+          input_audio_transcription: { model: 'whisper-1' },
         },
       };
       sendClientEvent(sessionUpdate);
     });
 
-    let buffer = "";
-    dataChannel.addEventListener("message", (e) => {
+    let buffer = '';
+    dataChannel.addEventListener('message', e => {
       buffer += e.data;
       try {
         const parsed = JSON.parse(buffer);
         parsed.timestamp = new Date().toLocaleTimeString();
-        setEvents((prev) => [parsed, ...prev]);
-        buffer = "";
+        setEvents(prev => [parsed, ...prev]);
+        buffer = '';
       } catch {
         // Keep buffering until full JSON
       }

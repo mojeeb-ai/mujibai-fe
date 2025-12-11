@@ -1,20 +1,25 @@
-import Link from 'next/link'
-import { useState } from 'react'
-import LanguageSwitcher from '../atoms/LanguageSwitcher'
-import { ThemeSwitcher } from '../atoms/ThemeSwitcher'
-import { Button } from '../ui/button'
-import useAuth from '@/hooks/useAuth'
-import LogoutDailog from '../molecules/landing/dialogs/LogoutDailog'
-import { User } from '@/types/types'
-import { useTranslations } from 'next-intl'
+import { useState } from 'react';
+
+import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+
+import { User } from '@/types/types';
+
+import useAuth from '@/hooks/useAuth';
+
+import LanguageSwitcher from '../atoms/LanguageSwitcher';
+import { ThemeSwitcher } from '../atoms/ThemeSwitcher';
+import LogoutDailog from '../molecules/landing/dialogs/LogoutDailog';
+import { Button } from '../ui/button';
+
 /**
  * Action buttons component with authentication state handling
  *  Action buttons with user state management
  */
 export default function ActionsButtons({ user }: { user: User | null }) {
-  const { handleLogout, logoutLoading } = useAuth()
-  const [openLogoutDialog, setOpenLogoutDialog] = useState(false)
-  const t = useTranslations('landingPage')
+  const { handleLogout, logoutLoading } = useAuth();
+  const [openLogoutDialog, setOpenLogoutDialog] = useState(false);
+  const t = useTranslations('landingPage');
 
   return (
     <div className="hidden items-center justify-center gap-2 sm:flex">
@@ -93,5 +98,5 @@ export default function ActionsButtons({ user }: { user: User | null }) {
         loading={logoutLoading}
       />
     </div>
-  )
+  );
 }

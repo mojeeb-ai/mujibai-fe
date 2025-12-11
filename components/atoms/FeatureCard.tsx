@@ -1,8 +1,10 @@
-'use client'
-import { useTheme } from 'next-themes'
-import Image, { StaticImageData } from 'next/image'
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+'use client';
+import { useEffect, useState } from 'react';
+
+import { useTheme } from 'next-themes';
+import Image, { StaticImageData } from 'next/image';
+
+import { motion } from 'framer-motion';
 
 export default function FeatureCard({
   title,
@@ -11,21 +13,21 @@ export default function FeatureCard({
   imageDark,
   index = 0,
 }: {
-  title: string
-  description: string
-  image: StaticImageData
-  imageDark: StaticImageData
-  index?: number
+  title: string;
+  description: string;
+  image: StaticImageData;
+  imageDark: StaticImageData;
+  index?: number;
 }) {
-  const { theme, resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
-  useEffect(() => setMounted(true), [])
-  if (!mounted) return null
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
 
-  const currentTheme = theme === 'system' ? resolvedTheme : theme
-  const currentImage = currentTheme === 'dark' ? image : imageDark
+  const currentTheme = theme === 'system' ? resolvedTheme : theme;
+  const currentImage = currentTheme === 'dark' ? image : imageDark;
 
   return (
     <motion.div
@@ -123,5 +125,5 @@ export default function FeatureCard({
         </motion.div>
       </div>
     </motion.div>
-  )
+  );
 }

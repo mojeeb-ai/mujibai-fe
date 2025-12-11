@@ -1,14 +1,16 @@
-'use client'
+'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
+import { useTranslations } from 'next-intl';
+
+import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
+
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from '@/components/ui/chart'
-import { useTranslations } from 'next-intl'
+} from '@/components/ui/chart';
 
 /**
  * CallsOverTimeAnalytics Component
@@ -21,7 +23,7 @@ import { useTranslations } from 'next-intl'
  * `adminAnalyticsPage.callsOverTimeAnalytics`
  */
 export default function CallsOverTimeAnalytics() {
-  const t = useTranslations('adminAnalyticsPage.callsOverTimeAnalytics')
+  const t = useTranslations('adminAnalyticsPage.callsOverTimeAnalytics');
 
   const chartData = [
     { month: 'january', desktop: 186, mobile: 80 },
@@ -30,7 +32,7 @@ export default function CallsOverTimeAnalytics() {
     { month: 'april', desktop: 73, mobile: 190 },
     { month: 'may', desktop: 209, mobile: 130 },
     { month: 'june', desktop: 214, mobile: 140 },
-  ]
+  ];
 
   const chartConfig = {
     desktop: {
@@ -41,7 +43,7 @@ export default function CallsOverTimeAnalytics() {
       label: t('mobile'),
       color: 'var(--chart-2)',
     },
-  } satisfies ChartConfig
+  } satisfies ChartConfig;
 
   return (
     <Card className="border-none bg-transparent shadow-none">
@@ -65,7 +67,7 @@ export default function CallsOverTimeAnalytics() {
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
+              tickFormatter={value => value.slice(0, 3)}
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
 
@@ -117,5 +119,5 @@ export default function CallsOverTimeAnalytics() {
         </ChartContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

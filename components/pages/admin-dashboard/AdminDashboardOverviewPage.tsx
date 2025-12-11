@@ -1,10 +1,13 @@
-import { AdminOverviewTable } from '@/components/organisms/admin-dashboard/AdminOverviewTable'
-import { TotalVisitorsAnalytics } from '@/components/organisms/admin-dashboard/TotalVisitorsAnalytics'
-import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader'
-import initialData from '@/data/data.json'
-import { useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl';
+
+import initialData from '@/data/data.json';
+
+import { AdminOverviewTable } from '@/components/organisms/admin-dashboard/AdminOverviewTable';
+import { TotalVisitorsAnalytics } from '@/components/organisms/admin-dashboard/TotalVisitorsAnalytics';
+import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader';
+
 export default function AdminDashboardOverviewPage() {
-  const t = useTranslations('adminDashboardOverview')
+  const t = useTranslations('adminDashboardOverview');
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <DashboardHeader title={t('welcome') + ', Abdulrahman Alharbi'} />
@@ -14,5 +17,5 @@ export default function AdminDashboardOverviewPage() {
         <AdminOverviewTable data={initialData} />
       </div>
     </div>
-  )
+  );
 }

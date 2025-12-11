@@ -1,10 +1,11 @@
-import SupscriptionsSearching from '@/components/molecules/admin-dashboard/SupscriptionsSearching'
-import SupscriptionsTable from '@/components/molecules/admin-dashboard/SupscriptionTable'
-import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader'
-import { useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl';
+
+import SupscriptionsTable from '@/components/molecules/admin-dashboard/SupscriptionTable';
+import SupscriptionsSearching from '@/components/molecules/admin-dashboard/SupscriptionsSearching';
+import DashboardHeader from '@/components/organisms/client-dashboard/DashboardHeader';
 
 export default function SubscriptionPage() {
-  const t = useTranslations('adminSubscription')
+  const t = useTranslations('adminSubscription');
   return (
     <div className="flex h-full w-full flex-col gap-4">
       <DashboardHeader title={t('title')} />
@@ -14,5 +15,5 @@ export default function SubscriptionPage() {
         <SupscriptionsTable />
       </div>
     </div>
-  )
+  );
 }

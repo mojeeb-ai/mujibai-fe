@@ -1,29 +1,34 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import { Sheet, SheetContent, SheetClose } from '@/components/ui/sheet'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import LanguageSwitcher from '@/components/atoms/LanguageSwitcher'
-import { ThemeSwitcher } from '@/components/atoms/ThemeSwitcher'
-import { User } from '@/types/types'
-import { useTranslations } from 'next-intl'
-import useAuth from '@/hooks/useAuth'
-import LogoutDailog from './dialogs/LogoutDailog'
-import { useState } from 'react'
+import { useState } from 'react';
+
+import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+
+import { User } from '@/types/types';
+import { motion } from 'framer-motion';
+
+import LanguageSwitcher from '@/components/atoms/LanguageSwitcher';
+import { ThemeSwitcher } from '@/components/atoms/ThemeSwitcher';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetClose, SheetContent } from '@/components/ui/sheet';
+
+import useAuth from '@/hooks/useAuth';
+
+import LogoutDailog from './dialogs/LogoutDailog';
 
 export default function MobileView({
   open,
   onClose,
   user,
 }: {
-  open: boolean
-  onClose: () => void
-  user: User | null
+  open: boolean;
+  onClose: () => void;
+  user: User | null;
 }) {
-  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false)
-  const t = useTranslations('landingPage')
-  const { handleLogout } = useAuth()
+  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
+  const t = useTranslations('landingPage');
+  const { handleLogout } = useAuth();
   const links = [
     { name: t('header.features'), href: '#features' },
     { name: t('header.whyUs'), href: '#why-us' },
@@ -31,7 +36,7 @@ export default function MobileView({
     { name: t('header.targetSector'), href: '#target-sector' },
     { name: t('header.contact'), href: '#contact' },
     { name: t('header.about'), href: '#about' },
-  ]
+  ];
 
   return (
     <>
@@ -43,7 +48,7 @@ export default function MobileView({
             transition={{ duration: 0.25 }}
           >
             <ul className="mt-6 flex flex-col gap-4">
-              {links.map((link) => (
+              {links.map(link => (
                 <li key={link.name}>
                   <SheetClose asChild>
                     <Link
@@ -81,8 +86,8 @@ export default function MobileView({
                         variant="outline"
                         className="w-full rounded-3xl px-9 py-6"
                         onClick={() => {
-                          setIsLogoutDialogOpen(true)
-                          onClose()
+                          setIsLogoutDialogOpen(true);
+                          onClose();
                         }}
                       >
                         {t('header.logout')}
@@ -144,5 +149,5 @@ export default function MobileView({
         loading={false}
       />
     </>
-  )
+  );
 }
