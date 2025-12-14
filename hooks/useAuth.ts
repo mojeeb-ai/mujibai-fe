@@ -2,6 +2,7 @@
 'use client';
 import { useState } from 'react';
 
+import { User } from '@/types/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
@@ -9,9 +10,7 @@ import { api } from '@/utils/axios';
 
 /** Auth API response type */
 interface AuthResponse {
-  data: {
-    user: unknown;
-  };
+  data: User;
   message?: string;
 }
 

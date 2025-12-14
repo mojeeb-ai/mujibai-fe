@@ -1,5 +1,4 @@
 'use client';
-import { User } from '@/types/types';
 
 import useAuth from '@/hooks/useAuth';
 import useLandingPage from '@/hooks/useLandingPage';
@@ -13,7 +12,7 @@ import PricingSection from '../templates/landingPage/PricingSection';
 import TargetedSectorsSection from '../templates/landingPage/TargetedSectorsSection';
 import WhyChooseUs from '../templates/landingPage/WhyChooseUs';
 
-export default function LandingPage({ user }: { user: User | null }) {
+export default function LandingPage() {
   const {
     startSession,
     stopSession,
@@ -22,8 +21,7 @@ export default function LandingPage({ user }: { user: User | null }) {
     events,
     currentTheme,
   } = useLandingPage();
-  const { user: authUser } = useAuth();
-  const existUser = user || authUser?.user || null;
+  const { user } = useAuth();
 
   return (
     <main className="h-screen w-full overflow-x-hidden">
@@ -33,7 +31,7 @@ export default function LandingPage({ user }: { user: User | null }) {
         sendClientEvent={sendClientEvent}
         isSessionActive={isSessionActive}
         events={events}
-        user={existUser || null}
+        user={user || null}
       />
       <FeaturesSection />
       <TargetedSectorsSection theme={currentTheme || 'dark'} />
